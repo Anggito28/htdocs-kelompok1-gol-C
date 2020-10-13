@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORM KASIR</title>
+</head>
+<body>
+                <form action="target.html" method="GET">
+                <table width="60%" align="center" cellspacing="4" cellpadding="6">
+            <hr>
+            <tr>
+                <th colspan="2">FORM KASIR</th>
+            </tr>
+            <tr>
+            <td>ID KASIR</td>
+            <td>:<input type="text" name="id_kasir" placeholder="ID"></td>
+            </tr>
+            <tr>
+                <td>Nama kasir</td>
+                <td>:<input type="text" name="nama" placeholder="Nama Lengkap" pattern="[a-z]"></td>    
+            </tr>
+            <tr>
+                <td>Alamat kasir</td>
+                <td>:<select name="alamat" id="default_select">
+                    <option value="1">Bondowoso</option>
+                    <option value="2">Jember</option>
+                    <option value="3">Banyuwangi</option>
+                </select></td>
+            </tr> 
+            <tr>
+                <td>No Telepon</td>
+                <td>:<input type="text" name="telp" placeholder="No Telepon" pattern="[0-9]"></td>
+            </tr>   
+            <tr>
+                <td>Jenis Kelamin</td>
+                <td>:<input type="radio" name="genre" value="laki_laki">Laki-laki
+                     <input type="radio" name="genre" value="Perempuan">Perempuan </td>
+            </tr>
+            <tr>
+                <td>Username</td>
+                <td>:<input type="text" name="username"></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td>:<input type="password" name="password"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="simpan"></td>
+            </tr>
+                </form>
+            </table>
+            <hr>
+</body>
+</html>
