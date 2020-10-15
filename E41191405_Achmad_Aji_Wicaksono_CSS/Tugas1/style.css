@@ -1,0 +1,14 @@
+
+body{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    
+}
+a{
+    /*text-decoration: none;*/
+    text-align: center;
+}
+h1:hover{
+    background-color: black;
+}
