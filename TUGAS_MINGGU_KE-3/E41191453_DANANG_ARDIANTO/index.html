@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form sederhana</title>
+</head>
+
+<body>
+    <form action="target.html" method="POST">
+        <center>
+            <fieldset style="width: 600px;">
+                <table width=500px>
+                    <tr>
+                        <td colspan="2">
+                            <h2 style="text-align: center;">FORM DATA KASIR</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="id-kasir">ID KASIR</label>
+                        </td>
+                        <td>
+                            <input placeholder="ID" type="text" name="id-kasir" id="id-kasir">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="nama-kasir">NAMA KASIR</label>
+                        </td>
+                        <td>
+                            <input placeholder="NAMA" type="text" name="nama-kasir" id="nama-kasir">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="alamat-kasir">ALAMAT KASIR</label>
+                        </td>
+                        <td>
+                            <select name="alamat-kasir" id="alamat-kasir">
+                                <option value="jember">JEMBER</option>
+                                <option value="malang">MALANG</option>
+                                <option value="surabaya">SURABAYA</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="telepon">TELEPON KASIR</label>
+                        </td>
+                        <td>
+                            <input placeholder="TELP" type="text" name="telepon" id="telepon">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="status">STATUS</label></td>
+                        <td>
+                            <input type="radio" name="status" id="pria" value="pria">
+                            <label for="pria">PRIA</label>
+
+                            <input type="radio" name="status" id="wanita">
+                            <label for="wanita">WANITA</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="username">USERNAME</label>
+                        </td>
+                        <td>
+                            <input placeholder="USERNAME" type="text" name="username" id="username">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="password">PASSWORD</label>
+                        </td>
+                        <td>
+                            <input type="password" name="password" id="password">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button type="submit">Submit</button>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </fieldset>
+        </center>
+    </form>
+</body>
+
+</html>

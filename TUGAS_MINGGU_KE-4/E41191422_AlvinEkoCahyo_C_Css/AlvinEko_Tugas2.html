@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Belajar Html dengan CSS</title>
+    <link rel="stylesheet" type="text/css" href="tugas2.css">
+    <style>
+
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Form Data Kasir</h1>
+    <form action="target.html" method="POST">
+    <table>
+        <tr>
+            <td><label for="ID Kasir">ID Kasir</label></td>
+            <td><input type="text" name="ID Kasir" id="ID Kasir"></td>
+        </tr>
+        <tr>
+            <td><label for="Nama Kasir">Nama Kasir</label></td>
+            <td><input type="text" name="Nama Kasir" id="Nama Kasir"></td>
+        </tr>
+        <tr>
+            <td><label for="alamat">Alamat</label></td>
+            <td>
+                <select name="alamat" id="alamat">
+                    <option value="jember">Jember</option>
+                    <option value="bondowoso">bondowoso</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="nohp">No. HP</label></td>
+            <td><input type="text" name="nohp" id="nohp"></td>
+        </tr>
+        <tr>
+            <td><label for="jk">Jenis Kelamin</label></td>
+            <td>
+                <input type="radio" name="jk" id="laki"><label for="laki">Laki - Laki</label><br>
+                <input type="radio" name="jk" id="perempuan"><label for="perempuan">Perempuan</label>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="uname">Username</label></td>
+            <td><input type="text" name="uname" id="uname" placeholder="Enter Username"></td>
+        </tr>
+        <tr>
+            <td><label for="psw">Password</label></td>
+            <td><input type="password" name="psw" id="psw" placeholder="Enter Password"></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Submit"></td>
+        </tr>
+    </table>
+    </form>
+    <p><strong>Tip:</strong> Isikan Tentangmu:</p>
+    <form>
+        <textarea>Some text...</textarea>
+    </form>
+</body>
+</html>

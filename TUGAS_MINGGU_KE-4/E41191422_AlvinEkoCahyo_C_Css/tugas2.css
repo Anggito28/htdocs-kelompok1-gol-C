@@ -1,0 +1,11 @@
+
+input[type=text] {
+    width: 100%;
+  
+    box-sizing: border-box;
+    background-color: blue;
+    color:blue;
+  }
+table, th, td {
+    border: 1px solid black;
+  }
