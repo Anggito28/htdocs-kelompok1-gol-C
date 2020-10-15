@@ -1,0 +1,35 @@
+th{
+    color: orange;
+	font-family: Tahoma;
+    text-align: center;
+    font-size: 24px;
+}
+input[type="text"],
+input[type="password"],
+select
+{
+    padding: 8px;
+    width: 70%;
+    background: #efefef;
+    border: 0;
+    font-size: 10pt;
+    margin: 6px 0px;
+    border-radius: 3px;
+}
+input[type="submit"],
+input[type="reset"]{
+    background: #3498db;
+  color: #fff;
+  border: 0;
+  padding: 9px 8px;
+  box-shadow: 2px 2px 2px rgba(0,0,0,0.8);
+  font-family: Verdana;
+  font-style: initial;
+  border-radius: 3px;
+
+}
+table{
+    box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.8);
+    border-radius: 20px;
+    
+}

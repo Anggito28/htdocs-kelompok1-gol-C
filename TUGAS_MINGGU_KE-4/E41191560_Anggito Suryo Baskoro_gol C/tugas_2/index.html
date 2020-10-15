@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORM KASIR</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+        <div class="main">
+            <form action="target.html" method="GET">
+                <table width="60%" align="center" cellspacing="4" cellpadding="6">
+            
+            <tr>
+                <th colspan="2">FORM DATA DIRI KASIR</th>
+            </tr>
+            <tr>
+            <td>ID KASIR</td>
+            <td>:<input type="text" name="id_kasir" placeholder="ID" maxlength="5"></td>
+            </tr>
+            <tr>
+                <td>Nama kasir</td>
+                <td>:<input type="text" name="nama" placeholder="Nama Lengkap" ></td>    
+            </tr>
+            <tr>
+                <td>Alamat kasir</td>
+                <td>:<select name="alamat" id="default_select">
+                    <option value="1">Bondowoso</option>
+                    <option value="2">Jember</option>
+                    <option value="3">Banyuwangi</option>
+                </select></td>
+            </tr> 
+            <tr>
+                <td>No Telepon</td>
+                <td>:<input type="text" name="telp" placeholder="No Telepon"  minlength="10" maxlength="13"></td>
+            </tr>   
+            <tr>
+                <td>Jenis Kelamin</td>
+                <td>:<input type="radio" name="genre" value="laki_laki">Laki-laki
+                     <input type="radio" name="genre" value="Perempuan">Perempuan </td>
+            </tr>
+            <tr>
+                <td>Username</td>
+                <td>:<input type="text" name="username"></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td>:<input type="password" name="password"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="SIMPAN">   <input type="reset" value="RESET"></td>
+            </tr>
+                </form>
+            </table>
+            
+        </div>
+    
+    
+                
+            
+</body>
+</html>
