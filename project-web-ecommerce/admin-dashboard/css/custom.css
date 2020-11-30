@@ -1,0 +1,9 @@
+@media (max-width: 980px) {
+    .custom-table {
+        display: none;
+    }
+}
+
+.custom-table-action {
+    width: 160px;
+}
