@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+//cek session
+if (!isset($_SESSION["submit"])) {
+  header("Location: login.php");
+  exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -224,6 +234,18 @@
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
           </div>
+
+          <?php
+          if (isset($_GET['pesan'])) {
+            $pesan = $_GET['pesan'];
+            if ($pesan == "berhasil") {
+          ?>
+              <div class="alert alert-success">
+                <strong>Success!</strong> Anda berhasil login.
+              </div>
+          <?php
+            }
+          } ?>
 
           <!-- Content Row -->
           <div class="row">
