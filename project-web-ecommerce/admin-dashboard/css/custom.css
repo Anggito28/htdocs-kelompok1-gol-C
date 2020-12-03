@@ -1,9 +1,18 @@
-@media (max-width: 980px) {
-    .custom-table {
-        display: none;
-    }
-}
-
 .custom-table-action {
     width: 160px;
+}
+
+img.img-fit {
+    object-fit: cover;
+}
+
+@media (max-width: 846px) {
+    a.custom-btn span {
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    a.custom-btn i.fa {
+        display: none;
+    }
 }

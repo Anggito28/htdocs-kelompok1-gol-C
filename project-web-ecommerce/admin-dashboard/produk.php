@@ -51,13 +51,11 @@ $page = "produk";
             <h1 class="h3 mb-0 text-gray-800">Produk</h1>
           </div>
 
-          <!-- card row 1 -->
-
-          <!-- DataTales Example -->
+          <!-- Tabel produk -->
           <div class="custom-table card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-dark">DataTables Example</h6>
-              <a class="btn btn-success" href="#">
+              <h6 class="m-0 font-weight-bold text-dark">Daftar Produk</h6>
+              <a class="custom-btn btn btn-success" href="#">
                 <i class="fa fa-fw fa-plus-square"></i>
                 <span>Tambah Produk</span>
               </a>
@@ -67,13 +65,12 @@ $page = "produk";
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>ID</th>
+                      <th class="custom-table-action">Aksi</th>
                       <th>Foto</th>
                       <th>Nama</th>
                       <th>Stok</th>
                       <th>Harga</th>
                       <th>Kategori</th>
-                      <th class="custom-table-action">Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -83,7 +80,6 @@ $page = "produk";
               </div>
             </div>
           </div>
-
 
         </div>
         <!-- /.container-fluid -->
