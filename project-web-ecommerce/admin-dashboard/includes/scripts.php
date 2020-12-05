@@ -7,3 +7,18 @@
 
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin-2.min.js"></script>
+<script src="js/custom-script.js"></script>
+
+<script>
+    $(document).ready(function() {
+        let sidebar = "<?= $sidebarActive; ?>";
+        $("#" + sidebar).addClass("active");
+
+        <?php if (isset($itemActive)) : ?>
+            let collapseItem = "<?= $itemActive; ?>";
+            $("#" + collapseItem).addClass("active text-success");
+            $("#" + sidebar + " a:first").removeClass("collapsed");
+            $("#" + sidebar + " div.collapse").addClass("show");
+        <?php endif; ?>
+    });
+</script>

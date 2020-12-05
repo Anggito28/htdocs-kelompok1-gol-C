@@ -1,34 +1,47 @@
 <?php
-include "connect.php";
+require "function.php";
 
-$produk = mysqli_query($conn, "SELECT * FROM tb_produk");
-$nomor = 1;
+$produk = mysqli_query($conn, "SELECT tb_produk.id_produk, tb_produk.nama_produk, tb_produk.stok, tb_produk.harga, tb_produk.image, tb_kategori.kategori FROM tb_produk INNER JOIN tb_kategori ON tb_produk.kd_kategori=tb_kategori.kd_kategori");
 
 while ($data = mysqli_fetch_array($produk)) {
 ?>
 
-    <tr>
+    <tr class="text-capitalize">
         <td class="align-middle align-items-center">
             <div class="d-flex justify-content-center">
-                <a class="custom-btn btn mr-2 btn-warning text-capitalize btn-sm" href="#">
-                    <i class="fa fa-fw fa-edit"></i>
-                    <span>edit</span>
+                <a class="border-0 mr-2 btn btn-warning btn-icon-split btn-sm" href="#">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-edit"></i>
+                    </span>
+                    <span class="text">edit</span>
                 </a>
-                <a class="custom-btn btn btn-danger text-capitalize btn-sm" href="#">
-                    <i class="fa fa-fw fa-trash"></i>
-                    <span>hapus</span>
+                <a class="border-0 btn btn-danger btn-icon-split btn-sm" href="#">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-trash"></i>
+                    </span>
+                    <span class="text">hapus</span>
                 </a>
             </div>
         </td>
         <td>
-            <div class="embed-responsive embed-responsive-16by9">
-                <img alt="Card image cap" class="card-img-top embed-responsive-item img-fit" src="img/3243439.jpg" />
+            <div class="custom-img-size">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <img alt="product-image" class="embed-responsive-item img-fit" src="img/produk/<?= $data['image']; ?>" />
+                </div>
             </div>
         </td>
         <td><?= $data['nama_produk']; ?></td>
         <td><?= $data['stok']; ?></td>
-        <td><?= $data['harga']; ?></td>
+        <td>
+            <div class="custom-harga">
+                <div class="input-group ">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">Rp</div>
+                    </div>
+                    <input disabled type="text" class="form-control bg-white" value="<?= number_format($data['harga'], 0, '', "."); ?>">
+                </div>
+            </div>
+        </td>
         <td><?= $data['kategori']; ?></td>
     </tr>
-
 <?php } ?>

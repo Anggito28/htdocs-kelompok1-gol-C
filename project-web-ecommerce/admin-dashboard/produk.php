@@ -1,5 +1,6 @@
 <?php
-$page = "produk";
+$sidebarActive = "sidebarProduk";
+$itemActive = "dropdownDaftarProduk"
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +22,7 @@ $page = "produk";
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/custom.css">
+  <link rel="stylesheet" href="css/custom-style.css">
 
   <!-- Custom styles for this page -->
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -48,28 +49,82 @@ $page = "produk";
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Produk</h1>
+            <h1 class="h3 mb-0 text-gray-800">Daftar Produk</h1>
           </div>
 
           <!-- Tabel produk -->
           <div class="custom-table card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
               <h6 class="m-0 font-weight-bold text-dark">Daftar Produk</h6>
-              <a class="custom-btn btn btn-success" href="#">
-                <i class="fa fa-fw fa-plus-square"></i>
-                <span>Tambah Produk</span>
-              </a>
+              <div class="dropdown">
+                <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Menu Lain
+                </button>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item text-dark" href="tambah-produk.php">Tambah Produk</a>
+                  <a href="#" class="dropdown-item text-dark" data-toggle="modal" data-target="#staticBackdrop">Kategori</a>
+                </div>
+              </div>
             </div>
+
+            <!-- modal kategori -->
+            <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Kategori</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <table class="table text-capitalize">
+                      <thead>
+                        <tr>
+                          <th>No</th>
+                          <th>Kategori</th>
+                          <th class="text-right">Aksi</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                        $conn = mysqli_connect("localhost", "root", "", "db_ecommerce_tanaman_hias");
+                        $showKategori = mysqli_query($conn, "SELECT * FROM tb_kategori;");
+                        $num = 1;
+                        while ($dataKategori = mysqli_fetch_array($showKategori)) :
+                        ?>
+                          <tr>
+                            <td><?= $num++; ?></td>
+                            <td><?= $dataKategori['kategori']; ?></td>
+                            <td class="align-middle text-right">
+                              <div class="btn-group btn-group-sm" role="group" aria-label="aksi">
+                                <button type="button" class="btn btn-warning">Edit</button>
+                                <button type="button" class="btn btn-danger">Hapus</button>
+                              </div>
+                            </td>
+                          </tr>
+                        <?php endwhile; ?>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary">Tambah Kategori</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="dataTable" style="width:100%">
                   <thead>
                     <tr>
-                      <th class="custom-table-action">Aksi</th>
-                      <th>Foto</th>
+                      <th id="tbAksi">Aksi</th>
+                      <th id="tbFoto">Foto</th>
                       <th>Nama</th>
-                      <th>Stok</th>
-                      <th>Harga</th>
+                      <th id="tbStok">Stok</th>
+                      <th id="tbHarga">Harga</th>
                       <th>Kategori</th>
                     </tr>
                   </thead>
@@ -100,24 +155,7 @@ $page = "produk";
     <i class="fas fa-angle-up"></i>
   </a>
 
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
+  <?php include "includes/logout-modal.php" ?>
 
   <?php include "includes/scripts.php" ?>
 

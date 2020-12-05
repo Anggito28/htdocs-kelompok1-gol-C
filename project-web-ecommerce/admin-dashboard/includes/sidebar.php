@@ -14,21 +14,21 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item <?php if ($page == "dashboard") echo "active" ?>">
+    <li id="sidebarDashboard" class="nav-item">
         <a class="nav-link" href="index.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
 
     <!-- Nav Item - Pesanan -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+    <li id="sidebarPesanan" class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePesanan" aria-expanded="true" aria-controls="CollapsePesanan">
             <i class="fas fa-fw fa-clipboard-list"></i>
             <span>Pesanan</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapsePesanan" class="collapse" aria-labelledby="headingPesanan" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Status Pesanan:</h6>
+                <h6 class="collapse-header">status pesanan</h6>
                 <a class="collapse-item" href="#">Semua</a>
                 <a class="collapse-item" href="#">Tertunda</a>
                 <a class="collapse-item" href="#">Diproses</a>
@@ -40,21 +40,29 @@
     </li>
 
     <!-- Nav Item - Produk -->
-    <li class="nav-item <?php if ($page == "produk") echo "active" ?>">
-        <a class="nav-link" href="produk.php">
+    <li id="sidebarProduk" class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProduk" aria-expanded="true" aria-controls="collapseProduk">
             <i class="fas fa-fw fa-box-open"></i>
-            <span>Produk</span></a>
+            <span>Produk</span>
+        </a>
+        <div id="collapseProduk" class="collapse" aria-labelledby="headingProduk" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">produk toko</h6>
+                <a id="dropdownDaftarProduk" class="collapse-item" href="produk.php">Daftar Produk</a>
+                <a id="dropdownTambahProduk" class="collapse-item" href="tambah-produk.php">Tambah Produk</a>
+            </div>
+        </div>
     </li>
 
     <!-- Nav Item - Pelanggan -->
-    <li class="nav-item">
+    <li id="sidebarPelanggan" class="nav-item">
         <a class="nav-link" href="#">
             <i class="fas fa-fw fa-users"></i>
             <span>Pelanggan</span></a>
     </li>
 
     <!-- Nav Item - Laporan -->
-    <li class="nav-item">
+    <li id="sidebarLaporan" class="nav-item">
         <a class="nav-link" href="#">
             <i class="fas fa-fw fa-book"></i>
             <span>Laporan</span></a>
