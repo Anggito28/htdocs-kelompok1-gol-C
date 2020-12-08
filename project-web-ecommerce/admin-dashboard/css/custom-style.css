@@ -3,10 +3,6 @@ img.img-fit {
     object-fit: cover;
 }
 
-th#tbAksi {
-    width: 160px !important;
-}
-
 th#tbHarga {
     width: 190px !important;
 }
@@ -19,7 +15,6 @@ th#tbStok {
     width: 40px;
 }
 
-/* custom style table-product.php */
 td div.custom-harga {
     width: 180px;
     display: block;

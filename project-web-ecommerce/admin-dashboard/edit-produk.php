@@ -1,21 +1,30 @@
 <?php
 $sidebarActive = "sidebarProduk";
-$itemActive = "dropdownTambahProduk";
+// $itemActive = "dropdownTambahProduk";
 
 require_once "config/function.php";
 
+if (!(isset($_GET['id']))) {
+    header("Location:produk.php");
+    exit;
+}
+
+$id = $_GET['id'];
+
+$dataProduk = query("SELECT * FROM tb_produk WHERE id_produk = $id")[0];
+
 if (isset($_POST['simpan-produk'])) {
-    if (tambahProduk($_POST) > 0) {
+    if (editProduk($_POST) > 0) {
         echo "
         <script>
-            alert('Data berhasil ditambahkan!');
+            alert('Data berhasil diedit!');
             location = 'produk.php';
         </script>";
     } else {
         echo mysqli_error($conn);
         echo "
         <script>
-            alert('Data gagal ditambahkan!');
+            alert('Data gagal diedit!');
             location = 'produk.php';
         </script>";
     }
@@ -77,7 +86,7 @@ if (isset($_POST['simpan-kategori'])) {
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb bg-white shadow-sm mb-4">
                                     <li class="breadcrumb-item"><a href="produk.php">Daftar Produk</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Tambah Produk</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Edit Produk</li>
                                 </ol>
                             </nav>
                         </div>
@@ -95,7 +104,7 @@ if (isset($_POST['simpan-kategori'])) {
                                         <div class="form-group row mb-4">
                                             <label class="col-md-4 col-form-label font-weight-bold" for="nama">Nama Produk</label>
                                             <div class="col-md-8">
-                                                <input required type="text" name="nama-produk" id="nama-produk" class="form-control">
+                                                <input value="<?= $dataProduk['nama_produk']; ?>" required type="text" name="nama-produk" id="nama-produk" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row mb-4">
@@ -125,7 +134,7 @@ if (isset($_POST['simpan-kategori'])) {
                                         <div class="form-group row mb-4">
                                             <label class="col-md-4 font-weight-bold" for="stok">Stok</label>
                                             <div class="col-md-4 col-sm-6">
-                                                <input required type="text" name="stok" id="stok" class="form-control">
+                                                <input value="<?= $dataProduk['stok']; ?>" required type="text" name="stok" id="stok" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row mb-4">
@@ -134,24 +143,31 @@ if (isset($_POST['simpan-kategori'])) {
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">Rp</div>
                                                 </div>
-                                                <input required type="text" name="harga" id="harga" class="form-control">
+                                                <input value="<?= $dataProduk['harga']; ?>" required type="text" name="harga" id="harga" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row mb-4">
                                             <label class="col-md-4 font-weight-bold" for="harga">Deskripsi</label>
                                             <div class="col">
-                                                <textarea required name="deskripsi" id="deskripsi" rows="5" class="form-control"></textarea>
+                                                <textarea required name="deskripsi" id="deskripsi" rows="5" class="form-control"><?= $dataProduk['deskripsi']; ?></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row mb-4">
                                             <label class="col-md-4 font-weight-bold" for="foto-produk">Upload foto produk</label>
                                             <div class="col">
-                                                <input required name="image" type="file" class="form-control-file" id="foto-produk">
+                                                <input name="image" type="file" class="form-control-file" id="foto-produk">
+
+                                                <input value="<?= $dataProduk['image']; ?>" name="image-old" type="hidden" class="form-control-file" id="foto-produk">
+                                                <input type="hidden" name="id-produk" id="idProduk" value="<?= $dataProduk['id_produk']; ?>">
+
+                                                <div style="width: 200px;" class="embed-responsive embed-responsive-16by9 mt-2">
+                                                    <img alt="product-image" class="embed-responsive-item img-fit" src="img/produk/<?= $dataProduk['image']; ?>" />
+                                                </div>
+
                                             </div>
                                         </div>
                                         <div class="d-flex flex-row-reverse mb-5">
                                             <button id="simpan-produk" name="simpan-produk" type="submit" class="btn btn-primary ml-3">Simpan</button>
-                                            <button type="reset" class="btn btn-secondary ml-3">Reset</button>
                                             <a id="batal-produk" class="btn btn-outline-secondary" href="produk.php">Batal</a>
                                         </div>
                                     </form>
@@ -208,6 +224,14 @@ if (isset($_POST['simpan-kategori'])) {
     <?php include "includes/logout-modal.php" ?>
 
     <?php include "includes/scripts.php" ?>
+    <?php $kat = $dataProduk['kd_kategori']; ?>
+
+    <script>
+        $(document).ready(function() {
+            $("select#kategori option[value='<?= $kat; ?>']").attr("selected", "selected");
+            console.log("<?= $kat; ?>");
+        });
+    </script>
 
 </body>
 

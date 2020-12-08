@@ -9,6 +9,7 @@
 <script src="js/sb-admin-2.min.js"></script>
 <script src="js/custom-script.js"></script>
 
+<!-- sidebar aktif indikator -->
 <script>
     $(document).ready(function() {
         let sidebar = "<?= $sidebarActive; ?>";
