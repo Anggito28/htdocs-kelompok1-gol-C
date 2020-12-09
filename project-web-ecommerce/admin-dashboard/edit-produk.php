@@ -224,12 +224,12 @@ if (isset($_POST['simpan-kategori'])) {
     <?php include "includes/logout-modal.php" ?>
 
     <?php include "includes/scripts.php" ?>
+
     <?php $kat = $dataProduk['kd_kategori']; ?>
 
     <script>
         $(document).ready(function() {
             $("select#kategori option[value='<?= $kat; ?>']").attr("selected", "selected");
-            console.log("<?= $kat; ?>");
         });
     </script>
 

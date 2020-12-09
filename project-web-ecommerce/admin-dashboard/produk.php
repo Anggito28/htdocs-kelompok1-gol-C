@@ -267,8 +267,6 @@ require_once "config/function.php";
 
         request.done(function(response, textStatus, jqXHR) {
           // // Log a message to the console
-          console.log("Hooray, it worked!");
-          console.log(serializedData);
           tampilData();
         });
       });
@@ -293,11 +291,6 @@ require_once "config/function.php";
           let baris = target.parentsUntil("tbody");
           let idKategori = baris.find("input:eq(1)").val();
           let kategoriBaru = baris.find("input:eq(0)").val();
-
-          console.log("ajax/ajax-edit-kategori.php?id=" + idKategori + "&kategori=" + kategoriBaru);
-
-          console.log(idKategori);
-          console.log(kategoriBaru);
 
           $.get("ajax/ajax-edit-kategori.php?id=" + idKategori + "&kategori=" + kategoriBaru, function(data) {
             tampilData();
