@@ -22,13 +22,10 @@
         <div class="container-lg">
             <nav class="navbar py-3 navbar-expand-lg navbar-light bg-white justify-content-between">
                 <a href="#" class="navbar-brand d-inline-flex">
-                    <img src="asset/logo/bonsai_1.svg" width="30" height="30" class="d-inline-block align-top" alt=""
-                        loading="lazy">
+                    <img src="asset/logo/bonsai_1.svg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
                     <h5 class="ml-2 mt-2 font-weight-bold">Rudi Bonsai</h5>
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -41,8 +38,7 @@
                             <a class="nav-link" href="produk.html">Produk</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Info
                             </a>
                             <div class="dropdown-menu mt-3" aria-labelledby="navbarDropdown">
@@ -69,44 +65,44 @@
     </section>
     <section class="content">
         <div class="container">
-        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"></li>
-    <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></li>
-    <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="asset/img/bonsai1.jpg" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>First slide label</h5>
-        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="asset/img/bonsai3.webp" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Second slide label</h5>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="asset/img/bonsai4.jpg" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Third slide label</h5>
-        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-      </div>
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </a>
-</div>
+            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"></li>
+                    <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></li>
+                    <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="asset/img/bonsai1.jpg" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>First slide label</h5>
+                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="asset/img/bonsai3.webp" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Second slide label</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="asset/img/bonsai4.jpg" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Third slide label</h5>
+                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </a>
+            </div>
         </div>
     </section>
     <section class="content">
@@ -119,9 +115,7 @@
                             <h5 class="mb-0 my-auto">Produk</h5>
                             <div class="d-inline-flex">
                                 <div class="dropdown my-auto mr-3">
-                                    <button class="btn btn-sm btn-secondary dropdown-toggle my-0" type="button"
-                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
+                                    <button class="btn btn-sm btn-secondary dropdown-toggle my-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Kategori
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
@@ -133,8 +127,7 @@
 
                                 <form class="search form-inline my-2 my-lg-0">
                                     <div class="input-group">
-                                        <input class="form-control" type="search" placeholder="Cari produk..."
-                                            aria-label="Search">
+                                        <input class="form-control" type="search" placeholder="Cari produk..." aria-label="Search">
                                         <div class="input-group-append">
                                             <button class="btn btn-success my-2 my-sm-0" type="submit">
                                                 <i class="fa fa-search"></i>
@@ -150,8 +143,7 @@
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-search px-2">
                                         <form class="form-inline">
-                                            <input class="form-control" type="search" placeholder="Cari produk"
-                                                aria-label="Search">
+                                            <input class="form-control" type="search" placeholder="Cari produk" aria-label="Search">
                                             <button class="btn btn-success my-2 my-sm-0 d-none" type="submit">
                                                 <i class="fa fa-search"></i>
                                             </button>
@@ -175,8 +167,7 @@
                                 <div class="konten-item col-lg-3 col-md-4 col-sm-6 mb-4">
                                     <div class="card shadow-sm">
                                         <div class="embed-responsive embed-responsive-16by9">
-                                            <img src="asset/img/5fccd0d6cb7db.jpeg"
-                                                class="product-image embed-responsive-item" alt="...">
+                                            <img src="asset/img/5fccd0d6cb7db.jpeg" class="product-image embed-responsive-item" alt="...">
                                         </div>
                                         <div class="card-body">
                                             <h6 class="card-title">
@@ -210,8 +201,7 @@
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination justify-content-end">
                                             <li class="page-item disabled">
-                                                <a class="page-link" href="#" tabindex="-1"
-                                                    aria-disabled="true">Previous</a>
+                                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
                                             </li>
                                             <li class="page-item active"><a class="page-link" href="#">1</a></li>
                                             <li class="page-item"><a class="page-link" href="#">2</a></li>
@@ -280,7 +270,7 @@
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             let item = $("div.konten-item");
             let konten = $("div.row.konten-produk");
 
@@ -298,7 +288,7 @@
                 $("div.search-sm").show();
             }
 
-            $(window).resize(function () {
+            $(window).resize(function() {
                 if ($(window).width() < 768) {
                     $("form.search").hide();
                     $("div.search-sm").show();
