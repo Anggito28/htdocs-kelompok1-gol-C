@@ -3,10 +3,12 @@
         <div class="row">
             <div class="col-lg-6 mb-5">
                 <h6>Tentang Kami</h6>
-                <small>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita ullam optio quidem
+                <small class="pr-5">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita ullam optio quidem
                     architecto esse ipsum odit hic voluptas consequuntur, voluptatum aut reiciendis atque quas
                     illum, veniam dignissimos magnam sint, sapiente quis culpa nemo labore. Sunt nulla quo ea
-                    qui quibusdam.</small>
+                    qui quibusdam.
+                </small>
             </div>
 
             <div class="col-lg-3 mb-5">
