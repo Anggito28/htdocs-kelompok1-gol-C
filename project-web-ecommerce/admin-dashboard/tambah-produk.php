@@ -2,7 +2,8 @@
 $sidebarActive = "sidebarProduk";
 $itemActive = "dropdownTambahProduk";
 
-require_once "config/function.php";
+require "config/connect.php";
+require "config/function.php";
 
 if (isset($_POST['simpan-produk'])) {
     if (tambahProduk($_POST) > 0) {

@@ -1,8 +1,8 @@
 <?php
 $sidebarActive = "sidebarProduk";
-// $itemActive = "dropdownTambahProduk";
 
-require_once "config/function.php";
+require "config/connect.php";
+require "config/function.php";
 
 if (!(isset($_GET['id']))) {
     header("Location:produk.php");

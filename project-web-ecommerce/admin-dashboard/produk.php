@@ -2,7 +2,8 @@
 $sidebarActive = "sidebarProduk";
 $itemActive = "dropdownDaftarProduk";
 
-require_once "config/function.php";
+require "config/connect.php";
+require "config/function.php";
 
 ?>
 

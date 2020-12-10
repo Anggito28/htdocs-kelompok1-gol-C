@@ -1,4 +1,5 @@
 <?php
+require "config/connect.php";
 require "config/function.php";
 
 $id = $_GET["id"];
