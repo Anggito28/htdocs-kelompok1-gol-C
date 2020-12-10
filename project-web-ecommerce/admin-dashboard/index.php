@@ -1,7 +1,8 @@
 <?php
 $sidebarActive = "sidebarDashboard";
 
-require_once "config/function.php";
+require "config/connect.php";
+require "config/function.php";
 ?>
 
 <!DOCTYPE html>

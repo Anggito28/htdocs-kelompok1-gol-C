@@ -1,7 +1,7 @@
 <!-- data popup kategori -->
 <?php
 if (!(isset($sidebarActive))) {
-    require "../config/function.php";
+    require "../config/connect.php";
 }
 // $conn = mysqli_connect("localhost", "root", "", "db_ecommerce_tanaman_hias");
 

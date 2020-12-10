@@ -1,6 +1,18 @@
 <?php
-$page = "";
+// dua variabel dibawah ini untuk indikator sidebar aktif
+// $sidebarActive = "";
+// $itemActive = "";
+
+// selalu ikutkan 2 file ini untuk dapat menjalankan fungsi dan konek database
+require "config/connect.php";
+require "config/function.php";
+
 ?>
+
+<!-- 
+  ini adalah file template untuk membuat halaman baru di admin dashboard
+  copy isi file ini lalu paste kan ke file halaman baru yang ingin dibuat
+-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,6 +55,8 @@ $page = "";
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
+
+          <!-- konten halaman isi dibawah ini -->
 
           <!-- Page Heading -->
           <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>

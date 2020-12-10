@@ -1,5 +1,5 @@
 <?php
-require_once "../config/function.php";
+require "../config/connect.php";
 
 $id = $_GET['id'];
 $hapus = "DELETE FROM tb_kategori WHERE kd_kategori = $id";

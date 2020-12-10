@@ -1,5 +1,5 @@
 <?php
-require_once "../config/function.php";
+require "../config/connect.php";
 
 $kategoriBaru = $_GET['kategori'];
 $id = $_GET['id'];

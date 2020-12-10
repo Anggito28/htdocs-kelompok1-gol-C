@@ -1,5 +1,5 @@
 <?php
-require_once "../config/function.php";
+require "../config/connect.php";
 
 if (isset($_POST['inputTambahKategori'])) {
     $kategoriBaru = $_POST['inputTambahKategori'];
