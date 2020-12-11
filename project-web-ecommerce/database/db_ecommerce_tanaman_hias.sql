@@ -3,11 +3,10 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2020 at 07:37 AM
+-- Generation Time: Dec 11, 2020 at 08:27 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
-SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -30,9 +29,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `tb_akun` (
   `kd_akun` int(11) NOT NULL,
-  `username` varchar(25) NOT NULL,
+  `email` varchar(50) NOT NULL,
   `password` varchar(20) NOT NULL,
-  `jenis_akun` varchar(4) NOT NULL
+  `jenis_akun` enum('superuser','admin','pembeli') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -43,7 +42,7 @@ CREATE TABLE `tb_akun` (
 
 CREATE TABLE `tb_detail_transaksi` (
   `id` int(11) NOT NULL,
-  `kd_transaksi` int(11) NOT NULL,
+  `kd_transaksi` int(11) DEFAULT NULL,
   `id_produk` int(11) DEFAULT NULL,
   `Subtotal` int(11) NOT NULL,
   `Jumlah_Barang` int(11) NOT NULL
@@ -69,13 +68,12 @@ CREATE TABLE `tb_kategori` (
 CREATE TABLE `tb_pembeli` (
   `kd_pembeli` int(11) NOT NULL,
   `nama` varchar(50) NOT NULL,
-  `jenis_kelamin` varchar(10) NOT NULL,
+  `jenis_kelamin` enum('L','P') NOT NULL,
   `id_provinsi` varchar(2) CHARACTER SET latin1 NOT NULL,
   `id_kabupaten` varchar(4) CHARACTER SET latin1 NOT NULL,
   `id_kecamatan` varchar(7) CHARACTER SET latin1 NOT NULL,
   `detail_alamat` text NOT NULL,
   `no_telepon` varchar(12) NOT NULL,
-  `email` varchar(20) NOT NULL,
   `kd_akun` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -87,10 +85,10 @@ CREATE TABLE `tb_pembeli` (
 
 CREATE TABLE `tb_produk` (
   `id_produk` int(11) NOT NULL,
-  `nama_produk` varchar(25) DEFAULT NULL,
+  `nama_produk` varchar(50) DEFAULT NULL,
   `kd_kategori` int(6) DEFAULT NULL,
-  `stok` int(5) DEFAULT NULL,
-  `harga` bigint(13) DEFAULT NULL,
+  `stok` int(11) DEFAULT 0,
+  `harga` bigint(13) DEFAULT 0,
   `deskripsi` text DEFAULT NULL,
   `image` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -7725,7 +7723,6 @@ ALTER TABLE `wilayah_kabupaten`
 --
 ALTER TABLE `wilayah_kecamatan`
   ADD CONSTRAINT `kec-kab` FOREIGN KEY (`kabupaten_id`) REFERENCES `wilayah_kabupaten` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
