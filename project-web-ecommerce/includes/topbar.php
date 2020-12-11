@@ -45,7 +45,7 @@
                             </a>
                             <div style="width: 240px;" class="dropdown-menu dropdown-menu-right mt-3">
                                 <p class="d-block pl-4 pt-2">
-                                    Halo Lorem, ipsum.
+                                    <?= $_SESSION['email']; ?>
                                 </p>
                                 <hr class="dropdown-divider">
                                 <a class="dropdown-item" href="#">

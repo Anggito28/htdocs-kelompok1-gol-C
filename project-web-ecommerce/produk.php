@@ -1,4 +1,5 @@
 <?php
+session_start();
 require "config/connect.php";
 require "config/function.php";
 
@@ -45,15 +46,15 @@ $products = query("SELECT tb_produk.*, tb_kategori.kategori FROM tb_produk INNER
                                         Kategori
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
+                                        <?php foreach ($products as $product) : ?>
+                                            <a class="dropdown-item" href="produk.php?c=<?= $product['kd_kategori']; ?>"><?= $product['kategori']; ?></a>
+                                        <?php endforeach; ?>
                                     </div>
                                 </div>
 
-                                <form class="search form-inline my-2 my-lg-0">
+                                <form method="GET" action="" class="search form-inline my-2 my-lg-0">
                                     <div class="input-group">
-                                        <input class="form-control" type="search" placeholder="Cari produk..." aria-label="Search">
+                                        <input name="s" class="form-control" type="search" placeholder="Cari produk..." aria-label="Search">
                                         <div class="input-group-append">
                                             <button class="btn btn-success my-2 my-sm-0" type="submit">
                                                 <i class="fa fa-search"></i>
