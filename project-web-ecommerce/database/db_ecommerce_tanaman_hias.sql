@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2020 at 08:27 AM
+-- Generation Time: Dec 11, 2020 at 01:20 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `tb_akun` (
   `kd_akun` int(11) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `password` varchar(20) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `jenis_akun` enum('superuser','admin','pembeli') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -69,9 +69,9 @@ CREATE TABLE `tb_pembeli` (
   `kd_pembeli` int(11) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `jenis_kelamin` enum('L','P') NOT NULL,
-  `id_provinsi` varchar(2) CHARACTER SET latin1 NOT NULL,
-  `id_kabupaten` varchar(4) CHARACTER SET latin1 NOT NULL,
-  `id_kecamatan` varchar(7) CHARACTER SET latin1 NOT NULL,
+  `id_provinsi` varchar(2) CHARACTER SET latin1 DEFAULT NULL,
+  `id_kabupaten` varchar(4) CHARACTER SET latin1 DEFAULT NULL,
+  `id_kecamatan` varchar(7) CHARACTER SET latin1 DEFAULT NULL,
   `detail_alamat` text NOT NULL,
   `no_telepon` varchar(12) NOT NULL,
   `kd_akun` int(11) NOT NULL
@@ -7607,10 +7607,10 @@ ALTER TABLE `tb_kategori`
 --
 ALTER TABLE `tb_pembeli`
   ADD PRIMARY KEY (`kd_pembeli`),
-  ADD KEY `prov` (`id_provinsi`),
+  ADD KEY `akun-pembeli` (`kd_akun`),
   ADD KEY `kab` (`id_kabupaten`),
   ADD KEY `kec` (`id_kecamatan`),
-  ADD KEY `akun-pembeli` (`kd_akun`);
+  ADD KEY `prov` (`id_provinsi`);
 
 --
 -- Indexes for table `tb_produk`
@@ -7696,9 +7696,9 @@ ALTER TABLE `tb_detail_transaksi`
 --
 ALTER TABLE `tb_pembeli`
   ADD CONSTRAINT `akun-pembeli` FOREIGN KEY (`kd_akun`) REFERENCES `tb_akun` (`kd_akun`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `kab` FOREIGN KEY (`id_kabupaten`) REFERENCES `wilayah_kabupaten` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `kec` FOREIGN KEY (`id_kecamatan`) REFERENCES `wilayah_kecamatan` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `prov` FOREIGN KEY (`id_provinsi`) REFERENCES `wilayah_provinsi` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `kab` FOREIGN KEY (`id_kabupaten`) REFERENCES `wilayah_kabupaten` (`id`),
+  ADD CONSTRAINT `kec` FOREIGN KEY (`id_kecamatan`) REFERENCES `wilayah_kecamatan` (`id`),
+  ADD CONSTRAINT `prov` FOREIGN KEY (`id_provinsi`) REFERENCES `wilayah_provinsi` (`id`);
 
 --
 -- Constraints for table `tb_produk`
