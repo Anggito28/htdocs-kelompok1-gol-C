@@ -29,7 +29,7 @@
                 </ul>
             </div>
 
-            <div class="col-lg-3 mb-3">
+            <div class="col-lg-3 mb-5">
                 <h6>Link</h6>
                 <ul>
                     <li>Pengiriman</li>
@@ -38,6 +38,18 @@
                 </ul>
             </div>
 
+        </div>
+        <div class="row text-center">
+            <div class="col-12">
+                <small>
+                    Copyright © Rudi Bonsai 2020
+                </small>
+            </div>
+            <div class="col-12">
+                <small>
+                    <div>Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+                </small>
+            </div>
         </div>
     </div>
 </div>

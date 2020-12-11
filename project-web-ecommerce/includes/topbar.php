@@ -36,35 +36,37 @@
                         <i class="fa fa-shopping-cart fa-2x text-secondary"></i>
                         <!-- <span class="text">Keranjang</span> -->
                     </a>
-                    <button class="btn mx-1 btn-sm btn-outline-success my-2 my-sm-0" type="submit">Masuk</button>
-                    <button class="btn mx-1 btn-sm btn-success my-2 my-sm-0" type="submit">Daftar</button>
 
-                    <!-- user loggged in -->
-                    <!-- <div class="dropdown my-auto">
-                        <a class="text-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-user-circle fa-2x"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right mt-3" aria-labelledby="dropdownMenuButton">
-                            <p class="dropdown-item w-75">
-                                Halo Lorem, ipsum.
-                            </p>
-                            <hr class="dropdown-divider">
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Profile
+                    <?php if (isset($_SESSION["login"])) : ?>
+                        <!-- user loggged in -->
+                        <div class="dropdown my-auto">
+                            <a class="text-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-user-circle fa-2x"></i>
                             </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Settings
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Logout
-                            </a>
+                            <div style="width: 240px;" class="dropdown-menu dropdown-menu-right mt-3">
+                                <p class="d-block pl-4 pt-2">
+                                    Halo Lorem, ipsum.
+                                </p>
+                                <hr class="dropdown-divider">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="logout.php">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
                         </div>
-                    </div> -->
-
+                    <?php else : ?>
+                        <a class="btn mx-1 btn-sm btn-outline-success my-2 my-sm-0" href="login.php">Masuk</a>
+                        <a class="btn mx-1 btn-sm btn-success my-2 my-sm-0" href="register.php">Daftar</a>
+                    <?php endif; ?>
                 </div>
 
             </div>
