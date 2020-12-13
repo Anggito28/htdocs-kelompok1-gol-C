@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+$topbarActive = "topbarHome";
+
 ?>
 
 <!doctype html>
@@ -41,7 +43,7 @@ session_start();
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <div class="embed-responsive embed-responsive-21by9">
-                                    <img src="asset/img/bonsai1.jpg" class="embed-responsive-item d-block w-100" alt="...">
+                                    <img src="img/carousel/bonsai1.jpg" class="embed-responsive-item d-block w-100" alt="...">
                                 </div>
                                 <div class="carousel-caption d-none d-md-block">
                                     <h5>First slide label</h5>
@@ -50,7 +52,7 @@ session_start();
                             </div>
                             <div class="carousel-item">
                                 <div class="embed-responsive embed-responsive-21by9">
-                                    <img src="asset/img/bonsai2.png" class="embed-responsive-item d-block w-100" alt="...">
+                                    <img src="img/carousel/bonsai2.png" class="embed-responsive-item d-block w-100" alt="...">
                                 </div>
                                 <div class="carousel-caption d-none d-md-block">
                                     <h5>Second slide label</h5>
@@ -59,7 +61,7 @@ session_start();
                             </div>
                             <div class="carousel-item">
                                 <div class="embed-responsive embed-responsive-21by9">
-                                    <img src="asset/img/bonsai3.webp" class="embed-responsive-item d-block w-100" alt="...">
+                                    <img src="img/carousel/bonsai3.webp" class="embed-responsive-item d-block w-100" alt="...">
                                 </div>
                                 <div class="carousel-caption d-none d-md-block">
                                     <h5>Third slide label</h5>
@@ -134,7 +136,7 @@ session_start();
                                 <div class="konten-item col-lg-3 col-md-4 col-sm-6 mb-4">
                                     <div class="card shadow-sm">
                                         <div class="embed-responsive embed-responsive-16by9">
-                                            <img src="asset/img/5fccd0d6cb7db.jpeg" class="product-image embed-responsive-item" alt="...">
+                                            <img src="img/default/5fccd0d6cb7db.jpeg" class="product-image embed-responsive-item" alt="...">
                                         </div>
                                         <div class="card-body">
                                             <h6 class="card-title">
@@ -192,9 +194,22 @@ session_start();
         <?php include "includes/footer.php"; ?>
     </section>
 
+    <?php include "includes/scripts.php"; ?>
 
-    <script src="vendor/jquery/jquery-3.5.1.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- indikator menu aktif -->
+    <script>
+        $(document).ready(function() {
+            let topbar = "<?= $topbarActive; ?>";
+            $("#" + topbar).addClass("active");
+
+            <?php if (isset($itemActive)) : ?>
+                let collapseItem = "<?= $itemActive; ?>";
+                $("#" + collapseItem).addClass("active text-success");
+                $("#" + sidebar + " a:first").removeClass("collapsed");
+                $("#" + sidebar + " div.collapse").addClass("show");
+            <?php endif; ?>
+        });
+    </script>
 
     <script>
         $(document).ready(function() {
