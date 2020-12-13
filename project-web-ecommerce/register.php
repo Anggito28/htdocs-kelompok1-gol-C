@@ -38,7 +38,7 @@ if (isset($_GET["email"])) {
             <div class="card-body p-0">
                 <div class="row">
                     <div class="ml-3 pl-3 mt-4">
-                        <a href="index.php">
+                        <a href="index.php" class="text-success">
                             <i class="fa fa-2x fa-arrow-circle-left"></i>
                         </a>
                     </div>
@@ -53,24 +53,26 @@ if (isset($_GET["email"])) {
                             <form method="POST" action="register-2.php">
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input maxlength="50" placeholder="example@mail.com" required type="email" class="form-control form-control-user" id="email" name="email">
+                                    <input oninvalid="this.setCustomValidity('format email tidak valid!')" oninput="setCustomValidity('')" maxlength="50" required type="email" class="form-control form-control-user" id="email" name="email">
+                                    <small>Contoh : email@rudibonsai.com</small>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="password1">Password</label>
-                                    <input placeholder="Masukkan password" required type="password" class="form-control form-control-user" id="password1" name="password1">
+                                    <input oninvalid="this.setCustomValidity('password terlalu pendek!')" oninput="setCustomValidity('')" minlength="8" required type="password" class="form-control form-control-user" id="password1" name="password1">
+                                    <small>Password minimal 8 karakter</small>
                                 </div>
                                 <div class="form-group">
                                     <label for="password2">Konfirmasi Password</label>
-                                    <input placeholder="Tulis ulang password" required type="password" class="form-control form-control-user" id="password2" name="password2">
+                                    <input oninvalid="this.setCustomValidity('password terlalu pendek!')" oninput="setCustomValidity('')" minlength="8" required type="password" class="form-control form-control-user" id="password2" name="password2">
                                 </div>
-                                <button id="register" name="register" type="submit" class="btn btn-primary btn-user btn-block">
+                                <button id="register" name="register" type="submit" class="btn btn-success btn-user btn-block">
                                     Selanjutnya
                                 </button>
                             </form>
                             <hr>
                             <div class="text-center">
-                                <span class="small">Sudah punya akun? <a href="login.php">Masuk!</a></span>
+                                <span class="small">Sudah punya akun? <a class="text-success" href="login.php">Masuk</a></span>
                             </div>
                         </div>
                     </div>
@@ -80,8 +82,7 @@ if (isset($_GET["email"])) {
 
     </div>
 
-    <script src="vendor/jquery/jquery-3.5.1.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <?php include "includes/scripts.php"; ?>
 
     <script>
         $(document).ready(function() {

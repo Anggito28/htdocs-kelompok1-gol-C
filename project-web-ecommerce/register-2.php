@@ -60,7 +60,7 @@ if (isset($_POST['submit'])) {
             <div class="card-body p-0">
                 <div class="row">
                     <div class="ml-3 pl-3 mt-4">
-                        <a href="register.php">
+                        <a href="register.php" class="text-success">
                             <i class="fa fa-2x fa-arrow-circle-left"></i>
                         </a>
                     </div>
@@ -84,7 +84,7 @@ if (isset($_POST['submit'])) {
                                 <div class="form-group row">
                                     <div class="col-sm-6">
                                         <label for="telp">No. Telepon</label>
-                                        <input maxlength="12" required type="number" class="form-control form-control-user" id="telp" name="telp">
+                                        <input maxlength="12" onkeypress="return onlyNumberKey(event)" required type="tel" class="form-control form-control-user" id="telp" name="telp">
                                     </div>
                                     <div class="col-sm-6">
                                         <label for="jenkel">Jenis Kelamin</label>
@@ -124,14 +124,14 @@ if (isset($_POST['submit'])) {
                                     <input required type="text" class="form-control form-control-user" id="detail" name="detail" placeholder="RT, RW, Linkungan/Desa/Dusun/Gang">
                                 </div>
 
-                                <button name="submit" type="submit" class="mt-5 btn btn-primary btn-user btn-block">
-                                    Register Account
+                                <button name="submit" type="submit" class="mt-5 btn btn-success btn-user btn-block">
+                                    Registrasi Akun
                                 </button>
 
                             </form>
                             <hr>
                             <div class="text-center">
-                                <span class="small">Sudah punya akun? <a href="login.php">Masuk!</a></span>
+                                <span class="small">Sudah punya akun? <a href="login.php" class="text-success">Masuk!</a></span>
                             </div>
                         </div>
                     </div>
@@ -141,8 +141,7 @@ if (isset($_POST['submit'])) {
 
     </div>
 
-    <script src="vendor/jquery/jquery-3.5.1.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <?php include "includes/scripts.php"; ?>
 
     <script>
         $(document).ready(function() {
@@ -173,6 +172,15 @@ if (isset($_POST['submit'])) {
             });
 
         });
+
+        function onlyNumberKey(evt) {
+
+            // Only ASCII charactar in that range allowed 
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+            if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+                return false;
+            return true;
+        }
     </script>
 
 </body>

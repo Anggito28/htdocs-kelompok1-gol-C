@@ -24,6 +24,8 @@ if (isset($_POST['login'])) {
             if (password_verify($password, $row['password'])) {
                 $_SESSION['login'] = true;
                 $_SESSION['email'] = $email;
+                $_SESSION['id'] = $row['kd_akun'];
+                $_SESSION['profil-pic'] = $row['foto_profil'];
 
                 header("Location:index.php");
                 exit;
@@ -66,7 +68,7 @@ if (isset($_POST['login'])) {
                     <div class="card-body p-0">
                         <div class="row">
                             <div class="ml-5 pl-3 mt-4">
-                                <a href="index.php">
+                                <a href="index.php" class="text-success">
                                     <i class="fa fa-2x fa-arrow-circle-left"></i>
                                 </a>
                             </div>
@@ -86,11 +88,11 @@ if (isset($_POST['login'])) {
                                         <?php endif; ?>
                                         <div class="form-group">
                                             <label for="email">Email</label>
-                                            <input required type="email" class="form-control form-control-user" id="email" name="email" placeholder="Masukkan email anda...">
+                                            <input oninvalid="this.setCustomValidity('format email tidak valid!')" oninput="setCustomValidity('')" required type="email" class="form-control form-control-user" id="email" name="email">
                                         </div>
                                         <div class="form-group">
                                             <label for="password">Password</label>
-                                            <input required type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password anda...">
+                                            <input required type="password" class="form-control form-control-user" id="password" name="password">
                                         </div>
                                         <!-- <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -98,17 +100,17 @@ if (isset($_POST['login'])) {
                                                 <label class="custom-control-label" for="customCheck">Remember Me</label>
                                             </div>
                                         </div> -->
-                                        <button name="login" type="submit" class="btn btn-primary btn-user btn-block">
+                                        <button name="login" type="submit" class="btn btn-success btn-user btn-block">
                                             Masuk
                                         </button>
                                     </form>
 
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="#">Lupa Password?</a>
+                                        <a class="small text-success" href="#">Lupa Password?</a>
                                     </div>
                                     <div class="text-center">
-                                        <span class="small">Belum punya akun? <a href="register.php">Buat akun!</a></span>
+                                        <span class="small">Belum punya akun? <a href="register.php" class="text-success">Daftar sekarang</a></span>
                                     </div>
                                 </div>
                             </div>
@@ -119,8 +121,7 @@ if (isset($_POST['login'])) {
         </div>
     </div>
 
-    <script src="vendor/jquery/jquery-3.5.1.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <?php include "includes/scripts.php"; ?>
 
 </body>
 
