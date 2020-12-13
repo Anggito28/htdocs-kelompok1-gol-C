@@ -16,11 +16,11 @@ function tambahProduk($data)
 {
     global $conn;
 
-    htmlspecialchars($namaProduk = $data['nama-produk']);
+    strtolower(htmlspecialchars($namaProduk = $data['nama-produk']));
     htmlspecialchars($kategori = $data['kategori']);
     htmlspecialchars($stok = $data['stok']);
     htmlspecialchars($harga = $data['harga']);
-    htmlspecialchars($deskripsi = $data['deskripsi']);
+    strtolower(htmlspecialchars($deskripsi = $data['deskripsi']));
 
     // upload foto
     $img = uploadGambar();
@@ -54,6 +54,7 @@ function editProduk($query)
         $img = $imageOld;
     } else {
         $img = uploadGambar();
+        unlink("img/produk/$imageOld");
         if (!$img) {
             return false;
         }
@@ -96,7 +97,7 @@ function uploadGambar()
     }
 
     //cek ukuran file
-    if ($fileSize > 1000000 || $fileSize == 0) {
+    if ($fileSize > 100000000 || $fileSize == 0) {
         echo "
         <script>
             alert('File too big!!!');
@@ -114,9 +115,14 @@ function uploadGambar()
     return $newFileName;
 }
 
+// hapus produk
 function delete($query)
 {
     global $conn;
+
+    $img = query("SELECT image FROM tb_produk WHERE id_produk = $query")[0]['image'];
+
+    unlink("img/produk/$img");
 
     $del = "DELETE FROM tb_produk WHERE id_produk = $query";
 

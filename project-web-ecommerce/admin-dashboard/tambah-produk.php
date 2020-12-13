@@ -92,23 +92,24 @@ if (isset($_POST['simpan-kategori'])) {
                                     <h6 class="m-0 font-weight-bold text-dark text-capitalize">Form tambah produk</h6>
                                 </div>
                                 <div class="card-body">
+
                                     <form class="custom-form" action="" method="POST" enctype="multipart/form-data">
                                         <div class="form-group row mb-4">
                                             <label class="col-md-4 col-form-label font-weight-bold" for="nama">Nama Produk</label>
                                             <div class="col-md-8">
-                                                <input required type="text" name="nama-produk" id="nama-produk" class="form-control">
+                                                <input maxlength="50" required type="text" name="nama-produk" id="nama-produk" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row mb-4">
                                             <label class="col-md-4 font-weight-bold" for="kategori">Kategori</label>
                                             <div class="col-md-4 select-kategori">
-                                                <select required name="kategori" class="text-capitalize form-control custom-select" id="kategori">
-                                                    <option class="text-center" value="0">--- Pilih Kategori ---</option>
+                                                <select required name="kategori" class="form-control custom-select" id="kategori">
+                                                    <option class="text-center" value="">--- Pilih Kategori ---</option>
                                                     <?php
                                                     $kategori = mysqli_query($conn, "SELECT * FROM tb_kategori");
                                                     while ($dataKategori = mysqli_fetch_array($kategori)) {
                                                     ?>
-                                                        <option class="text-capitalize" value="<?= $dataKategori['kd_kategori']; ?>"><?= $dataKategori['kategori']; ?></option>
+                                                        <option value="<?= $dataKategori['kd_kategori']; ?>"><?= ucwords($dataKategori['kategori']); ?></option>
                                                     <?php } ?>
                                                 </select>
                                             </div>
@@ -126,7 +127,7 @@ if (isset($_POST['simpan-kategori'])) {
                                         <div class="form-group row mb-4">
                                             <label class="col-md-4 font-weight-bold" for="stok">Stok</label>
                                             <div class="col-md-4 col-sm-6">
-                                                <input required type="text" name="stok" id="stok" class="form-control">
+                                                <input maxlength="5" required type="number" min="1" name="stok" id="stok" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row mb-4">
@@ -135,7 +136,7 @@ if (isset($_POST['simpan-kategori'])) {
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">Rp</div>
                                                 </div>
-                                                <input required type="text" name="harga" id="harga" class="form-control">
+                                                <input maxlength="13" required type="number" min="1" name="harga" id="harga" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row mb-4">

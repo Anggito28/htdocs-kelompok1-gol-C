@@ -1,6 +1,12 @@
 <?php
+session_start();
+
+$topbarActive = "topbarProduk";
+
 require "config/connect.php";
 require "config/function.php";
+
+$products = query("SELECT tb_produk.*, tb_kategori.kategori FROM tb_produk INNER JOIN tb_kategori ON tb_produk.kd_kategori=tb_kategori.kd_kategori");
 
 ?>
 
@@ -43,15 +49,15 @@ require "config/function.php";
                                         Kategori
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
+                                        <?php foreach ($products as $product) : ?>
+                                            <a class="dropdown-item" href="produk.php?c=<?= $product['kd_kategori']; ?>"><?= $product['kategori']; ?></a>
+                                        <?php endforeach; ?>
                                     </div>
                                 </div>
 
-                                <form class="search form-inline my-2 my-lg-0">
+                                <form method="GET" action="" class="search form-inline my-2 my-lg-0">
                                     <div class="input-group">
-                                        <input class="form-control" type="search" placeholder="Cari produk..." aria-label="Search">
+                                        <input name="s" class="form-control" type="search" placeholder="Cari produk..." aria-label="Search">
                                         <div class="input-group-append">
                                             <button class="btn btn-success my-2 my-sm-0" type="submit">
                                                 <i class="fa fa-search"></i>
@@ -90,41 +96,52 @@ require "config/function.php";
                             <!-- Isi card konten -->
                             <div class="row konten-produk">
 
-                                <!-- list produk -->
-                                <div class="konten-item col-lg-3 col-md-4 col-sm-6 mb-4">
-                                    <div class="card shadow-sm">
-                                        <div class="embed-responsive embed-responsive-16by9">
-                                            <img src="asset/img/5fccd0d6cb7db.jpeg" class="product-image embed-responsive-item" alt="...">
-                                        </div>
-                                        <div class="card-body">
-                                            <h6 class="card-title">
-                                                Card title Lorem ipsum dolor sit amet.
-                                            </h6>
-                                            <hr>
-                                            <div class="input-group mb-4">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text font-weight-bold">Rp</span>
-                                                </div>
-                                                <p class="form-control font-weight-bold">
-                                                    100,000
-                                                </p>
+                                <?php foreach ($products as $product) : ?>
+                                    <!-- list produk -->
+                                    <div class="konten-item col-xl-3 col-lg-4 col-md-4 col-sm-6 mb-4">
+                                        <div class="card shadow-sm">
+                                            <div class="embed-responsive embed-responsive-16by9">
+                                                <img src="admin-dashboard/img/produk/<?= $product['image']; ?>" class="product-image embed-responsive-item" alt="...">
                                             </div>
+                                            <div class="card-body px-2 pt-2">
 
-                                            <div class="text-right d-block">
-                                                <button class="btn btn-sm btn-success">
-                                                    Detail Produk
-                                                </button>
+                                                <h5 class="card-title">
+                                                    <?= ucfirst($product['nama_produk']); ?>
+                                                </h5>
+
+                                                <div class="d-flex justify-content-between px-1">
+                                                    <small>
+                                                        Ready : <?= $product['stok']; ?>
+                                                    </small>
+                                                    <span class="badge badge-secondary"><?= ucwords($product['kategori']); ?></span>
+                                                </div>
+                                                <hr>
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text px-2 py-1 font-weight-bold">Rp</span>
+                                                    </div>
+                                                    <p class="font-weight-bold form-control pr-1">
+                                                        <?= htmlspecialchars(number_format($product['harga'], 0, '', ".")); ?>
+                                                    </p>
+                                                </div>
+
+                                                <div class="text-right d-block">
+                                                    <a href="detail-produk.php?id=<?= $product['id_produk']; ?>" class="btn btn-sm btn-success">
+                                                        Detail Produk
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                <?php endforeach; ?>
+
                             </div>
 
                             <!-- pagination row -->
                             <div class="row">
                                 <div class="col">
                                     <!-- pagination -->
-                                    <nav aria-label="Page navigation example">
+                                    <nav aria-label="Page navigation">
                                         <ul class="pagination justify-content-end">
                                             <li class="page-item disabled">
                                                 <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
@@ -151,8 +168,22 @@ require "config/function.php";
         <?php include "includes/footer.php"; ?>
     </section>
 
-    <script src="vendor/jquery/jquery-3.5.1.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <?php include "includes/scripts.php"; ?>
+
+    <!-- indikator menu aktif -->
+    <script>
+        $(document).ready(function() {
+            let topbar = "<?= $topbarActive; ?>";
+            $("#" + topbar).addClass("active");
+
+            <?php if (isset($itemActive)) : ?>
+                let collapseItem = "<?= $itemActive; ?>";
+                $("#" + collapseItem).addClass("active text-success");
+                $("#" + sidebar + " a:first").removeClass("collapsed");
+                $("#" + sidebar + " div.collapse").addClass("show");
+            <?php endif; ?>
+        });
+    </script>
 
     <script>
         $(document).ready(function() {

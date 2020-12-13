@@ -3,11 +3,10 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2020 at 07:37 AM
+-- Generation Time: Dec 13, 2020 at 04:12 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
-SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -30,9 +29,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `tb_akun` (
   `kd_akun` int(11) NOT NULL,
-  `username` varchar(25) NOT NULL,
-  `password` varchar(20) NOT NULL,
-  `jenis_akun` varchar(4) NOT NULL
+  `email` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `jenis_akun` enum('superuser','admin','pembeli') NOT NULL,
+  `foto_profil` varchar(20) DEFAULT 'empty'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -43,7 +43,7 @@ CREATE TABLE `tb_akun` (
 
 CREATE TABLE `tb_detail_transaksi` (
   `id` int(11) NOT NULL,
-  `kd_transaksi` int(11) NOT NULL,
+  `kd_transaksi` int(11) DEFAULT NULL,
   `id_produk` int(11) DEFAULT NULL,
   `Subtotal` int(11) NOT NULL,
   `Jumlah_Barang` int(11) NOT NULL
@@ -63,19 +63,30 @@ CREATE TABLE `tb_kategori` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_keranjang`
+--
+
+CREATE TABLE `tb_keranjang` (
+  `id` int(11) NOT NULL,
+  `id_produk` int(11) DEFAULT NULL,
+  `kd_pembeli` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_pembeli`
 --
 
 CREATE TABLE `tb_pembeli` (
   `kd_pembeli` int(11) NOT NULL,
   `nama` varchar(50) NOT NULL,
-  `jenis_kelamin` varchar(10) NOT NULL,
-  `id_provinsi` varchar(2) CHARACTER SET latin1 NOT NULL,
-  `id_kabupaten` varchar(4) CHARACTER SET latin1 NOT NULL,
-  `id_kecamatan` varchar(7) CHARACTER SET latin1 NOT NULL,
+  `jenis_kelamin` enum('L','P') NOT NULL,
+  `id_provinsi` varchar(2) CHARACTER SET latin1 DEFAULT NULL,
+  `id_kabupaten` varchar(4) CHARACTER SET latin1 DEFAULT NULL,
+  `id_kecamatan` varchar(7) CHARACTER SET latin1 DEFAULT NULL,
   `detail_alamat` text NOT NULL,
   `no_telepon` varchar(12) NOT NULL,
-  `email` varchar(20) NOT NULL,
   `kd_akun` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -87,10 +98,10 @@ CREATE TABLE `tb_pembeli` (
 
 CREATE TABLE `tb_produk` (
   `id_produk` int(11) NOT NULL,
-  `nama_produk` varchar(25) DEFAULT NULL,
+  `nama_produk` varchar(50) DEFAULT NULL,
   `kd_kategori` int(6) DEFAULT NULL,
-  `stok` int(5) DEFAULT NULL,
-  `harga` bigint(13) DEFAULT NULL,
+  `stok` int(11) DEFAULT 0,
+  `harga` bigint(13) DEFAULT 0,
   `deskripsi` text DEFAULT NULL,
   `image` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -7605,14 +7616,22 @@ ALTER TABLE `tb_kategori`
   ADD PRIMARY KEY (`kd_kategori`);
 
 --
+-- Indexes for table `tb_keranjang`
+--
+ALTER TABLE `tb_keranjang`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `produk-keranjang` (`id_produk`),
+  ADD KEY `pembeli-keranjang` (`kd_pembeli`);
+
+--
 -- Indexes for table `tb_pembeli`
 --
 ALTER TABLE `tb_pembeli`
   ADD PRIMARY KEY (`kd_pembeli`),
-  ADD KEY `prov` (`id_provinsi`),
+  ADD KEY `akun-pembeli` (`kd_akun`),
   ADD KEY `kab` (`id_kabupaten`),
   ADD KEY `kec` (`id_kecamatan`),
-  ADD KEY `akun-pembeli` (`kd_akun`);
+  ADD KEY `prov` (`id_provinsi`);
 
 --
 -- Indexes for table `tb_produk`
@@ -7671,6 +7690,12 @@ ALTER TABLE `tb_kategori`
   MODIFY `kd_kategori` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `tb_keranjang`
+--
+ALTER TABLE `tb_keranjang`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tb_pembeli`
 --
 ALTER TABLE `tb_pembeli`
@@ -7694,13 +7719,20 @@ ALTER TABLE `tb_detail_transaksi`
   ADD CONSTRAINT `transaksi-detail_transaksi` FOREIGN KEY (`kd_transaksi`) REFERENCES `tb_transaksi` (`kd_transaksi`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Constraints for table `tb_keranjang`
+--
+ALTER TABLE `tb_keranjang`
+  ADD CONSTRAINT `pembeli-keranjang` FOREIGN KEY (`kd_pembeli`) REFERENCES `tb_pembeli` (`kd_pembeli`) ON DELETE SET NULL ON UPDATE SET NULL,
+  ADD CONSTRAINT `produk-keranjang` FOREIGN KEY (`id_produk`) REFERENCES `tb_produk` (`id_produk`) ON DELETE SET NULL ON UPDATE SET NULL;
+
+--
 -- Constraints for table `tb_pembeli`
 --
 ALTER TABLE `tb_pembeli`
   ADD CONSTRAINT `akun-pembeli` FOREIGN KEY (`kd_akun`) REFERENCES `tb_akun` (`kd_akun`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `kab` FOREIGN KEY (`id_kabupaten`) REFERENCES `wilayah_kabupaten` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `kec` FOREIGN KEY (`id_kecamatan`) REFERENCES `wilayah_kecamatan` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `prov` FOREIGN KEY (`id_provinsi`) REFERENCES `wilayah_provinsi` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `kab` FOREIGN KEY (`id_kabupaten`) REFERENCES `wilayah_kabupaten` (`id`),
+  ADD CONSTRAINT `kec` FOREIGN KEY (`id_kecamatan`) REFERENCES `wilayah_kecamatan` (`id`),
+  ADD CONSTRAINT `prov` FOREIGN KEY (`id_provinsi`) REFERENCES `wilayah_provinsi` (`id`);
 
 --
 -- Constraints for table `tb_produk`
@@ -7725,7 +7757,6 @@ ALTER TABLE `wilayah_kabupaten`
 --
 ALTER TABLE `wilayah_kecamatan`
   ADD CONSTRAINT `kec-kab` FOREIGN KEY (`kabupaten_id`) REFERENCES `wilayah_kabupaten` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -138,7 +138,7 @@ require "config/function.php";
                     while ($data = mysqli_fetch_array($produk)) {
                     ?>
 
-                      <tr class="text-capitalize">
+                      <tr>
 
                         <td rowspan="2" class="align-middle align-items-center">
 
@@ -173,7 +173,7 @@ require "config/function.php";
                         </td>
 
                         <td>
-                          <?= htmlspecialchars($data['nama_produk']); ?>
+                          <?= ucfirst(htmlspecialchars($data['nama_produk'])); ?>
                         </td>
 
                         <td>
@@ -193,15 +193,15 @@ require "config/function.php";
                           </div>
                         </td>
 
-                        <td><?= $data['kategori']; ?></td>
+                        <td><?= ucwords($data['kategori']); ?></td>
                       </tr>
                       <tr>
                         <td colspan="4">
                           <?php $desc = $data['deskripsi'] ?>
                           <small>
                             <span class="font-weight-bold">Deskripsi : </span>
-                            <?= htmlspecialchars(substr("$desc", 0, 120)) . "..."; ?>
-                            <a href="#" data-toggle="popover" data-trigger="focus" data-placement="left" data-content="<?= htmlspecialchars($desc); ?>">(Selengkapnya...)</a>
+                            <?= ucfirst(htmlspecialchars(substr("$desc", 0, 120)) . "..."); ?>
+                            <a href="#" data-toggle="popover" data-trigger="focus" data-placement="left" data-content="<?= ucfirst(htmlspecialchars($desc)); ?>">(Selengkapnya...)</a>
 
                           </small>
                         </td>

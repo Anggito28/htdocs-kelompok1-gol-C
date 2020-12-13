@@ -57,8 +57,22 @@
         <?php include "includes/footer.php"; ?>
     </section>
 
-    <script src="vendor/jquery/jquery-3.5.1.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <?php include "includes/scripts.php"; ?>
+
+    <!-- indikator menu aktif -->
+    <script>
+        $(document).ready(function() {
+            let topbar = "<?= $topbarActive; ?>";
+            $("#" + topbar).addClass("active");
+
+            <?php if (isset($itemActive)) : ?>
+                let collapseItem = "<?= $itemActive; ?>";
+                $("#" + collapseItem).addClass("active text-success");
+                $("#" + sidebar + " a:first").removeClass("collapsed");
+                $("#" + sidebar + " div.collapse").addClass("show");
+            <?php endif; ?>
+        });
+    </script>
 
 </body>
 

@@ -4,6 +4,36 @@
     font-family: 'Poppins', sans-serif;
 }
 
+div#topbarCTA {
+    display: inline-flex;
+}
+
+@media (max-width : 991px) {
+    ul.navbar-nav {
+        margin-bottom: 1rem;
+    }
+
+    div#topbarCTA {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        padding-left: 1em;
+        margin-top: 1em;
+        padding-bottom: 8px;
+    }
+
+    div#userMenu {
+        position: fixed;
+        top: 220px;
+        left: 0;
+        width: 100% !important;
+        border: none;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+/* header */
 ul.navbar-nav li {
     margin-right: 1rem;
     margin-left: 1rem;
@@ -14,27 +44,10 @@ section.header {
     background-color: white;
 }
 
-img.product-image {
-    object-fit: fill;
-}
-
 section.header {
     z-index: 1000;
     width: 100%;
     top: 0px;
-}
-
-section.content {
-    top: 14vh;
-    position: relative;
-}
-
-div.dropdown-search {
-    width: 300px;
-}
-
-div.dropdown-search input.form-control {
-    width: 100%;
 }
 
 /* footer */
@@ -63,4 +76,54 @@ div.footer h6 {
 
 div.footer span {
     margin-left: 4px;
+}
+
+/* konten */
+section.content {
+    top: 90px;
+    position: relative;
+}
+
+/* produk.php */
+img.product-image {
+    object-fit: fill;
+}
+
+div.dropdown-search {
+    width: 300px;
+}
+
+div.dropdown-search input.form-control {
+    width: 100%;
+}
+
+/* pagination */
+.pagination>li>a {
+    background-color: white;
+    color: #28A745;
+}
+
+.pagination>li>a:focus,
+.pagination>li>a:hover,
+.pagination>li>span:focus,
+.pagination>li>span:hover {
+    color: #1fa73f;
+    background-color: #eee;
+    border-color: #ddd;
+}
+
+.pagination>.active>a {
+    color: white;
+    background-color: #28A745 !Important;
+    border: solid 1px #28A745 !Important;
+}
+
+.pagination>.active>a:hover {
+    background-color: #28A745 !Important;
+    border: solid 1px #28A745;
+}
+
+/* home slider image */
+div.carousel-item img.embed-responsive-item {
+    object-fit: cover;
 }
