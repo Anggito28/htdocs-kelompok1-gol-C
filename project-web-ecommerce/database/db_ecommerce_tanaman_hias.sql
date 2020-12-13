@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2020 at 01:20 PM
+-- Generation Time: Dec 13, 2020 at 04:12 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -31,7 +31,8 @@ CREATE TABLE `tb_akun` (
   `kd_akun` int(11) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `jenis_akun` enum('superuser','admin','pembeli') NOT NULL
+  `jenis_akun` enum('superuser','admin','pembeli') NOT NULL,
+  `foto_profil` varchar(20) DEFAULT 'empty'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -57,6 +58,18 @@ CREATE TABLE `tb_detail_transaksi` (
 CREATE TABLE `tb_kategori` (
   `kd_kategori` int(11) NOT NULL,
   `kategori` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_keranjang`
+--
+
+CREATE TABLE `tb_keranjang` (
+  `id` int(11) NOT NULL,
+  `id_produk` int(11) DEFAULT NULL,
+  `kd_pembeli` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -7603,6 +7616,14 @@ ALTER TABLE `tb_kategori`
   ADD PRIMARY KEY (`kd_kategori`);
 
 --
+-- Indexes for table `tb_keranjang`
+--
+ALTER TABLE `tb_keranjang`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `produk-keranjang` (`id_produk`),
+  ADD KEY `pembeli-keranjang` (`kd_pembeli`);
+
+--
 -- Indexes for table `tb_pembeli`
 --
 ALTER TABLE `tb_pembeli`
@@ -7669,6 +7690,12 @@ ALTER TABLE `tb_kategori`
   MODIFY `kd_kategori` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `tb_keranjang`
+--
+ALTER TABLE `tb_keranjang`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tb_pembeli`
 --
 ALTER TABLE `tb_pembeli`
@@ -7690,6 +7717,13 @@ ALTER TABLE `tb_produk`
 ALTER TABLE `tb_detail_transaksi`
   ADD CONSTRAINT `produk-detail_transaksi` FOREIGN KEY (`id_produk`) REFERENCES `tb_produk` (`id_produk`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `transaksi-detail_transaksi` FOREIGN KEY (`kd_transaksi`) REFERENCES `tb_transaksi` (`kd_transaksi`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `tb_keranjang`
+--
+ALTER TABLE `tb_keranjang`
+  ADD CONSTRAINT `pembeli-keranjang` FOREIGN KEY (`kd_pembeli`) REFERENCES `tb_pembeli` (`kd_pembeli`) ON DELETE SET NULL ON UPDATE SET NULL,
+  ADD CONSTRAINT `produk-keranjang` FOREIGN KEY (`id_produk`) REFERENCES `tb_produk` (`id_produk`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
 -- Constraints for table `tb_pembeli`
