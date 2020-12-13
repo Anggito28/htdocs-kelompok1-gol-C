@@ -54,6 +54,7 @@ function editProduk($query)
         $img = $imageOld;
     } else {
         $img = uploadGambar();
+        unlink("img/produk/$imageOld");
         if (!$img) {
             return false;
         }
