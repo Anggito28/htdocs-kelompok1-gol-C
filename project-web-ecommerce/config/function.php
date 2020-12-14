@@ -47,9 +47,9 @@ function editProfil($data)
     global $conn;
 
     $kdAkun = $data['kdAkun'];
+
     $nama = $data['nama'];
     $jenkel = $data['jenkel'];
-    $email = stripslashes($data['email']);
     $telp = $data['telp'];
     $prov = $data['prov'];
     $kab = $data['kab'];
@@ -68,25 +68,50 @@ function editProfil($data)
         }
     }
 
+    $update = "UPDATE tb_pembeli SET nama = '$nama', jenis_kelamin = '$jenkel', id_provinsi = '$prov', id_kabupaten = '$kab', id_kecamatan = '$kec', detail_alamat = '$detail', no_telepon = '$telp' WHERE kd_akun = $kdAkun";
+    $profilePicUpdate = "UPDATE tb_akun SET foto_profil = '$img' WHERE kd_akun = $kdAkun";
 
-    // periksa email ganti
-    $result = mysqli_query($conn, "SELECT email FROM tb_akun WHERE kd_akun = '$kdAkun'");
-    $row = mysqli_fetch_assoc($result);
-
-    $akunUpdate = "UPDATE tb_akun SET email = '$email', foto_profil = '$img' WHERE kd_akun = $kdAkun";
-    mysqli_query($conn, $akunUpdate);
-
+    mysqli_query($conn, $update);
     $response = mysqli_affected_rows($conn);
 
-    $_SESSION['email'] = $row['email'];
-    $_SESSION['profil-pic'] = $img;
-
-    $update = "UPDATE tb_pembeli SET nama = '$nama', jenis_kelamin = '$jenkel', id_provinsi = '$prov', id_kabupaten = '$kab', id_kecamatan = '$kec', detail_alamat = '$detail', no_telepon = '$telp' WHERE kd_akun = $kdAkun";
-    mysqli_query($conn, $update);
-
+    mysqli_query($conn, $profilePicUpdate);
     $response = $response + mysqli_affected_rows($conn);
 
+    $_SESSION['profil-pic'] = $img;
+
     return $response;
+}
+
+function ubahEmail($data)
+{
+    global $conn;
+
+    $kdAkun = $data['kdAkun'];
+    $emailBaru = $data['emailBaru'];
+
+    $akunUpdate = "UPDATE tb_akun SET email = '$emailBaru' WHERE kd_akun = $kdAkun";
+    mysqli_query($conn, $akunUpdate);
+
+    $_SESSION['email'] = $emailBaru;
+
+    return mysqli_affected_rows($conn);
+}
+
+function ubahPassword($data)
+{
+    global $conn;
+
+    $kdAkun = $data['kdAkun'];
+    $passwordBaru = $data['passwordBaru1'];
+
+    // enkripsi password
+    $passwordBaru = password_hash($passwordBaru, PASSWORD_DEFAULT);
+
+    // tambah ubah password ke database
+    $pass = "UPDATE tb_akun SET password = '$passwordBaru' WHERE kd_akun = $kdAkun";
+    mysqli_query($conn, $pass);
+
+    return mysqli_affected_rows($conn);
 }
 
 function uploadGambar()
@@ -135,4 +160,34 @@ function uploadGambar()
     move_uploaded_file($tmpName, 'img/profile-picture/' . $newFileName);
 
     return $newFileName;
+}
+
+function login($data)
+{
+    global $conn;
+
+    $email = $data['email'];
+    $password = $data['password'];
+
+    $result = mysqli_query($conn, "SELECT * FROM tb_akun WHERE email = '$email'");
+    $row = mysqli_fetch_assoc($result);
+
+    // cek email
+    if (isset($row['email'])) {
+        if ($email === $row['email']) {
+
+            // cek password
+            if (password_verify($password, $row['password'])) {
+                $_SESSION['login'] = true;
+                $_SESSION['email'] = $email;
+                $_SESSION['id'] = $row['kd_akun'];
+                $_SESSION['profil-pic'] = $row['foto_profil'];
+
+                header("Location:index.php");
+                return;
+            }
+        } else {
+            return false;
+        }
+    }
 }

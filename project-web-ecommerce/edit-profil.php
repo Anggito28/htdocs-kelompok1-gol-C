@@ -4,39 +4,36 @@ session_start();
 require "config/connect.php";
 require "config/function.php";
 
-// if (!isset($_SESSION["login"])) {
-//     header("Location: index.php");
-//     exit;
-// }
+if (!isset($_SESSION["login"])) {
+    header("Location: index.php");
+    exit;
+}
 
 $idAkun = $_SESSION['id'];
 
-$data = query("SELECT tb_pembeli.*, tb_akun.email, tb_akun.foto_profil, wilayah_provinsi.nama AS prov, wilayah_kabupaten.nama AS kab, wilayah_kecamatan.nama AS kec FROM tb_pembeli 
-INNER JOIN tb_akun ON tb_pembeli.kd_akun = tb_akun.kd_akun
-INNER JOIN wilayah_provinsi ON tb_pembeli.id_provinsi = wilayah_provinsi.id
-INNER JOIN wilayah_kabupaten ON tb_pembeli.id_kabupaten = wilayah_kabupaten.id
-INNER JOIN wilayah_kecamatan ON tb_pembeli.id_kecamatan = wilayah_kecamatan.id
-AND tb_pembeli.kd_akun = $idAkun")[0];
+$data = query("SELECT tb_pembeli.*, tb_akun.foto_profil, wilayah_provinsi.nama AS prov, wilayah_kabupaten.nama AS kab, wilayah_kecamatan.nama AS kec FROM tb_pembeli 
+    INNER JOIN tb_akun ON tb_pembeli.kd_akun = tb_akun.kd_akun
+    INNER JOIN wilayah_provinsi ON tb_pembeli.id_provinsi = wilayah_provinsi.id
+    INNER JOIN wilayah_kabupaten ON tb_pembeli.id_kabupaten = wilayah_kabupaten.id
+    INNER JOIN wilayah_kecamatan ON tb_pembeli.id_kecamatan = wilayah_kecamatan.id
+    AND tb_pembeli.kd_akun = $idAkun")[0];
 
 if (isset($_POST['submitEditProfil'])) {
-    // var_dump($_POST);
-    // exit;
     if (editProfil($_POST) > 0) {
         echo "
-        <script>
-            alert('Data berhasil diedit!');
-            location = 'profil.php';
-        </script>";
+            <script>
+                alert('Data berhasil diedit!');
+                location = 'profil.php?tab=1';
+            </script>";
     } else {
         echo mysqli_error($conn);
         echo "
-        <script>
-            alert('Data gagal diedit!');
-            location = 'profil.php';
-        </script>";
+            <script>
+                alert('Data gagal diedit!');
+                location = 'profil.php?tab=1';
+            </script>";
     }
 }
-
 
 ?>
 
@@ -61,46 +58,40 @@ if (isset($_POST['submitEditProfil'])) {
 <body class="bg-light">
 
     <!-- topbar header -->
-    <?php //include "includes/topbar.php"; 
-    ?>
+    <?php include "includes/topbar.php"; ?>
 
     <section class="content">
         <div class="container">
 
             <!-- Header konten -->
-            <div class="row mb-4">
-                <div class="col-lg-12">
-                    <div class="card shadow">
-                        <div class="card-body d-flex justify-content-between">
-
-                            <h5 class="mb-0 my-auto">Edit Profil</h5>
-                            <div class="d-inline-flex">
-                            </div>
-                        </div>
-                    </div>
+            <div class="row no-gutters justify-content-center">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb bg-white shadow">
+                            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                            <li class="breadcrumb-item"><a href="profil.php?tab=1">Profil Pengguna</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Edit Data Diri</li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
 
-            <div class="row mb-5">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-body shadow">
-                            <!-- Isi card konten -->
-                            <div class="row no-gutters justify-content-center">
-                                <div class="col-md-10 col-sm-12">
-                                    <nav aria-label="breadcrumb">
-                                        <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                                            <li class="breadcrumb-item"><a href="profil.php">Profil</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Edit Profil</li>
-                                        </ol>
-                                    </nav>
-                                </div>
-                            </div>
+            <!-- Isi card konten -->
+            <div class="row no-gutters justify-content-center mb-4">
+                <div class="col-12">
+                    <div class="card shadow">
+                        <div class="card-header">
+                            <ul class="nav nav-tabs card-header-tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="profil.php?tab=1">Data Diri</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body shadow-sm">
                             <form action="" method="POST" enctype="multipart/form-data">
                                 <input type="hidden" name="kdAkun" value="<?= $idAkun; ?>">
                                 <div class="row justify-content-center mb-4">
-                                    <div class="col-md-10 col-sm-12">
+                                    <div class="col-12">
                                         <div class="card">
                                             <div class="card-body shadow-sm">
                                                 <div class="row justify-content-center">
@@ -112,12 +103,11 @@ if (isset($_POST['submitEditProfil'])) {
                                                                 <?php else : ?>
                                                                     <img src="img/profile-picture/<?= $data['foto_profil']; ?>" alt="Foto profil" style="object-fit: cover;" class=" p-2 img-thumbnail embed-responsive-item">
                                                                 <?php endif; ?>
-                                                                <!-- <img src="asset/img/picture.svg" alt="Foto profil" style="object-fit: cover;" class="p-4 img-thumbnail embed-responsive-item"> -->
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-7 pt-2">
-                                                        <h6 class="text-center">Data Diri</h6>
+                                                        <h6 class="text-center mb-3">Identitas</h6>
                                                         <div class="form-group">
                                                             <label for="name">Nama</label>
                                                             <input value="<?= $data['nama']; ?>" maxlength="50" required type="text" class="form-control" id="name" name="nama">
@@ -131,6 +121,10 @@ if (isset($_POST['submitEditProfil'])) {
                                                             </select>
                                                         </div>
                                                         <div class="form-group">
+                                                            <label for="telp">No. Telepon</label>
+                                                            <input value="<?= $data['no_telepon']; ?>" maxlength="12" onkeypress="return onlyNumberKey(event)" required type="tel" class="form-control " id="telp" name="telp">
+                                                        </div>
+                                                        <div class="form-group">
                                                             <label for="foto-profil">Upload foto profil</label>
                                                             <input name="image" type="file" class="form-control-file" id="foto-profil">
                                                             <input type="hidden" value="<?= $data['foto_profil']; ?>" name="image-old">
@@ -141,28 +135,8 @@ if (isset($_POST['submitEditProfil'])) {
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class=" row justify-content-center mb-4">
-                                    <div class="col-md-10 col-sm-12">
-                                        <div class="card">
-                                            <div class="card-body shadow-sm">
-                                                <h6 class="text-center">Kontak</h6>
-                                                <div class="form-group">
-                                                    <label for="email">Email</label>
-                                                    <input value="<?= $data['email']; ?>" oninvalid="this.setCustomValidity('format email tidak valid!')" oninput="setCustomValidity('')" maxlength="50" required type="email" class="form-control " id="email" name="email">
-                                                    <small>Contoh : email@rudibonsai.com</small>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="telp">No. Telepon</label>
-                                                    <input value="<?= $data['no_telepon']; ?>" maxlength="12" onkeypress="return onlyNumberKey(event)" required type="tel" class="form-control " id="telp" name="telp">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
                                 <div class="row justify-content-center mb-4">
-                                    <div class="col-md-10 col-sm-12">
+                                    <div class="col-12">
                                         <div class="card">
                                             <div class="card-body shadow-sm">
                                                 <div class="form-group mb-4">
@@ -197,21 +171,22 @@ if (isset($_POST['submitEditProfil'])) {
                                 </div>
 
                                 <div class="row justify-content-center mb-4">
-                                    <div class="col-md-10 col-sm-12">
+                                    <div class="col-12">
                                         <div class="card">
                                             <div class="card-body shadow-sm text-right">
-                                                <a href="profil.php" class="btn btn-outline-secondary mr-2">Batal</a>
+                                                <a href="profil.php?tab=1" class="btn btn-outline-secondary mr-2">Batal</a>
                                                 <button id="submitProfil" name="submitEditProfil" type="submit" class="btn btn-success">Simpan</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                             </form>
+
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
 
         <!-- footer -->

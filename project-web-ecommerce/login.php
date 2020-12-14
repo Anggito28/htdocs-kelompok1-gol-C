@@ -10,30 +10,9 @@ if (isset($_SESSION["login"])) {
 
 // cek login
 if (isset($_POST['login'])) {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    $result = mysqli_query($conn, "SELECT * FROM tb_akun WHERE email = '$email'");
-    $row = mysqli_fetch_assoc($result);
-
-    // cek email
-    if (isset($row['email'])) {
-        if ($email === $row['email']) {
-
-            // cek password
-            if (password_verify($password, $row['password'])) {
-                $_SESSION['login'] = true;
-                $_SESSION['email'] = $email;
-                $_SESSION['id'] = $row['kd_akun'];
-                $_SESSION['profil-pic'] = $row['foto_profil'];
-
-                header("Location:index.php");
-                exit;
-            }
-        }
+    if (login($_POST) == false) {
+        $error = true;
     }
-
-    $error = true;
 }
 
 
