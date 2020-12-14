@@ -32,31 +32,31 @@
                 </ul>
 
                 <div id="topbarCTA">
-                    <a class="mr-4" href="#">
+                    <a class="mr-4 my-auto" href="#">
                         <i class="fa fa-shopping-cart fa-2x text-secondary"></i>
                         <!-- <span class="text">Keranjang</span> -->
                     </a>
 
                     <?php if (isset($_SESSION["login"])) : ?>
                         <!-- user loggged in -->
-                        <div class="dropdown my-auto">
-                            <a class="text-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="dropdown">
+                            <a class="text-secondary my-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <?php if ($_SESSION['profil-pic'] == "empty") : ?>
                                     <i class="fa fa-user-circle fa-2x"></i>
                                 <?php else : ?>
-                                    <div style="width: 34px; height: 34px; border-radius: 50%; border: 1px solid black;" class="embed-responsive embed-responsive-1by1 ">
-                                        <img style="object-fit: cover;" class="bg-light embed-responsive-item" src="img/profile-picture/<?= $_SESSION['profil-pic']; ?>" alt="">
+                                    <div style="width: 34px; height: 34px; border-radius: 50%; border: 1px solid black;" class="embed-responsive embed-responsive-1by1">
+                                        <img style="object-fit: cover;" class="bg-light embed-responsive-item " src="img/profile-picture/<?= $_SESSION['profil-pic']; ?>" alt="">
                                     </div>
                                 <?php endif; ?>
                             </a>
-                            <div id="userMenu" class="dropdown-menu dropdown-menu-right mt-2">
+                            <div style="width: 260px;" id="userMenu" class="shadow dropdown-menu dropdown-menu-right mt-2">
                                 <p class="d-block pl-4 pt-2">
                                     <?= $_SESSION['email']; ?>
                                 </p>
                                 <hr class="dropdown-divider">
-                                <a class="dropdown-item" href="profil.php">
+                                <a class="dropdown-item" href="profil.php?tab=1">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profil
+                                    Profil Pengguna
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
