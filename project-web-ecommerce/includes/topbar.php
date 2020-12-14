@@ -33,7 +33,7 @@
 
                 <div id="topbarCTA">
                     <a class="mr-4" href="#">
-                        <i class="fa fa-shopping-cart fa-2x text-secondary"></i>
+                        <i class="fa fa-shopping-cart fa-2x text-success"></i>
                         <!-- <span class="text">Keranjang</span> -->
                     </a>
 

@@ -45,16 +45,19 @@
                         <div class="card-body shadow">
                             <!-- Isi card konten -->
                             <div class="container">
-                                <div class="card mb-3" style="max-width: 720px;">
+                                <div class="card mb-3" style="max-width: 1080px;">
                                     <div class="row no-gutters">
                                         <div class="col-md-4">
-                                            <img src="asset/img/bonsai1.jpg" class="card-img" alt="...">
+                                            <img src="img/carousel/bonsai1.jpg" class="card-img" alt="...">
                                         </div>
                                         <div class="col-md-8">
                                             <div class="card-body">
-                                                <h5 class="card-title">Card title</h5>
+                                                <h5 class="card-title">Bonsai Abadi</h5>
                                                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                                <p class="card-text"><strong>Harga Rp. 300.000,00</strong></p>
                                                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                                <button type="button" class="btn btn-lg btn-success" disabled>Beli Sekarang</button>
+                                                <button type="button" class="btn btn-secondary btn-lg" disabled>Masukkan Keranjang</button>
                                             </div>
                                         </div>
                                     </div>
