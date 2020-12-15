@@ -6,7 +6,30 @@ $topbarActive = "topbarProduk";
 require "config/connect.php";
 require "config/function.php";
 
-$products = query("SELECT tb_produk.*, tb_kategori.kategori FROM tb_produk INNER JOIN tb_kategori ON tb_produk.kd_kategori=tb_kategori.kd_kategori");
+$kategori = query("SELECT * FROM tb_kategori");
+
+if (isset($_GET['c'])) {
+    $filterKategori = $_GET['c'];
+    $products = query("SELECT tb_produk.*, tb_kategori.kategori FROM tb_produk INNER JOIN tb_kategori ON tb_produk.kd_kategori=tb_kategori.kd_kategori AND tb_produk.kd_kategori = $filterKategori ORDER BY tb_produk.nama_produk ASC");
+    if (empty($products)) {
+        $notFound = true;
+    }
+} elseif (isset($_GET['s'])) {
+    $key = $_GET['s'];
+    $products = query("SELECT a.*, b.kategori FROM tb_produk a INNER JOIN tb_kategori b ON a.kd_kategori=b.kd_kategori AND a.nama_produk LIKE '%$key%' ORDER BY a.nama_produk ASC");
+    if (empty($products)) {
+        $notFound = true;
+    }
+} else {
+    // pagination
+    $jumlahDataPerHalaman = 2;
+    $jumlahData = count(query("SELECT id_produk FROM tb_produk"));
+    $jumlahHalaman = ceil($jumlahData / $jumlahDataPerHalaman);
+    $halamanAktif = (isset($_GET["page"])) ? $_GET["page"] : 1;
+    $awalData = ($jumlahDataPerHalaman * $halamanAktif) - $jumlahDataPerHalaman;
+
+    $products = query("SELECT a.*, b.kategori FROM tb_produk a INNER JOIN tb_kategori b ON a.kd_kategori=b.kd_kategori ORDER BY a.nama_produk ASC LIMIT $awalData,$jumlahDataPerHalaman");
+}
 
 ?>
 
@@ -44,17 +67,22 @@ $products = query("SELECT tb_produk.*, tb_kategori.kategori FROM tb_produk INNER
                         <div class="card-body d-flex justify-content-between">
                             <h5 class="mb-0 my-auto">Produk</h5>
                             <div class="d-inline-flex">
-                                <div class="dropdown my-auto mr-3">
-                                    <button class="btn btn-sm btn-secondary dropdown-toggle my-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Kategori
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                        <?php foreach ($products as $product) : ?>
-                                            <a class="dropdown-item" href="produk.php?c=<?= $product['kd_kategori']; ?>"><?= $product['kategori']; ?></a>
-                                        <?php endforeach; ?>
+                                <?php if (isset($_GET['c']) || isset($_GET['s'])) : ?>
+                                    <a href="produk.php" class=" mr-3 btn btn-outline-secondary">Reset</a>
+                                <?php else : ?>
+                                    <div class="dropdown my-auto mr-3 btn-group">
+                                        <button class="btn btn-sm btn-secondary dropdown-toggle my-0" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                                            Kategori
+                                        </button>
+                                        <ul class="dropdown-menu scrollable-menu dropdown-menu-right" role="menu">
+                                            <?php foreach ($kategori as $kat) : ?>
+                                                <li>
+                                                    <a class="dropdown-item" href="produk.php?c=<?= $kat['kd_kategori']; ?>"><?= ucwords($kat['kategori']); ?></a>
+                                                </li>
+                                            <?php endforeach; ?>
+                                        </ul>
                                     </div>
-                                </div>
-
+                                <?php endif; ?>
                                 <form method="GET" action="" class="search form-inline my-2 my-lg-0">
                                     <div class="input-group">
                                         <input name="s" class="form-control" type="search" placeholder="Cari produk..." aria-label="Search">
@@ -68,15 +96,12 @@ $products = query("SELECT tb_produk.*, tb_kategori.kategori FROM tb_produk INNER
 
                                 <!-- search dropdown (small screen) -->
                                 <div class="dropdown my-auto search-sm">
-                                    <button class="btn btn-sm btn-success my-2 my-sm-0" type="submit" data-toggle="dropdown">
+                                    <button class="btn btn-sm btn-success my-2 my-sm-0" data-toggle="dropdown">
                                         <i class="fa fa-search"></i>
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-search px-2">
-                                        <form class="form-inline">
-                                            <input class="form-control" type="search" placeholder="Cari produk" aria-label="Search">
-                                            <button class="btn btn-success my-2 my-sm-0 d-none" type="submit">
-                                                <i class="fa fa-search"></i>
-                                            </button>
+                                        <form method="GET" action="" class="form-inline">
+                                            <input name="s" class="form-control" type="search" placeholder="Cari produk" aria-label="Search">
                                         </form>
                                     </div>
                                 </div>
@@ -93,6 +118,15 @@ $products = query("SELECT tb_produk.*, tb_kategori.kategori FROM tb_produk INNER
                     <div class="card">
                         <div class="card-body shadow">
 
+                            <?php if (isset($notFound)) : ?>
+                                <div class="row justify-content-center">
+                                    <div class="col-12">
+                                        <h4 class="text-center my-3">Data tidak ditemukan</h4>
+                                    </div>
+                                    <img class="col-8" src="img/bg/product-not-found.svg" alt="">
+                                </div>
+                            <?php endif; ?>
+
                             <!-- Isi card konten -->
                             <div class="row konten-produk">
 
@@ -100,21 +134,18 @@ $products = query("SELECT tb_produk.*, tb_kategori.kategori FROM tb_produk INNER
                                     <!-- list produk -->
                                     <div class="konten-item col-xl-3 col-lg-4 col-md-4 col-sm-6 mb-4">
                                         <div class="card shadow-sm">
+                                            <div class="position-absolute" style="z-index: 1; right: 0;">
+                                                <span class="badge badge-secondary"><?= ucwords($product['kategori']); ?></span>
+                                            </div>
                                             <div class="embed-responsive embed-responsive-16by9">
                                                 <img src="admin-dashboard/img/produk/<?= $product['image']; ?>" class="product-image embed-responsive-item" alt="...">
                                             </div>
-                                            <div class="card-body px-2 pt-2">
+                                            <div class="card-body px-2 pt-3">
 
-                                                <h5 class="card-title">
+                                                <h6 class="card-title">
                                                     <?= ucfirst($product['nama_produk']); ?>
-                                                </h5>
+                                                </h6>
 
-                                                <div class="d-flex justify-content-between px-1">
-                                                    <small>
-                                                        Ready : <?= $product['stok']; ?>
-                                                    </small>
-                                                    <span class="badge badge-secondary"><?= ucwords($product['kategori']); ?></span>
-                                                </div>
                                                 <hr>
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend">
@@ -137,25 +168,31 @@ $products = query("SELECT tb_produk.*, tb_kategori.kategori FROM tb_produk INNER
 
                             </div>
 
-                            <!-- pagination row -->
-                            <div class="row">
-                                <div class="col">
-                                    <!-- pagination -->
-                                    <nav aria-label="Page navigation">
-                                        <ul class="pagination justify-content-end">
-                                            <li class="page-item disabled">
-                                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                                            </li>
-                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">Next</a>
-                                            </li>
-                                        </ul>
-                                    </nav>
+                            <?php if (!(isset($_GET['c']) || isset($_GET['s']))) : ?>
+                                <!-- pagination row -->
+                                <div class="row">
+                                    <div class="col">
+                                        <!-- pagination -->
+                                        <nav aria-label="Page navigation">
+                                            <ul class="pagination justify-content-end">
+                                                <li class="page-item <?= ($halamanAktif == 1 ? 'disabled' : ''); ?>">
+                                                    <a class="page-link" href="?page=<?= $halamanAktif - 1; ?>" tabindex="-1" aria-disabled="true">Previous</a>
+                                                </li>
+                                                <?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
+                                                    <?php if ($i == $halamanAktif) : ?>
+                                                        <li class="page-item active"><a class="page-link" href="?page=<?= $i; ?>"><?= $i; ?></a></li>
+                                                    <?php else : ?>
+                                                        <li class="page-item"><a class="page-link" href="?page=<?= $i; ?>"><?= $i; ?></a></li>
+                                                    <?php endif; ?>
+                                                <?php endfor; ?>
+                                                <li class="page-item <?= ($halamanAktif == $jumlahHalaman ? 'disabled' : ''); ?>">
+                                                    <a class="page-link" href="#">Next</a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
                                 </div>
-                            </div>
+                            <?php endif; ?>
 
                         </div>
                     </div>

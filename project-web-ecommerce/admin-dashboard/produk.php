@@ -140,7 +140,7 @@ require "config/function.php";
 
                       <tr>
 
-                        <td rowspan="2" class="align-middle align-items-center">
+                        <td class="align-middle align-items-center">
 
                           <div class="dropdown">
                             <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -164,7 +164,7 @@ require "config/function.php";
 
                         </td>
 
-                        <td class="align-middle" rowspan="2">
+                        <td class="align-middle">
                           <div class="custom-img-size">
                             <div class="embed-responsive embed-responsive-16by9">
                               <img alt="product-image" class="embed-responsive-item img-fit" src="img/produk/<?= htmlspecialchars($data['image']); ?>" />
@@ -173,9 +173,16 @@ require "config/function.php";
                         </td>
 
                         <td>
-                          <?= ucfirst(htmlspecialchars($data['nama_produk'])); ?>
+                          <p>
+                            <?= ucfirst(htmlspecialchars($data['nama_produk'])); ?>
+                            <?php $desc = $data['deskripsi'] ?>
+                          </p>
+                          <small>
+                            <span class="font-weight-bold">Deskripsi : </span>
+                            <?= ucfirst(htmlspecialchars(substr("$desc", 0, 120)) . "..."); ?>
+                            <a href="#" data-toggle="popover" data-trigger="focus" data-placement="left" data-content="<?= ucfirst(htmlspecialchars($desc)); ?>">(Selengkapnya...)</a>
+                          </small>
                         </td>
-
                         <td>
                           <div class="input-group-prepend">
                             <div class="input-group-text bg-light"><?= htmlspecialchars($data['stok']); ?></div>
@@ -195,17 +202,7 @@ require "config/function.php";
 
                         <td><?= ucwords($data['kategori']); ?></td>
                       </tr>
-                      <tr>
-                        <td colspan="4">
-                          <?php $desc = $data['deskripsi'] ?>
-                          <small>
-                            <span class="font-weight-bold">Deskripsi : </span>
-                            <?= ucfirst(htmlspecialchars(substr("$desc", 0, 120)) . "..."); ?>
-                            <a href="#" data-toggle="popover" data-trigger="focus" data-placement="left" data-content="<?= ucfirst(htmlspecialchars($desc)); ?>">(Selengkapnya...)</a>
 
-                          </small>
-                        </td>
-                      </tr>
                     <?php } ?>
 
                   </tbody>

@@ -45,7 +45,7 @@ section.header {
 }
 
 section.header {
-    z-index: 1000;
+    z-index: 1100;
     width: 100%;
     top: 0px;
 }
@@ -95,6 +95,12 @@ div.dropdown-search {
 
 div.dropdown-search input.form-control {
     width: 100%;
+}
+
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
 }
 
 /* pagination */
