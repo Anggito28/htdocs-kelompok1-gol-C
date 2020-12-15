@@ -25,17 +25,14 @@
         <div class="container">
 
             <!-- Header konten -->
-            <div class="row mb-4">
-                <div class="col-lg-12">
-                    <div class="card shadow">
-                        <div class="card-body d-flex justify-content-between">
-
-                            <h5 class="mb-0 my-auto">Judul Halaman</h5>
-                            <div class="d-inline-flex">
-
-                            </div>
-                        </div>
-                    </div>
+            <div class="row no-gutters justify-content-center">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb bg-white shadow">
+                            <li class="breadcrumb-item"><a href="produk.php">Produk</a></li>
+                            <li class="breadcrumb-item active">Detail Produk</li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
 
@@ -44,20 +41,30 @@
                     <div class="card">
                         <div class="card-body shadow">
                             <!-- Isi card konten -->
-                            <div class="container">
-                                <div class="card mb-3" style="max-width: 1080px;">
-                                    <div class="row no-gutters">
-                                        <div class="col-md-4">
-                                            <img src="img/carousel/bonsai1.jpg" class="card-img" alt="...">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Bonsai Abadi</h5>
-                                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                <p class="card-text"><strong>Harga Rp. 300.000,00</strong></p>
-                                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                                <button type="button" class="btn btn-lg btn-success" disabled>Beli Sekarang</button>
-                                                <button type="button" class="btn btn-secondary btn-lg" disabled>Masukkan Keranjang</button>
+
+                            <div class="row justify-content-center">
+                                <div class="col-sm-10">
+                                    <div class="card mb-3">
+                                        <div class="card-body">
+                                            <div class="row mb-4">
+                                                <div class="col-md-5">
+                                                    <img src="img/carousel/bonsai1.jpg" class="card-img mb-3" alt="...">
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <h4 class="card-title">Bonsai Abadi</h4>
+                                                    <p class="card-text"><strong>Harga Rp. 300.000,00</strong></p>
+                                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                                    <button type="button" class="btn btn-sm btn-outline-success mr-2 mb-2">Beli Sekarang</button>
+                                                    <button type="button" class="btn btn-success btn-sm mb-2">+ Keranjang</button>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <p class="card-title">Deskripsi</p>
+                                                    <p class="card-text">
+                                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio similique debitis dolore eveniet necessitatibus, aspernatur nemo itaque error vel quam, minus molestias officia fugit laudantium accusamus magnam ab expedita quod.
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

@@ -3,6 +3,11 @@ session_start();
 
 $topbarActive = "topbarHome";
 
+require "config/connect.php";
+require "config/function.php";
+
+$products = query("SELECT a.*, b.kategori FROM tb_produk a INNER JOIN tb_kategori b ON a.kd_kategori=b.kd_kategori ORDER BY a.id_produk DESC LIMIT 1,6");
+
 ?>
 
 <!doctype html>
@@ -32,154 +37,124 @@ $topbarActive = "topbarHome";
 
             <div class="row mb-4">
                 <div class="col-lg-12">
-
                     <!--carousel item  -->
-                    <div id="carouselExampleCaptions" class="carousel slide shadow-sm" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-                            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-                            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-                        </ol>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <div class="embed-responsive embed-responsive-21by9">
-                                    <img src="img/carousel/bonsai1.jpg" class="embed-responsive-item d-block w-100" alt="...">
+                    <div class="p-2 shadow">
+                        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                                <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                                <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="embed-responsive embed-responsive-21by9">
+                                        <img src="img/carousel/bonsai1.jpg" class="embed-responsive-item d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h5>First slide label</h5>
+                                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                                    </div>
                                 </div>
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>First slide label</h5>
-                                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                                <div class="carousel-item">
+                                    <div class="embed-responsive embed-responsive-21by9">
+                                        <img src="img/carousel/bonsai2.png" class="embed-responsive-item d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h5>Second slide label</h5>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="embed-responsive embed-responsive-21by9">
+                                        <img src="img/carousel/bonsai3.webp" class="embed-responsive-item d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h5>Third slide label</h5>
+                                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="carousel-item">
-                                <div class="embed-responsive embed-responsive-21by9">
-                                    <img src="img/carousel/bonsai2.png" class="embed-responsive-item d-block w-100" alt="...">
-                                </div>
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>Second slide label</h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="embed-responsive embed-responsive-21by9">
-                                    <img src="img/carousel/bonsai3.webp" class="embed-responsive-item d-block w-100" alt="...">
-                                </div>
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>Third slide label</h5>
-                                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                                </div>
-                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
                         </div>
-                        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
                     </div>
+                </div>
+            </div>
 
-                    <div class="card shadow">
-                        <div class="card-body d-flex justify-content-between">
-                            <h5 class="mb-0 my-auto">Produk</h5>
-                            <div class="d-inline-flex">
-                                <div class="dropdown my-auto mr-3">
-                                    <button class="btn btn-sm btn-secondary dropdown-toggle my-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Kategori
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">Peralatan Tanaman</a>
-                                        <a class="dropdown-item" href="#">Bonsai</a>
-                                        <a class="dropdown-item" href="#">Pupuk dan Racun</a>
+            <div class="row mb-4">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body shadow">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-10">
+                                    <div class="row konten-produk">
+                                        <!-- list produk -->
+                                        <?php foreach ($products as $product) : ?>
+                                            <!-- list produk -->
+                                            <div class="konten-item col-xl-4 col-lg-4 col-md-4 col-sm-6 mb-4">
+                                                <div class="card shadow-sm">
+                                                    <div class="position-absolute" style="z-index: 1; right: 0;">
+                                                        <span class="badge badge-secondary"><?= ucwords($product['kategori']); ?></span>
+                                                    </div>
+                                                    <div class="embed-responsive embed-responsive-16by9">
+                                                        <img src="admin-dashboard/img/produk/<?= $product['image']; ?>" class="product-image embed-responsive-item" alt="...">
+                                                    </div>
+                                                    <div class="card-body px-2 pt-3">
+
+                                                        <h6 class="card-title">
+                                                            <?= ucfirst($product['nama_produk']); ?>
+                                                        </h6>
+
+                                                        <hr>
+                                                        <div class="input-group mb-3">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text px-2 py-1 font-weight-bold">Rp</span>
+                                                            </div>
+                                                            <p class="font-weight-bold form-control pr-1">
+                                                                <?= htmlspecialchars(number_format($product['harga'], 0, '', ".")); ?>
+                                                            </p>
+                                                        </div>
+
+                                                        <div class="text-right d-block">
+                                                            <a href="detail-produk.php?id=<?= $product['id_produk']; ?>" class="btn btn-sm btn-success">
+                                                                Detail Produk
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php endforeach; ?>
                                     </div>
                                 </div>
-
-                                <form class="search form-inline my-2 my-lg-0">
-                                    <div class="input-group">
-                                        <input class="form-control" type="search" placeholder="Cari produk..." aria-label="Search">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-success my-2 my-sm-0" type="submit">
-                                                <i class="fa fa-search"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-
-                                <!-- search dropdown (small screen) -->
-                                <div class="dropdown my-auto search-sm">
-                                    <button class="btn btn-success my-2 my-sm-0" type="submit" data-toggle="dropdown">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-right dropdown-search px-2">
-                                        <form class="form-inline">
-                                            <input class="form-control" type="search" placeholder="Cari produk" aria-label="Search">
-                                            <button class="btn btn-success my-2 my-sm-0 d-none" type="submit">
-                                                <i class="fa fa-search"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="row mb-5">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-body shadow">
-                            <div class="row konten-produk">
-
-                                <!-- list produk -->
-                                <div class="konten-item col-lg-3 col-md-4 col-sm-6 mb-4">
-                                    <div class="card shadow-sm">
-                                        <div class="embed-responsive embed-responsive-16by9">
-                                            <img src="img/default/5fccd0d6cb7db.jpeg" class="product-image embed-responsive-item" alt="...">
-                                        </div>
-                                        <div class="card-body">
-                                            <h6 class="card-title">
-                                                Card title Lorem ipsum dolor sit amet.
-                                            </h6>
-                                            <hr>
-                                            <div class="input-group mb-4">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text font-weight-bold">Rp</span>
-                                                </div>
-                                                <p class="form-control font-weight-bold">
-                                                    100,000
-                                                </p>
-                                            </div>
-
-                                            <div class="text-right d-block">
-                                                <button class="btn btn-sm btn-success">
-                                                    Detail Produk
-                                                </button>
-                                            </div>
-
-                                        </div>
-                                    </div>
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                Lorem ipsum dolor sit amet consectetur
+                            </h5>
+                            <div class="row text-justify">
+                                <div class="col-6">
+                                    <p>
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis nihil laudantium doloremque minima minus modi quae, rerum fugiat consectetur eveniet nemo? Temporibus, doloremque! Quo autem labore natus fugiat laudantium ipsum.
+                                    </p>
                                 </div>
-
-                            </div>
-
-                            <div class="row">
-                                <div class="col">
-                                    <!-- pagination -->
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination justify-content-end">
-                                            <li class="page-item disabled">
-                                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                                            </li>
-                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">Next</a>
-                                            </li>
-                                        </ul>
-                                    </nav>
+                                <div class="col-6">
+                                    <p>
+                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit dolor corporis inventore facilis, eius eveniet, aut, placeat amet quibusdam
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -213,15 +188,6 @@ $topbarActive = "topbarHome";
 
     <script>
         $(document).ready(function() {
-            let item = $("div.konten-item");
-            let konten = $("div.row.konten-produk");
-
-            for (let i = 0; i < 7; i++) {
-                item.clone().appendTo(konten);
-
-            }
-
-            console.log(item);
 
             $("div.search-sm").hide();
 
