@@ -51,7 +51,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Email</h5>
                                     <p class="card-text">Alamat Lengkap</p>
-                                    <a href="#" class="btn btn-primary">Ubah Alamat</a>
+                                    <a href="detail-alamat.php" class="btn btn-primary">Ubah Alamat</a>
                                 </div>
                             </div>
                             <br>
@@ -90,7 +90,7 @@
                                     <p class="card-text">Biaya Pengiriman Rp. 10.000,00</p>
                                 </div>
                                 <div class="card-footer bg-transparent border-gray"><Strong>Total Pembayaran Rp.310.000,00</Strong></div>
-                                <button type="button" class="btn btn-success">Proses</button>
+                                <a href="#" class="btn btn-success">Proses</a>
                             </div>
                         </div>
                     </div>
