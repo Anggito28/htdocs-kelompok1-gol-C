@@ -32,7 +32,7 @@
                 </ul>
 
                 <div id="topbarCTA">
-                    <a class="mr-4 my-auto" href="#">
+                    <a class="mr-4 my-auto" href="<?= (isset($_SESSION['login']) ? 'keranjang.php' : ''); ?>">
                         <i class="fa fa-shopping-cart fa-2x text-secondary"></i>
                         <!-- <span class="text">Keranjang</span> -->
                     </a>

@@ -191,3 +191,17 @@ function login($data)
         }
     }
 }
+
+function tambahKeranjang($data)
+{
+    global $conn;
+
+    $idProduk = $data['idProduk'];
+    $kdPembeli = $data['kdPembeli'];
+
+    $keranjang = "INSERT INTO tb_keranjang VALUES (0, $idProduk, $kdPembeli);";
+
+    mysqli_query($conn, $keranjang);
+
+    return mysqli_affected_rows($conn);
+}

@@ -22,7 +22,7 @@ if (isset($_GET['c'])) {
     }
 } else {
     // pagination
-    $jumlahDataPerHalaman = 2;
+    $jumlahDataPerHalaman = 10;
     $jumlahData = count(query("SELECT id_produk FROM tb_produk"));
     $jumlahHalaman = ceil($jumlahData / $jumlahDataPerHalaman);
     $halamanAktif = (isset($_GET["page"])) ? $_GET["page"] : 1;
@@ -143,7 +143,7 @@ if (isset($_GET['c'])) {
                                             <div class="card-body px-2 pt-3">
 
                                                 <h6 class="card-title">
-                                                    <?= ucfirst($product['nama_produk']); ?>
+                                                    <?= ucwords($product['nama_produk']); ?>
                                                 </h6>
 
                                                 <hr>
