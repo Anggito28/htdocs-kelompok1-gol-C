@@ -30,7 +30,7 @@
                     <div class="card shadow">
                         <div class="card-body d-flex justify-content-between">
 
-                            <h5 class="mb-0 my-auto">Judul Halaman</h5>
+                            <h5 class="mb-0 my-auto">Detail Produk</h5>
                             <div class="d-inline-flex">
 
                             </div>
