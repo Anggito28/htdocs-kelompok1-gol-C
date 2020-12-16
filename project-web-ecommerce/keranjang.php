@@ -6,7 +6,7 @@ require "config/function.php";
 
 $idAkun = $_SESSION['id'];
 
-$produk = query("SELECT a.*, b.kategori, c.id_produk, c.kd_pembeli FROM tb_produk a 
+$produk = query("SELECT a.*, b.kategori, c.id AS idKeranjang, c.id_produk, c.kd_pembeli FROM tb_produk a 
 INNER JOIN tb_kategori b ON a.kd_kategori=b.kd_kategori
 INNER JOIN tb_keranjang c ON a.id_produk=c.id_produk 
 AND c.kd_pembeli = $idAkun");
@@ -56,53 +56,63 @@ AND c.kd_pembeli = $idAkun");
                     <div class="card">
                         <div class="card-body shadow">
 
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <?php foreach ($produk as $p) : ?>
-                                        <div class="row">
-                                            <div class="col-10">
-                                                <div class="row">
-                                                    <div class="col-lg-4 my-auto ">
-                                                        <div class="embed-responsive embed-responsive-16by9 shadow-sm mb-3">
-                                                            <img src="admin-dashboard/img/produk/<?= $p['image']; ?>" class="border p-1 product-image embed-responsive-item" alt="...">
+                            <form action="billing.php" method="POST">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <?php $i = 1;
+                                        $j = 1; ?>
+                                        <?php foreach ($produk as $p) : ?>
+                                            <div class="row">
+                                                <div class="col-10">
+                                                    <div class="row">
+                                                        <div class="col-lg-4 my-auto ">
+                                                            <div class="embed-responsive embed-responsive-16by9 shadow-sm mb-3">
+                                                                <img src="admin-dashboard/img/produk/<?= $p['image']; ?>" class="border p-1 product-image embed-responsive-item" alt="...">
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-lg-7">
-                                                        <h5 class="card-title"><?= $p['nama_produk']; ?></h5>
-                                                        <p class="card-text">Rp <?= number_format($p['harga'], 0, '', "."); ?></p>
-                                                        <div class="form-inline">
-                                                            <label class="my-1 mr-2">Jumlah</label>
-                                                            <input class="form-control" style="width: 60px;" type="number" name="" id="" value="1">
+                                                        <div class="col-lg-7">
+                                                            <h5 class="card-title"><?= $p['nama_produk']; ?></h5>
+                                                            <p class="card-text">Rp <?= number_format($p['harga'], 0, '', "."); ?></p>
+                                                            <div class="form-inline">
+                                                                <label class="my-1 mr-2">Jumlah</label>
+                                                                <input value="1" min="1" max="<?= $p['stok']; ?>" class="form-control" style="width: 60px;" type="number" name="produk-<?= $i++; ?>[]">
+                                                            </div>
+                                                            <div class="mt-2">
+                                                                <button type="button" value="<?= $p['idKeranjang']; ?>" class="hapusItem btn btn-danger btn-sm">Hapus</button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-2">
-                                                <div class="form-check float-right">
-                                                    <input class="form-check-input" type="checkbox" value="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                    <?php endforeach; ?>
+                                                <div class="col-2">
+                                                    <div class="form-check float-right">
+                                                        <input checked class="cek-produk" name="produk-<?= $j++; ?>[]" class="form-check-input" type="checkbox" value="<?= $p['id_produk']; ?>">
+                                                    </div>
 
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                                <label class="form-check-label" for="defaultCheck1">
-                                                    <h5>
-                                                        Pilih Semua
-                                                    </h5>
-                                                </label>
+                                                </div>
                                             </div>
-                                            <button class="btn btn-success">Chekout</button>
+                                            <hr>
+                                        <?php endforeach; ?>
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="form-check mb-2">
+                                                    <input checked class="form-check-input" type="checkbox" id="cek-semua">
+                                                    <label class="form-check-label" for="cek-semua">
+                                                        <h5>
+                                                            Pilih Semua
+                                                        </h5>
+                                                    </label>
+                                                </div>
+                                                <div class="text-right">
+                                                    <button type="submit" class="btn btn-success">Chekout</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
 
                         </div>
                     </div>
@@ -117,6 +127,25 @@ AND c.kd_pembeli = $idAkun");
     </section>
 
     <?php include "includes/scripts.php"; ?>
+
+    <script>
+        $(document).ready(function() {
+            $("#cek-semua").click(function(event) {
+                $(".cek-produk").click();
+            });
+
+            $('.hapusItem').click(function(event) {
+                if (confirm("Hapus item keranjang?") == true) {
+                    let target = $(event.target);
+                    let id = target.val();
+
+                    $.get("ajax/ajax-hapus-keranjang.php?id=" + id, function(data) {
+                        location.reload();
+                    });
+                }
+            });
+        });
+    </script>
 
 </body>
 

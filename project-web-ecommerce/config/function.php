@@ -205,3 +205,38 @@ function tambahKeranjang($data)
 
     return mysqli_affected_rows($conn);
 }
+
+function prosesPesanan($data)
+{
+    global $conn;
+
+    $produk = $data['produk'];
+    $pembayaran = $data['pembayaran'];
+    $pengiriman = $data['pengiriman'];
+    $keterangan = $data['keterangan'];
+    $kdPembeli = $data['kdPembeli'];
+    $tanggal = $data['tanggal'];
+    $status = $data['status'];
+    $totalBayar = $data['totalBayar'];
+
+    $transaksi = "INSERT INTO tb_transaksi VALUES (0, $kdPembeli, '$tanggal', '$pembayaran', '$pengiriman', '$keterangan', '$status', $totalBayar);";
+
+    mysqli_query($conn, $transaksi);
+    $response = mysqli_affected_rows($conn);
+
+    // ambil kode transaksi
+    $kdTransaksi = query("SELECT MAX(kd_transaksi) AS kdTrans FROM tb_transaksi")[0]['kdTrans'];
+
+    for ($i = 0; $i < count($produk['id']); $i++) {
+        $idProduk = (int) $produk['id'][$i];
+        $sub = (int) $produk['subTotal'][$i];
+        $jumlah = (int) $produk['jumlah'][$i];
+
+        $detailTrans = "INSERT INTO tb_detail_transaksi VALUES (0, $kdTransaksi, $idProduk, $sub, $jumlah);";
+
+        mysqli_query($conn, $detailTrans);
+        $response = $response + mysqli_affected_rows($conn);
+    }
+
+    return $response;
+}

@@ -1,3 +1,45 @@
+<?php
+session_start();
+date_default_timezone_set('Asia/Jakarta');
+
+require "config/connect.php";
+require "config/function.php";
+
+$idAkun = $_SESSION['id'];
+
+if (isset($_POST['proses'])) {
+    if (prosesPesanan($_POST) > 0) {
+        echo "
+            <script>
+                alert('Berhasil diproses! Menunggu pembayaran...');
+                location = 'index.php';
+            </script>
+                ";
+    } else {
+        echo mysqli_error($conn);
+    }
+}
+
+$items = [];
+$sub = [];
+$total = 0;
+
+for ($i = 1; $i <= count($_POST); $i++) {
+    $p = "produk-" . $i;
+    if (isset($_POST[$p][1])) {
+        $items[] = $_POST[$p];
+    }
+}
+
+$data = query("SELECT tb_pembeli.*, tb_akun.foto_profil, wilayah_provinsi.nama AS prov, wilayah_kabupaten.nama AS kab, wilayah_kecamatan.nama AS kec FROM tb_pembeli 
+INNER JOIN tb_akun ON tb_pembeli.kd_akun = tb_akun.kd_akun
+INNER JOIN wilayah_provinsi ON tb_pembeli.id_provinsi = wilayah_provinsi.id
+INNER JOIN wilayah_kabupaten ON tb_pembeli.id_kabupaten = wilayah_kabupaten.id
+INNER JOIN wilayah_kecamatan ON tb_pembeli.id_kecamatan = wilayah_kecamatan.id
+AND tb_pembeli.kd_akun = $idAkun")[0];
+
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -25,73 +67,185 @@
         <div class="container">
 
             <!-- Header konten -->
-            <div class="row mb-4">
-                <div class="col-lg-12">
-                    <div class="card shadow">
-                        <div class="card-body d-flex justify-content-between">
-
-                            <h5 class="mb-0 my-auto">Billing Information</h5>
-                            <div class="d-inline-flex">
-
-                            </div>
-                        </div>
-                    </div>
+            <div class="row no-gutters justify-content-center mb-4">
+                <div class="col">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb bg-white shadow">
+                            <li class="breadcrumb-item"><a href="produk.php">Produk</a></li>
+                            <li class="breadcrumb-item"><a href="keranjang.php">Keranjang</a></li>
+                            <li class="breadcrumb-item active">Billing</li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
 
             <div class="row mb-5">
-                <div class="col-lg-12">
+                <div class="col">
                     <div class="card">
                         <div class="card-body shadow">
-                            <!-- Detail Alamat -->
-                            <div class="card">
-                                <div class="card-header">
-                                    Detail Alamat
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Email</h5>
-                                    <p class="card-text">Alamat Lengkap</p>
-                                    <a href="detail-alamat.php" class="btn btn-primary">Ubah Alamat</a>
-                                </div>
-                            </div>
-                            <br>
-                            <!--Detail Pemesanan -->
-                            <h5><i class="fas fa-store ml-3 mr-2"></i>Pemesanan</h5>
-                            <div class="card mb-3" style="max-width: 1080px;">
-                                <div class="row no-gutters">
-                                    <div class="col-md-4">
-                                        <img src="img/carousel/bonsai1.jpg" class="card-img" alt="...">
-                                    </div>
-                                    <div class="col-md-8">
+                            <div class="row mb-4">
+                                <div class="col">
+                                    <!-- Detail Alamat -->
+                                    <div class="card">
+                                        <div class="card-header bg-light border-0">
+                                            <h6>Alamat</h6>
+                                        </div>
                                         <div class="card-body">
-                                            <h5 class="card-title">Nama Bonsai</h5>
-                                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                            <p class="card-text">
-                                                <medium class="text-muted"><Strong>Rp.300.000</Strong></medium>
+                                            <h6><?= $data['nama']; ?></h6>
+                                            <p><?= $data['no_telepon']; ?></p>
+                                            <p> <?= $data['detail_alamat']; ?><br>
+                                                <?= $data['kec']; ?>, <?= $data['kab']; ?>, Provinsi <?= $data['prov']; ?>, Indonesia
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!--Opsi Pembayaran-->
-                            <div>
-                                <h6>Opsi Pembayaran</h6>
-                                <select class="form-control">
-                                    <option href="#">Transfer</option>
-                                    <option href="#">COD</option>
-                                </select>
-                            </div>
-                            <br>
-                            <!--Detail Pembayaran-->
-                            <h5><i class="fas fa-poll-h ml-3 mr-2"></i>Rincian Pembayaran</h5>
-                            <div class="card border-gray mb-3" style="max-width: 100rem;">
-                                <div class="card-body text-black">
-                                    <p class="card-text">Total Belanja Rp. 300.000,00</p>
-                                    <p class="card-text">Biaya Pengiriman Rp. 10.000,00</p>
+
+                            <!-- form submit data -->
+                            <form action="" method="POST">
+
+                                <!--Detail Pemesanan -->
+                                <div class="row mb-4">
+                                    <div class="col-md-6">
+                                        <?php foreach ($items as $item) : ?>
+                                            <?php $produk = query("SELECT * FROM tb_produk WHERE id_produk = $item[1]")[0]; ?>
+                                            <div class="card mb-3">
+                                                <div class="card-body shadow-sm">
+                                                    <div class="row ">
+                                                        <div class="col-lg-5">
+                                                            <div class="embed-responsive embed-responsive-16by9 shadow-sm mb-4">
+                                                                <img src="admin-dashboard/img/produk/<?= $produk['image']; ?>" class="border p-1 product-image embed-responsive-item" alt="...">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-7">
+                                                            <h4 class="card-title"><?= ucfirst($produk['nama_produk']); ?></h4>
+                                                            <h5 class="card-text">Rp <?= number_format($produk['harga'], 0, '', "."); ?></h5>
+                                                            <span>Jumlah : <?= $item[0]; ?></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer justify-content-between d-flex px-2">
+                                                    <div>
+                                                        Subtotal (<?= $item[0]; ?>)
+                                                    </div>
+                                                    <div>
+                                                        <strong>Rp <?= $sub[] = $item[0] * $produk['harga']; ?></strong>
+                                                        <input type="hidden" name="produk[subTotal][]" value="<?= $item[0] * $produk['harga']; ?>">
+                                                        <input type="hidden" name="produk[jumlah][]" value="<?= $item[0]; ?>">
+                                                        <input type="hidden" name="produk[id][]" value="<?= $item[1]; ?>">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-12 mb-4">
+                                                <div>
+                                                    <label for="pembayaran">
+                                                        <h6>Opsi Pembayaran</h6>
+                                                    </label>
+                                                    <?php if ($data['id_kabupaten'] == "3505" || $data['id_kabupaten'] == "3572") : ?>
+                                                        <div class="form-control bg-light mb-1">COD</div>
+                                                        <input type="hidden" name="pembayaran" value="cod">
+                                                    <?php else : ?>
+                                                        <div class="form-control bg-light mb-1">Transfer via Rekening ATM</div>
+                                                        <input type="hidden" name="pembayaran" value="transfer">
+                                                    <?php endif; ?>
+                                                    <small><strong>Transfer :</strong> Barang dikirim melalui agen ekspedisi Indah Kargo</small><br>
+                                                    <small><strong> COD :</strong> Khusus wilayah Blitar dan sekitarnya, barang dikirim langsung</small>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 mb-4">
+                                                <div class="form-group">
+                                                    <label for="pengiriman">
+                                                        <h6>Opsi Pengiriman</h6>
+                                                    </label>
+                                                    <?php if ($data['id_kabupaten'] == "3505" || $data['id_kabupaten'] == "3572") : ?>
+                                                        <div class="form-control bg-light mb-1">Langsung</div>
+                                                        <input type="hidden" value="langsung" name="pengiriman">
+                                                    <?php else : ?>
+                                                        <div class="form-control bg-light mb-1">Indah Kargo</div>
+                                                        <input type="hidden" value="indah kargo" name="pengiriman">
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="keterangan">
+                                                        <h6>Catatan untuk penjual (Opsional)</h6>
+                                                    </label>
+                                                    <textarea class="form-control" name="keterangan" id="keterangan" rows="5"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="card-footer bg-transparent border-gray"><Strong>Total Pembayaran Rp.310.000,00</Strong></div>
-                                <a href="#" class="btn btn-success">Proses</a>
-                            </div>
+
+                                <div class="row mb-4">
+                                    <div class="col">
+                                        <div class="card">
+                                            <div class="card-body px-2">
+                                                <div class="row justify-content-center no-gutters">
+                                                    <div class="col-md-10">
+                                                        <div class="card-header border-0 text-center bg-light">
+                                                            <h6>Rincian Pembayaran</h6>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <h6>Subtotal Belanja :</h6>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col text-right">
+                                                                    <?php for ($i = 0; $i < count($sub); $i++) : ?>
+                                                                        <div class="font-weight-bold">Rp <?= number_format($sub[$i], 0, "", "."); ?></div>
+                                                                    <?php
+                                                                        $total = $total + $sub[$i];
+                                                                    endfor; ?>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-footer border-0 bg-light">
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <h6>Total Pembayaran :</h6>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col text-right">
+                                                                    <div class="font-weight-bold"> Rp <?= number_format($total, 0, "", "."); ?></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- data form -->
+                                <input type="hidden" name="kdPembeli" value="<?= $_SESSION['id']; ?>">
+                                <input type="hidden" name="tanggal" value="<?= date("Y-m-d"); ?>">
+                                <input type="hidden" name="status" value="tertunda">
+                                <input type="hidden" name="totalBayar" value="<?= $total; ?>">
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="card">
+                                            <div class="card-body text-right">
+                                                <a href="keranjang.php" class="btn btn-outline-secondary mr-2">Batal</a>
+                                                <button type="submit" name="proses" class="btn btn-success">Proses</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
                         </div>
                     </div>
                 </div>
@@ -106,19 +260,6 @@
 
     <?php include "includes/scripts.php"; ?>
 
-    <!-- indikator menu aktif -->
-    <script>
-        $(document).ready(function() {
-            let topbar = " <?= $topbarActive; ?>";
-            $("#" + topbar).addClass("active");
-            <?php if (isset($itemActive)) : ?>
-                let collapseItem = "<?= $itemActive; ?>";
-                $("#" + collapseItem).addClass("active text-success");
-                $("#" + sidebar + " a:first").removeClass("collapsed");
-                $("#" + sidebar + " div.collapse").addClass("show");
-            <?php endif; ?>
-        });
-    </script>
 </body>
 
 </html>
