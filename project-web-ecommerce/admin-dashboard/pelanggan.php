@@ -60,20 +60,20 @@ require "config/function.php";
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Pelanggan</h1>
-                    <table class="table table-borderless">
-                        <thead>
+                    <table class="table">
+                        <thead class="thead-light">
                             <tr>
                                 <th scope="col">NO</th>
-                                <th scope="col">NAMA</th>
+                                <th scope="col">NAME</th>
                                 <th scope="col">ALAMAT</th>
                                 <th scope="col">NO TELEPON</th>
+                                <th scope="col">EMAIL</th>
                             </tr>
                         </thead>
                         <tbody>
-
                             <?php
                             include "config/connect.php";
-                            $query_mysql = mysqli_query($conn, "select * from tb_pelanggan");
+                            $query_mysql = mysqli_query($conn, "select * from tb_pembeli");
                             $nomor = 1;
                             while ($data = mysqli_fetch_array($query_mysql)) {
                             ?>
@@ -82,6 +82,7 @@ require "config/function.php";
                                     <td><?php echo $data['nama']; ?></td>
                                     <td><?php echo $data['detail_alamat']; ?></td>
                                     <td><?php echo $data['no_telepon']; ?></td>
+                                    <td><?php echo $data['email']; ?></td>
                                 <?php
                             }
                                 ?>
