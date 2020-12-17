@@ -59,21 +59,6 @@
 
     <?php include "includes/scripts.php"; ?>
 
-    <!-- indikator menu aktif -->
-    <script>
-        $(document).ready(function() {
-            let topbar = "<?= $topbarActive; ?>";
-            $("#" + topbar).addClass("active");
-
-            <?php if (isset($itemActive)) : ?>
-                let collapseItem = "<?= $itemActive; ?>";
-                $("#" + collapseItem).addClass("active text-success");
-                $("#" + sidebar + " a:first").removeClass("collapsed");
-                $("#" + sidebar + " div.collapse").addClass("show");
-            <?php endif; ?>
-        });
-    </script>
-
 </body>
 
 </html>

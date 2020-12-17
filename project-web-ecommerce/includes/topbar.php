@@ -32,9 +32,8 @@
                 </ul>
 
                 <div id="topbarCTA">
-                    <a class="mr-4 my-auto" href="<?= (isset($_SESSION['login']) ? 'keranjang.php' : ''); ?>">
+                    <a class="mr-4 my-auto" <?= (isset($_SESSION['login']) ? "href='keranjang.php'" : ''); ?> onclick="alert('Harap Login dahulu untuk dapat melakukan transaksi');location.replace('login.php')">
                         <i class="fa fa-shopping-cart fa-2x text-secondary"></i>
-                        <!-- <span class="text">Keranjang</span> -->
                     </a>
 
                     <?php if (isset($_SESSION["login"])) : ?>
@@ -58,14 +57,14 @@
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profil Pengguna
                                 </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Pembelian
+                                <a class="dropdown-item" href="transaksi.php">
+                                    <i class="fas fa-shopping-bag fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Transaksi
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="logout.php">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    Keluar
                                 </a>
                             </div>
                         </div>

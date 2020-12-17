@@ -95,8 +95,14 @@ $detailProduk = query("SELECT a.*, b.kategori FROM tb_produk a INNER JOIN tb_kat
                                                     <form class="d-inline" action="" method="POST">
                                                         <input type="hidden" name="idProduk" value="<?= $idProduk; ?>">
                                                         <input type="hidden" name="kdPembeli" value="<?= $_SESSION['id']; ?>">
-                                                        <button name="beli" type="submit" class="btn btn-sm btn-outline-success mr-2 mb-2">Beli Sekarang</button>
-                                                        <button name="tambahKeranjang" type="submit" class="btn btn-success btn-sm mb-2">+ Keranjang</button>
+                                                        <?php if (isset($_SESSION['login'])) : ?>
+                                                            <button name="beli" type="submit" class="btn btn-sm btn-outline-success mr-2 mb-2">Beli Sekarang</button>
+                                                            <button name="tambahKeranjang" type="submit" class="btn btn-success btn-sm mb-2">+ Keranjang</button>
+                                                        <?php else : ?>
+                                                            <a class="disabled btn btn-sm btn-outline-success mr-2 mb-2">Beli Sekarang</a>
+                                                            <a class="disabled btn btn-success btn-sm mb-2">+ Keranjang</a>
+                                                            <div class="alert alert-warning"><small>Harap Login dahulu untuk dapat melakukan transaksi</small></div>
+                                                        <?php endif; ?>
                                                     </form>
                                                 </div>
                                             </div>

@@ -81,7 +81,7 @@ if (isset($_POST['submitUbahPassword'])) {
                         <ol class="breadcrumb bg-white shadow">
                             <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                             <li class="breadcrumb-item"><a href="profil.php?tab=2">Profil Pengguna</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Ubah Email</li>
+                            <li class="breadcrumb-item active" aria-current="page">Ubah Password</li>
                         </ol>
                     </nav>
                 </div>

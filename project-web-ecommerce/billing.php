@@ -1,18 +1,22 @@
 <?php
 session_start();
-date_default_timezone_set('Asia/Jakarta');
 
 require "config/connect.php";
 require "config/function.php";
+
+if (!isset($_SESSION["login"])) {
+    header("Location: index.php");
+    exit;
+}
 
 $idAkun = $_SESSION['id'];
 
 if (isset($_POST['proses'])) {
     if (prosesPesanan($_POST) > 0) {
-        echo "
-            <script>
+        $kdTransaksi = query("SELECT MAX(kd_transaksi) AS kdTrans FROM tb_transaksi")[0]['kdTrans'];
+        echo "<script>
                 alert('Berhasil diproses! Menunggu pembayaran...');
-                location = 'index.php';
+                location = 'detail-transaksi.php?id=" . $kdTransaksi . "';
             </script>
                 ";
     } else {
@@ -31,12 +35,13 @@ for ($i = 1; $i <= count($_POST); $i++) {
     }
 }
 
-$data = query("SELECT tb_pembeli.*, tb_akun.foto_profil, wilayah_provinsi.nama AS prov, wilayah_kabupaten.nama AS kab, wilayah_kecamatan.nama AS kec FROM tb_pembeli 
-INNER JOIN tb_akun ON tb_pembeli.kd_akun = tb_akun.kd_akun
+$kdPembeli = query("SELECT kd_pembeli FROM tb_pembeli WHERE kd_akun = $idAkun;")[0]['kd_pembeli'];
+
+$data = query("SELECT tb_pembeli.*, wilayah_provinsi.nama AS prov, wilayah_kabupaten.nama AS kab, wilayah_kecamatan.nama AS kec FROM tb_pembeli 
 INNER JOIN wilayah_provinsi ON tb_pembeli.id_provinsi = wilayah_provinsi.id
 INNER JOIN wilayah_kabupaten ON tb_pembeli.id_kabupaten = wilayah_kabupaten.id
 INNER JOIN wilayah_kecamatan ON tb_pembeli.id_kecamatan = wilayah_kecamatan.id
-AND tb_pembeli.kd_akun = $idAkun")[0];
+AND tb_pembeli.kd_pembeli = $kdPembeli")[0];
 
 ?>
 
@@ -71,7 +76,7 @@ AND tb_pembeli.kd_akun = $idAkun")[0];
                 <div class="col">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb bg-white shadow">
-                            <li class="breadcrumb-item"><a href="produk.php">Produk</a></li>
+                            <li class="breadcrumb-item"><a href="produk.php">Home</a></li>
                             <li class="breadcrumb-item"><a href="keranjang.php">Keranjang</a></li>
                             <li class="breadcrumb-item active">Billing</li>
                         </ol>
@@ -109,8 +114,8 @@ AND tb_pembeli.kd_akun = $idAkun")[0];
                                     <div class="col-md-6">
                                         <?php foreach ($items as $item) : ?>
                                             <?php $produk = query("SELECT * FROM tb_produk WHERE id_produk = $item[1]")[0]; ?>
-                                            <div class="card mb-3">
-                                                <div class="card-body shadow-sm">
+                                            <div class="card mb-4 shadow-sm">
+                                                <div class="card-body">
                                                     <div class="row ">
                                                         <div class="col-lg-5">
                                                             <div class="embed-responsive embed-responsive-16by9 shadow-sm mb-4">
