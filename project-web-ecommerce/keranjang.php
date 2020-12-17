@@ -4,12 +4,18 @@ session_start();
 require "config/connect.php";
 require "config/function.php";
 
+if (!isset($_SESSION["login"])) {
+    header("Location: index.php");
+    exit;
+}
+
 $idAkun = $_SESSION['id'];
+$kdPembeli = query("SELECT kd_pembeli FROM tb_pembeli WHERE kd_akun = $idAkun;")[0]['kd_pembeli'];
 
 $produk = query("SELECT a.*, b.kategori, c.id AS idKeranjang, c.id_produk, c.kd_pembeli FROM tb_produk a 
 INNER JOIN tb_kategori b ON a.kd_kategori=b.kd_kategori
 INNER JOIN tb_keranjang c ON a.id_produk=c.id_produk 
-AND c.kd_pembeli = $idAkun");
+AND c.kd_pembeli = $kdPembeli");
 
 ?>
 
@@ -44,7 +50,7 @@ AND c.kd_pembeli = $idAkun");
                 <div class="col">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb bg-white shadow">
-                            <li class="breadcrumb-item"><a href="produk.php">Produk</a></li>
+                            <li class="breadcrumb-item"><a href="produk.php">Home</a></li>
                             <li class="breadcrumb-item active">Keranjang</li>
                         </ol>
                     </nav>

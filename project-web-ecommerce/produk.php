@@ -157,8 +157,8 @@ if (isset($_GET['c'])) {
                                                 </div>
 
                                                 <div class="text-right d-block">
-                                                    <a href="detail-produk.php?id=<?= $product['id_produk']; ?>" class="btn btn-sm btn-success">
-                                                        Detail Produk
+                                                    <a href="detail-produk.php?id=<?= $product['id_produk']; ?>" class="btn btn-sm btn-success <?= ($product['stok'] == '0' ? 'disabled' : ''); ?>">
+                                                        <?= ($product['stok'] == '0' ? 'Stok Habis' : 'Detail Produk'); ?>
                                                     </a>
                                                 </div>
                                             </div>

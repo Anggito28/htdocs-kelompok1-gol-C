@@ -8,7 +8,15 @@ div#topbarCTA {
     display: inline-flex;
 }
 
+div.footerList {
+    float: right;
+}
+
 @media (max-width : 991px) {
+    div.footerList {
+        float: left;
+    }
+
     ul.navbar-nav {
         margin-bottom: 1rem;
     }

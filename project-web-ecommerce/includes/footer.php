@@ -11,31 +11,34 @@
                 </small>
             </div>
 
-            <div class="col-lg-3 mb-5">
-                <h6>Kontak</h6>
-                <ul>
-                    <li>
-                        <i class="fab fa-facebook-square"></i>
-                        <span>Facebook</span>
-                    </li>
-                    <li>
-                        <i class="fab fa-whatsapp"></i>
-                        <span>Whatsapp</span>
-                    </li>
-                    <li>
-                        <i class="fa fa-phone"></i>
-                        <span>0812-1234-1234</span>
-                    </li>
-                </ul>
+            <div class="col-lg-3 col-md-12 mb-5">
+                <div class="footerList">
+                    <h6>Kontak</h6>
+                    <ul>
+                        <li>
+                            <i class="fab fa-facebook-square"></i>
+                            <span>Facebook</span>
+                        </li>
+                        <li>
+                            <i class="fab fa-whatsapp"></i>
+                            <span>Whatsapp</span>
+                        </li>
+                        <li>
+                            <i class="fa fa-phone"></i>
+                            <span>0812-1234-1234</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
-            <div class="col-lg-3 mb-5">
-                <h6>Link</h6>
-                <ul>
-                    <li>Pengiriman</li>
-                    <li>Pembayaran</li>
-                    <li>Kategori</li>
-                </ul>
+            <div class="col-lg-3 col-md-12 mb-5">
+                <div class="footerList">
+                    <h6>Link</h6>
+                    <ul>
+                        <li>Pengiriman</li>
+                        <li>Pembayaran</li>
+                    </ul>
+                </div>
             </div>
 
         </div>

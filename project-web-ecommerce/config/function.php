@@ -1,4 +1,6 @@
 <?php
+date_default_timezone_set('Asia/Jakarta');
+
 function query($query)
 {
     global $conn;
@@ -61,7 +63,7 @@ function editProfil($data)
     if ($_FILES['image']['error'] === 4) {
         $img = $imageOld;
     } else {
-        $img = uploadGambar();
+        $img = uploadGambar("profile-picture/");
         unlink("img/profile-picture/$imageOld");
         if (!$img) {
             return false;
@@ -80,6 +82,31 @@ function editProfil($data)
     $_SESSION['profil-pic'] = $img;
 
     return $response;
+}
+
+function uploadBuktiTransfer($data)
+{
+    global $conn;
+
+    $bukti = $data['bukti'];
+    $kdTransaksi = $data['kdTransaksi'];
+
+    // upload foto
+    if ($bukti == "empty") {
+        $img = uploadGambar("bukti-transfer/");
+    } else {
+        $img = uploadGambar("bukti-transfer/");
+        if (!$img) {
+            return false;
+        }
+        unlink("img/bukti-transfer/$bukti");
+    }
+
+    $add = "UPDATE tb_transaksi SET bukti_transfer = '$img' WHERE kd_transaksi = $kdTransaksi;";
+
+    mysqli_query($conn, $add);
+
+    return mysqli_affected_rows($conn);
 }
 
 function ubahEmail($data)
@@ -114,7 +141,7 @@ function ubahPassword($data)
     return mysqli_affected_rows($conn);
 }
 
-function uploadGambar()
+function uploadGambar($path)
 {
     $fileName = $_FILES['image']['name'];
     $fileSize = $_FILES['image']['size'];
@@ -157,7 +184,7 @@ function uploadGambar()
     $newFileName .= '.';
     $newFileName .= $ekstensiGambar;
 
-    move_uploaded_file($tmpName, 'img/profile-picture/' . $newFileName);
+    move_uploaded_file($tmpName, 'img/' . $path . $newFileName);
 
     return $newFileName;
 }
