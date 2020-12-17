@@ -56,7 +56,7 @@
 
     <!-- Nav Item - Pelanggan -->
     <li id="sidebarPelanggan" class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="pelanggan.php">
             <i class="fas fa-fw fa-users"></i>
             <span>Pelanggan</span></a>
     </li>

@@ -25,7 +25,7 @@ require "config/function.php";
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Pelanggan</title>
+    <title>SB Admin 2 - Blank</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -59,35 +59,8 @@ require "config/function.php";
                     <!-- konten halaman isi dibawah ini -->
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Pelanggan</h1>
-                    <table class="table table-borderless">
-                        <thead>
-                            <tr>
-                                <th scope="col">NO</th>
-                                <th scope="col">NAMA</th>
-                                <th scope="col">ALAMAT</th>
-                                <th scope="col">NO TELEPON</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                    <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
 
-                            <?php
-                            include "config/connect.php";
-                            $query_mysql = mysqli_query($conn, "select * from tb_pelanggan");
-                            $nomor = 1;
-                            while ($data = mysqli_fetch_array($query_mysql)) {
-                            ?>
-                                <tr>
-                                    <td><?php echo $nomor++; ?></td>
-                                    <td><?php echo $data['nama']; ?></td>
-                                    <td><?php echo $data['detail_alamat']; ?></td>
-                                    <td><?php echo $data['no_telepon']; ?></td>
-                                <?php
-                            }
-                                ?>
-                                </tr>
-                        </tbody>
-                    </table>
                 </div>
                 <!-- /.container-fluid -->
 
