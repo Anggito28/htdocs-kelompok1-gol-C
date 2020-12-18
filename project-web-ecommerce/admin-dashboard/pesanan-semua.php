@@ -59,8 +59,41 @@ require "config/function.php";
                     <!-- konten halaman isi dibawah ini -->
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
-
+                    <h1 class="h3 mb-4 text-gray-800">PESANAN SEMUA</h1>
+                    <table class="table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">NO</th>
+                                <th scope="col">NAMA</th>
+                                <th scope="col">TGL TRANSAKSI</th>
+                                <th scope="col">PEMBAYARAN</th>
+                                <th scope="col">PENGIRIMAN</th>
+                                <th scope="col">KETERANGAN</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            include "config/connect.php";
+                            $query_mysql = mysqli_query($conn, "select tb_pembeli.nama, tb_transaksi.tgl_transaksi, tb_transaksi.opsi_pembayaran, tb_transaksi.opsi_pengiriman, tb_transaksi.keterangan from tb_transaksi INNER JOIN tb_pembeli ON tb_transaksi.kd_pembeli = tb_pembeli.kd_pembeli");
+                            $nomor = 1;
+                            while ($data = mysqli_fetch_array($query_mysql)) {
+                            ?>
+                                <tr>
+                                    <td><?php echo $nomor++; ?></td>
+                                    <td><?php echo $data['nama']; ?></td>
+                                    <td><?php echo $data['tgl_transaksi']; ?></td>
+                                    <td><?php echo $data['opsi_pembayaran']; ?></td>
+                                    <td><?php echo $data['opsi_pengiriman']; ?></td>
+                                    <td><?php echo $data['keterangan']; ?></td>
+                                    <td>
+                                        <a class="btn btn-primary" href="edit.php?id=<?php echo $data['kd_transaksi']; ?>" role="button">Edit</a>
+                                    </td>
+                                <?php
+                            }
+                                ?>
+                                </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <!-- /.container-fluid -->
 

@@ -29,7 +29,7 @@
         <div id="collapsePesanan" class="collapse" aria-labelledby="headingPesanan" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">status pesanan</h6>
-                <a class="collapse-item" href="#">Semua</a>
+                <a class="collapse-item" href="pesanan-semua.php">Semua</a>
                 <a class="collapse-item" href="#">Tertunda</a>
                 <a class="collapse-item" href="#">Diproses</a>
                 <a class="collapse-item" href="#">Dikirim</a>
