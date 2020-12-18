@@ -60,6 +60,7 @@ require "config/function.php";
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Pelanggan</h1>
+                    <!-- Table Pelanggan -->
                     <table class="table">
                         <thead class="thead-light">
                             <tr>
