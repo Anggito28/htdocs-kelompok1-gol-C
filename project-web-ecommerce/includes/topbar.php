@@ -22,7 +22,7 @@
                             Info
                         </a>
                         <div class="dropdown-menu mb-4" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Tentang Kami</a>
+                            <a class="dropdown-item" href="tentang-kami.php">Tentang Kami</a>
                             <a class="dropdown-item" href="#">Kontak</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Pengiriman</a>

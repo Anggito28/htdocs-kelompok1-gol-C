@@ -79,12 +79,14 @@ $baris = $query->num_rows;
                     <!-- konten halaman isi dibawah ini -->
 
                     <!-- Page Heading -->
+                    <!-- Breadcrumb -->
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Laporan</li>
                         </ol>
                     </nav>
+                    <!-- form kategori -->
                     <div class="col-md-4 pt-2">
                         <span>Jumlah data: <b><?= $baris ?></b></span>
                     </div>
@@ -110,6 +112,7 @@ $baris = $query->num_rows;
                         </form>
                     </div>
                 </div>
+                <!-- isi table -->
                 <div class="mt-3" style="max-height: 340px; overflow-y: auto;">
                     <table class="table table-bordered">
                         <thead class="thead-light">
