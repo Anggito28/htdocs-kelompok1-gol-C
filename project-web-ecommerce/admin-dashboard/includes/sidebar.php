@@ -64,7 +64,7 @@
 
     <!-- Nav Item - Laporan -->
     <li id="sidebarLaporan" class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="laporan.php">
             <i class="fas fa-fw fa-book"></i>
             <span>Laporan</span></a>
     </li>

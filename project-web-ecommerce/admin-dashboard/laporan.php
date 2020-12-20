@@ -6,6 +6,26 @@
 // selalu ikutkan 2 file ini untuk dapat menjalankan fungsi dan konek database
 require "config/connect.php";
 require "config/function.php";
+include "config/connect.php";
+if (isset($_POST['submit'])) {
+    $bulan = date($_POST['bulan']);
+
+    if (!empty($bulan)) {
+        // perintah tampil data berdasarkan periode bulan
+        $query = mysqli_query($conn, "SELECT * FROM tb_transaksi WHERE MONTH(tgl_transaksi) = '$bulan'");
+    } else {
+        // perintah tampil semua data
+        $query = mysqli_query($conn, "SELECT * FROM tb_transaksi p");
+    }
+} else {
+    // perintah tampil semua data
+    $query = mysqli_query($conn, "SELECT * FROM tb_transaksi");
+}
+
+// hitung jumlah baris data
+$baris = $query->num_rows;
+
+?>
 
 ?>
 
@@ -59,27 +79,79 @@ require "config/function.php";
                     <!-- konten halaman isi dibawah ini -->
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Laporan</h1>
-                    <div class="dropdown">
-                        <a class="btn btn-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown link
-                        </a>
-
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">Tahunan</a>
-                            <a class="dropdown-item" href="#">Bulanan</a>
-                            <a class="dropdown-item" href="#">Harian</a>
-                        </div>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Laporan</li>
+                        </ol>
+                    </nav>
+                    <div class="col-md-4 pt-2">
+                        <span>Jumlah data: <b><?= $baris ?></b></span>
                     </div>
+                    <div class="col-md-8">
+                        <form method="POST" action="" class="form-inline">
+                            <label for="date1" class="mr-2">Tampilkan transaksi bulan </label>
+                            <select class="form-control mr-2" name="bulan">
+                                <option value="">Semua</option>
+                                <option value="1">Januari</option>
+                                <option value="2">Februari</option>
+                                <option value="3">Maret</option>
+                                <option value="4">April</option>
+                                <option value="5">Mei</option>
+                                <option value="6">Juni</option>
+                                <option value="7">Juli</option>
+                                <option value="8">Agustus</option>
+                                <option value="9">September</option>
+                                <option value="10">Oktober</option>
+                                <option value="11">November</option>
+                                <option value="12">Desember</option>
+                            </select>
+                            <button type="submit" name="submit" class="btn btn-primary">Tampilkan</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="mt-3" style="max-height: 340px; overflow-y: auto;">
+                    <table class="table table-bordered">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>No</th>
+                                <th>Kode Transaksi</th>
+                                <th>Status Transaksi</th>
+                                <th>Total Bayar</th>
+                                <th>Bukti Transfer</th>
+                                <th>Tgl. Transaksi</th>
+                            </tr>
+                        </thead>
+                        <?php
+
+                        $no = 1;
+                        while ($data = $query->fetch_assoc()) {
+                        ?>
+
+                            <tr>
+                                <td><?= $no++ ?></td>
+                                <td><?= ucwords($data['kd_transaksi']) ?></td>
+                                <td><?= $data['status_transaksi'] ?></td>
+                                <td><?= $data['total_bayar'] ?></td>
+                                <td><?= $data['bukti_transfer'] ?></td>
+                                <td><?= date('d-M-Y', strtotime($data['tgl_transaksi'])) ?></td>
+                            </tr>
+
+                        <?php
+                        }
+                        ?>
+
+                    </table>
+
 
                 </div>
                 <!-- /.container-fluid -->
 
+
+
             </div>
             <!-- End of Main Content -->
-
             <?php include "includes/footer.php" ?>
-
         </div>
         <!-- End of Content Wrapper -->
 
