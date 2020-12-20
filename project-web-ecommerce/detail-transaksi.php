@@ -26,6 +26,13 @@ if (isset($_POST['simpan'])) {
     }
 }
 
+if (isset($_POST['batal'])) {
+    mysqli_query($conn, "UPDATE tb_transaksi SET status_transaksi ='batal' WHERE kd_transaksi = $idTrans;");
+    echo "<script>";
+    echo "alert('Pesanan telah dibatalkan!')";
+    echo "</script>";
+}
+
 $trans = query("SELECT a.*, b.*, c.* FROM tb_transaksi a 
 INNER JOIN tb_detail_transaksi b ON a.kd_transaksi = b.kd_transaksi
 INNER JOIN tb_produk c On c.id_produk = b.id_produk
@@ -206,17 +213,19 @@ AND a.kd_transaksi = $idTrans");
                                             </div>
                                             <small class="alert alert-secondary d-block">Pastikan foto bukti transfer terlihat jelas</small>
                                         </div>
-                                        <div class="col-12 mb-4">
-                                            <div>
-                                                <h6>Upload bukti transfer</h6>
-                                                <form action="" method="POST" enctype="multipart/form-data">
-                                                    <input id="buktiTransfer" type="file" name="image" id="buktiTransfer" class="form-control-file mb-2">
-                                                    <input type="hidden" name="bukti" value="<?= $trans[0]['bukti_transfer']; ?>">
-                                                    <input type="hidden" name="kdTransaksi" value="<?= $trans[0]['kd_transaksi']; ?>">
-                                                    <button id="simpan" name="simpan" type="submit" disabled class="btn btn-sm btn-success">Simpan</button>
-                                                </form>
+                                        <?php if ($trans[0]['status_transaksi'] == "tertunda" || $trans[0]['status_transaksi'] == "menunggu") : ?>
+                                            <div class="col-12 mb-4">
+                                                <div>
+                                                    <h6>Upload bukti transfer</h6>
+                                                    <form action="" method="POST" enctype="multipart/form-data">
+                                                        <input id="buktiTransfer" type="file" name="image" id="buktiTransfer" class="form-control-file mb-2">
+                                                        <input type="hidden" name="bukti" value="<?= $trans[0]['bukti_transfer']; ?>">
+                                                        <input type="hidden" name="kdTransaksi" value="<?= $trans[0]['kd_transaksi']; ?>">
+                                                        <button id="simpan" name="simpan" type="submit" disabled class="btn btn-sm btn-success">Simpan</button>
+                                                    </form>
+                                                </div>
                                             </div>
-                                        </div>
+                                        <?php endif; ?>
                                         <div class="col-12 mb-4">
                                             <div class="card">
                                                 <div class="card-header bg-light">
@@ -241,10 +250,23 @@ AND a.kd_transaksi = $idTrans");
                                         <div class="col-12 mb-4">
                                             <div>
                                                 <h6>Hubungi Penjual</h6>
-                                                <a class="btn btn-outline-success" href="">0812-3333-4444</a>
+                                                <div class="btn btn-outline-success">0812-3333-4444</div>
                                             </div>
-
                                         </div>
+                                        <?php if ($trans[0]['status_transaksi'] == "tertunda") : ?>
+                                            <div class="col-12 mb-4">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h6>Batalkan Pesanan</h6>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <form action="" method="POST">
+                                                            <button onclick="return confirm('Konfirmasi, apakah anda ingin membatalkan pesanan ini?')" class="btn btn-danger btn-block" type="submit" name="batal">Batalkan</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
 
@@ -301,6 +323,14 @@ AND a.kd_transaksi = $idTrans");
     </section>
 
     <?php include "includes/scripts.php"; ?>
+
+    <script>
+        $(document).ready(function() {
+            $('#buktiTransfer').change(function() {
+                $('#simpan').removeAttr("disabled");
+            });
+        });
+    </script>
 
 </body>
 

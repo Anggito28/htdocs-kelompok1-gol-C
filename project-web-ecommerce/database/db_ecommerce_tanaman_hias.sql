@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 13, 2020 at 04:12 PM
+-- Generation Time: Dec 20, 2020 at 09:34 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -45,8 +45,8 @@ CREATE TABLE `tb_detail_transaksi` (
   `id` int(11) NOT NULL,
   `kd_transaksi` int(11) DEFAULT NULL,
   `id_produk` int(11) DEFAULT NULL,
-  `Subtotal` int(11) NOT NULL,
-  `Jumlah_Barang` int(11) NOT NULL
+  `subtotal` int(11) NOT NULL DEFAULT 0,
+  `jumlah_barang` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -118,9 +118,10 @@ CREATE TABLE `tb_transaksi` (
   `tgl_transaksi` date NOT NULL,
   `opsi_pembayaran` varchar(10) NOT NULL,
   `opsi_pengiriman` varchar(10) NOT NULL,
-  `keterangan` text NOT NULL,
-  `status_transaksi` varchar(10) NOT NULL,
-  `total_bayar` int(11) NOT NULL
+  `keterangan` text DEFAULT NULL,
+  `status_transaksi` enum('tertunda','menunggu','diproses','dikirim','selesai','batal') NOT NULL,
+  `total_bayar` int(11) NOT NULL,
+  `bukti_transfer` varchar(20) DEFAULT 'empty'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -7645,7 +7646,7 @@ ALTER TABLE `tb_produk`
 --
 ALTER TABLE `tb_transaksi`
   ADD PRIMARY KEY (`kd_transaksi`),
-  ADD KEY `pembeli-transaksi` (`kd_pembeli`);
+  ADD KEY `transaksi-pembeli` (`kd_pembeli`);
 
 --
 -- Indexes for table `wilayah_kabupaten`
@@ -7708,6 +7709,12 @@ ALTER TABLE `tb_produk`
   MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `tb_transaksi`
+--
+ALTER TABLE `tb_transaksi`
+  MODIFY `kd_transaksi` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- Constraints for dumped tables
 --
 
@@ -7716,7 +7723,7 @@ ALTER TABLE `tb_produk`
 --
 ALTER TABLE `tb_detail_transaksi`
   ADD CONSTRAINT `produk-detail_transaksi` FOREIGN KEY (`id_produk`) REFERENCES `tb_produk` (`id_produk`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `transaksi-detail_transaksi` FOREIGN KEY (`kd_transaksi`) REFERENCES `tb_transaksi` (`kd_transaksi`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `transaksi-detail_transaksi` FOREIGN KEY (`kd_transaksi`) REFERENCES `tb_transaksi` (`kd_transaksi`);
 
 --
 -- Constraints for table `tb_keranjang`
@@ -7744,7 +7751,7 @@ ALTER TABLE `tb_produk`
 -- Constraints for table `tb_transaksi`
 --
 ALTER TABLE `tb_transaksi`
-  ADD CONSTRAINT `pembeli-transaksi` FOREIGN KEY (`kd_pembeli`) REFERENCES `tb_pembeli` (`kd_pembeli`);
+  ADD CONSTRAINT `transaksi-pembeli` FOREIGN KEY (`kd_pembeli`) REFERENCES `tb_pembeli` (`kd_pembeli`);
 
 --
 -- Constraints for table `wilayah_kabupaten`

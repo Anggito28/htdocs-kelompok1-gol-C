@@ -29,12 +29,13 @@
         <div id="collapsePesanan" class="collapse" aria-labelledby="headingPesanan" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">status pesanan</h6>
-                <a class="collapse-item" href="pesanan-semua.php">Semua</a>
-                <a class="collapse-item" href="#">Tertunda</a>
-                <a class="collapse-item" href="#">Diproses</a>
-                <a class="collapse-item" href="#">Dikirim</a>
-                <a class="collapse-item" href="#">Selesai</a>
-                <a class="collapse-item" href="#">Batal</a>
+                <a id="dropdownSemuaPesanan" class="collapse-item" href="pesanan.php">Semua</a>
+                <a id="tertunda" class="collapse-item" href="pesanan.php?status=tertunda">Tertunda</a>
+                <a id="menunggu" class="collapse-item" href="pesanan.php?status=menunggu">Menunggu</a>
+                <a id="diproses" class="collapse-item" href="pesanan.php?status=diproses">Diproses</a>
+                <a id="dikirim" class="collapse-item" href="pesanan.php?status=dikirim">Dikirim</a>
+                <a id="selesai" class="collapse-item" href="pesanan.php?status=selesai">Selesai</a>
+                <a id="batal" class="collapse-item" href="pesanan.php?status=batal">Batal</a>
             </div>
         </div>
     </li>

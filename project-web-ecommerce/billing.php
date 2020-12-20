@@ -21,6 +21,10 @@ if (isset($_POST['proses'])) {
                 ";
     } else {
         echo mysqli_error($conn);
+        echo "
+        <script>
+            alert('gagal!');
+        </script>";
     }
 }
 
@@ -144,7 +148,6 @@ AND tb_pembeli.kd_pembeli = $kdPembeli")[0];
                                         <?php endforeach; ?>
                                     </div>
 
-
                                     <div class="col-md-6">
                                         <div class="row">
                                             <div class="col-12 mb-4">
@@ -236,8 +239,12 @@ AND tb_pembeli.kd_pembeli = $kdPembeli")[0];
                                 <!-- data form -->
                                 <input type="hidden" name="kdPembeli" value="<?= $_SESSION['id']; ?>">
                                 <input type="hidden" name="tanggal" value="<?= date("Y-m-d"); ?>">
-                                <input type="hidden" name="status" value="tertunda">
                                 <input type="hidden" name="totalBayar" value="<?= $total; ?>">
+                                <?php if ($data['id_kabupaten'] == "3505" || $data['id_kabupaten'] == "3572") : ?>
+                                    <input type="hidden" name="status" value="diproses">
+                                <?php else : ?>
+                                    <input type="hidden" name="status" value="tertunda">
+                                <?php endif; ?>
 
                                 <div class="row">
                                     <div class="col">

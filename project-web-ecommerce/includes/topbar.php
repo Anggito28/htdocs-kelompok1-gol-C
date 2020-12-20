@@ -32,9 +32,15 @@
                 </ul>
 
                 <div id="topbarCTA">
-                    <a class="mr-4 my-auto" <?= (isset($_SESSION['login']) ? "href='keranjang.php'" : ''); ?> onclick="alert('Harap Login dahulu untuk dapat melakukan transaksi');location.replace('login.php')">
-                        <i class="fa fa-shopping-cart fa-2x text-secondary"></i>
-                    </a>
+                    <?php if (isset($_SESSION['login'])) : ?>
+                        <a class="mr-4 my-auto" href="keranjang.php">
+                            <i class="fa fa-shopping-cart fa-2x text-secondary"></i>
+                        </a>
+                    <?php else : ?>
+                        <a class="mr-4 my-auto" onclick="alert('Harap Login dahulu untuk dapat melakukan transaksi');location.replace('login.php')">
+                            <i class="fa fa-shopping-cart fa-2x text-secondary"></i>
+                        </a>
+                    <?php endif; ?>
 
                     <?php if (isset($_SESSION["login"])) : ?>
                         <!-- user loggged in -->

@@ -1,18 +1,18 @@
 <?php
 // dua variabel dibawah ini untuk indikator sidebar aktif
-// $sidebarActive = "";
+$sidebarActive = "sidebarPelanggan";
 // $itemActive = "";
 
 // selalu ikutkan 2 file ini untuk dapat menjalankan fungsi dan konek database
 require "config/connect.php";
 require "config/function.php";
 
-?>
+$data = query("SELECT tb_pembeli.*, wilayah_provinsi.nama AS prov, wilayah_kabupaten.nama AS kab, wilayah_kecamatan.nama AS kec FROM tb_pembeli 
+INNER JOIN wilayah_provinsi ON tb_pembeli.id_provinsi = wilayah_provinsi.id
+INNER JOIN wilayah_kabupaten ON tb_pembeli.id_kabupaten = wilayah_kabupaten.id
+INNER JOIN wilayah_kecamatan ON tb_pembeli.id_kecamatan = wilayah_kecamatan.id");
 
-<!-- 
-  ini adalah file template untuk membuat halaman baru di admin dashboard
-  copy isi file ini lalu paste kan ke file halaman baru yang ingin dibuat
--->
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +25,7 @@ require "config/function.php";
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Pelanggan</title>
+    <title>Admin - Pesanan</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -35,6 +35,8 @@ require "config/function.php";
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/custom-style.css">
 
+    <!-- Custom styles for this page -->
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -56,47 +58,63 @@ require "config/function.php";
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- konten halaman isi dibawah ini -->
-
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Pelanggan</h1>
-                    <!-- Table Pelanggan -->
-                    <table class="table">
-                        <thead class="thead-light">
-                            <tr>
-                                <th scope="col">NO</th>
-                                <th scope="col">NAME</th>
-                                <th scope="col">ALAMAT</th>
-                                <th scope="col">NO TELEPON</th>
-                                <th scope="col">EMAIL</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            include "config/connect.php";
-                            $query_mysql = mysqli_query($conn, "select * from tb_pembeli");
-                            $nomor = 1;
-                            while ($data = mysqli_fetch_array($query_mysql)) {
-                            ?>
-                                <tr>
-                                    <td><?php echo $nomor++; ?></td>
-                                    <td><?php echo $data['nama']; ?></td>
-                                    <td><?php echo $data['detail_alamat']; ?></td>
-                                    <td><?php echo $data['no_telepon']; ?></td>
-                                    <td><?php echo $data['email']; ?></td>
-                                <?php
-                            }
-                                ?>
-                                </tr>
-                        </tbody>
-                    </table>
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Pelanggan</h1>
+                    </div>
+
+                    <!-- Tabel produk -->
+                    <div class="custom-table card shadow mb-4">
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-dark">Daftar Pelanggan</h6>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped" id="dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Nama</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>No. Telepon</th>
+                                            <th>Alamat</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <?php foreach ($data as $d) : ?>
+                                            <tr>
+                                                <td>
+                                                    <?= $d['nama']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= ($d['jenis_kelamin'] == "L" ? "Laki-Laki" : "Perempuan"); ?>
+                                                </td>
+                                                <td>
+                                                    <?= $d['no_telepon']; ?>
+                                                </td>
+                                                <td>
+                                                    <p> <?= $d['detail_alamat']; ?><br>
+                                                        <?= $d['kec']; ?>, <?= $d['kab']; ?>, Provinsi <?= $d['prov']; ?>, Indonesia
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <!-- /.container-fluid -->
 
             </div>
             <!-- End of Main Content -->
 
-            <?php include "includes/footer.php" ?>
+            <?php include "includes/footer.php"; ?>
 
         </div>
         <!-- End of Content Wrapper -->
@@ -110,8 +128,14 @@ require "config/function.php";
     </a>
 
     <?php include "includes/logout-modal.php" ?>
-
     <?php include "includes/scripts.php" ?>
+
+    <!-- Script tabel produk -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/datatables-demo.js"></script>
 
 </body>
 
