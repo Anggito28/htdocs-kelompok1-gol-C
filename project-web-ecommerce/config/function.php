@@ -30,8 +30,9 @@ function register($data)
     $pass = password_hash($pass, PASSWORD_DEFAULT);
 
     // tambah akun ke database
-    $akun = "INSERT INTO tb_akun VALUES (0, '$email', '$pass', 'pembeli')";
+    $akun = "INSERT INTO tb_akun VALUES (0, '$email', '$pass', 'pembeli', 'empty')";
     mysqli_query($conn, $akun);
+    $response = mysqli_affected_rows($conn);
 
     // ambil kode akun
     $result = mysqli_query($conn, "SELECT kd_akun FROM tb_akun WHERE email = '$email'");
@@ -41,7 +42,9 @@ function register($data)
     $dataDiri = "INSERT INTO tb_pembeli VALUES (0, '$nama', '$jenkel', '$prov', '$kab', '$kec', '$detail', '$telp', $kdAkun)";
     mysqli_query($conn, $dataDiri);
 
-    return mysqli_affected_rows($conn);
+    $response = $response + mysqli_affected_rows($conn);
+
+    return $response;
 }
 
 function editProfil($data)

@@ -23,9 +23,9 @@ if (isset($_POST['submit'])) {
         echo "
             <script>
                 alert('Success to register!');
+                location = 'login.php';
             </script>
                 ";
-        header("Location:login.php");
     } else {
         echo mysqli_error($conn);
     }

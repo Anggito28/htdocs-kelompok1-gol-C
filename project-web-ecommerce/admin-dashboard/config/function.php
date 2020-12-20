@@ -1,6 +1,8 @@
 <?php
 // require_once "connect.php";
 
+date_default_timezone_set('Asia/Jakarta');
+
 function query($query)
 {
     global $conn;
@@ -127,6 +129,88 @@ function delete($query)
     $del = "DELETE FROM tb_produk WHERE id_produk = $query";
 
     mysqli_query($conn, $del);
+
+    return mysqli_affected_rows($conn);
+}
+
+function login($data)
+{
+    global $conn;
+
+    $email = $data['email'];
+    $password = $data['password'];
+
+    $result = mysqli_query($conn, "SELECT * FROM tb_akun WHERE email = '$email' AND NOT jenis_akun = 'pembeli'");
+    $row = mysqli_fetch_assoc($result);
+
+    // cek email
+    if (isset($row['email'])) {
+        if ($email === $row['email']) {
+
+            // cek password
+            if (password_verify($password, $row['password'])) {
+                $_SESSION['login'] = true;
+                $_SESSION['email'] = $email;
+                $_SESSION['id'] = $row['kd_akun'];
+                $_SESSION['profil-pic'] = $row['foto_profil'];
+                $_SESSION['jenis-akun'] = $row['jenis_akun'];
+
+                header("Location:index.php");
+                return;
+            }
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+}
+
+function ubahEmail($data)
+{
+    global $conn;
+
+    $kdAkun = $data['kdAkun'];
+    $emailBaru = $data['emailBaru'];
+
+    $akunUpdate = "UPDATE tb_akun SET email = '$emailBaru' WHERE kd_akun = $kdAkun";
+    mysqli_query($conn, $akunUpdate);
+
+    $_SESSION['email'] = $emailBaru;
+
+    return mysqli_affected_rows($conn);
+}
+
+function ubahPassword($data)
+{
+    global $conn;
+
+    $kdAkun = $data['kdAkun'];
+    $passwordBaru = $data['passwordBaru1'];
+
+    // enkripsi password
+    $passwordBaru = password_hash($passwordBaru, PASSWORD_DEFAULT);
+
+    // tambah ubah password ke database
+    $pass = "UPDATE tb_akun SET password = '$passwordBaru' WHERE kd_akun = $kdAkun";
+    mysqli_query($conn, $pass);
+
+    return mysqli_affected_rows($conn);
+}
+
+function register($data)
+{
+    global $conn;
+
+    $email = stripslashes($data['email']);
+    $pass = mysqli_real_escape_string($conn, $data['password2']);
+
+    // enkripsi password
+    $pass = password_hash($pass, PASSWORD_DEFAULT);
+
+    // tambah akun ke database
+    $akun = "INSERT INTO tb_akun VALUES (0, '$email', '$pass', 'admin', 'empty')";
+    mysqli_query($conn, $akun);
 
     return mysqli_affected_rows($conn);
 }

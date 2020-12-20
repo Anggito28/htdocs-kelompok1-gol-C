@@ -1,4 +1,12 @@
 <?php
+
+session_start();
+
+if (!isset($_SESSION["login"])) {
+    header("Location: login.php");
+    exit;
+}
+
 // dua variabel dibawah ini untuk indikator sidebar aktif
 $sidebarActive = "sidebarPesanan";
 // $itemActive = "";
