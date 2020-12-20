@@ -102,7 +102,7 @@ function uploadBuktiTransfer($data)
         unlink("img/bukti-transfer/$bukti");
     }
 
-    $add = "UPDATE tb_transaksi SET bukti_transfer = '$img' WHERE kd_transaksi = $kdTransaksi;";
+    $add = "UPDATE tb_transaksi SET bukti_transfer = '$img', status_transaksi = 'menunggu' WHERE kd_transaksi = $kdTransaksi;";
 
     mysqli_query($conn, $add);
 
@@ -246,7 +246,7 @@ function prosesPesanan($data)
     $status = $data['status'];
     $totalBayar = $data['totalBayar'];
 
-    $transaksi = "INSERT INTO tb_transaksi VALUES (0, $kdPembeli, '$tanggal', '$pembayaran', '$pengiriman', '$keterangan', '$status', $totalBayar);";
+    $transaksi = "INSERT INTO tb_transaksi VALUES (0, $kdPembeli, '$tanggal', '$pembayaran', '$pengiriman', '$keterangan', '$status', $totalBayar, 'empty');";
 
     mysqli_query($conn, $transaksi);
     $response = mysqli_affected_rows($conn);

@@ -12,7 +12,7 @@ if (!isset($_SESSION["login"])) {
 $idAkun = $_SESSION['id'];
 $kdPembeli = query("SELECT kd_pembeli FROM tb_pembeli WHERE kd_akun = $idAkun;")[0]['kd_pembeli'];
 
-$transaksi = query("SELECT * FROM tb_transaksi WHERE kd_pembeli = $kdPembeli");
+$transaksi = query("SELECT * FROM tb_transaksi WHERE kd_pembeli = $kdPembeli ORDER BY kd_transaksi DESC");
 
 ?>
 
@@ -30,6 +30,9 @@ $transaksi = query("SELECT * FROM tb_transaksi WHERE kd_pembeli = $kdPembeli");
 
     <!-- custom style -->
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Custom styles for this page -->
+    <link href="admin-dashboard/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
     <title>Halaman - Rudi Bonsai</title>
 </head>
@@ -64,7 +67,7 @@ $transaksi = query("SELECT * FROM tb_transaksi WHERE kd_pembeli = $kdPembeli");
                         </div>
                         <div class="card-body shadow">
                             <!-- Isi card konten -->
-                            <table class="table table-striped table-responsive-sm text-center">
+                            <table id="dataTable" class="table table-striped table-responsive-sm text-center">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -126,6 +129,13 @@ $transaksi = query("SELECT * FROM tb_transaksi WHERE kd_pembeli = $kdPembeli");
     </section>
 
     <?php include "includes/scripts.php"; ?>
+
+    <!-- Script tabel produk -->
+    <script src="admin-dashboard/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="admin-dashboard/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="admin-dashboard/js/demo/datatables-demo.js"></script>
 
 </body>
 
