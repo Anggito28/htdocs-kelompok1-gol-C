@@ -1,6 +1,13 @@
 <?php
+session_start();
+
+if (!isset($_SESSION["login"])) {
+    header("Location: login.php");
+    exit;
+}
+
 // dua variabel dibawah ini untuk indikator sidebar aktif
-// $sidebarActive = "";
+$sidebarActive = "sidebarLaporan";
 // $itemActive = "";
 
 // selalu ikutkan 2 file ini untuk dapat menjalankan fungsi dan konek database
@@ -45,7 +52,7 @@ $baris = $query->num_rows;
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Blank</title>
+    <title>Admin - Laporan</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

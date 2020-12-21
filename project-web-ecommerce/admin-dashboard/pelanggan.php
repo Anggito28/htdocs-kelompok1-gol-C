@@ -32,7 +32,7 @@ INNER JOIN wilayah_kecamatan ON tb_pembeli.id_kecamatan = wilayah_kecamatan.id")
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin - Pesanan</title>
+    <title>Admin - Pelanggan</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

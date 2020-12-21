@@ -34,7 +34,7 @@ $transaksi = query("SELECT * FROM tb_transaksi WHERE kd_pembeli = $kdPembeli ORD
     <!-- Custom styles for this page -->
     <link href="admin-dashboard/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
-    <title>Halaman - Rudi Bonsai</title>
+    <title>Transaksi - Rudi Bonsai</title>
 </head>
 
 <body class="bg-light">

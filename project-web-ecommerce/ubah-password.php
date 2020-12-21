@@ -63,7 +63,7 @@ if (isset($_POST['submitUbahPassword'])) {
     <!-- custom style -->
     <link rel="stylesheet" href="css/style.css">
 
-    <title>Profil - Rudi Bonsai</title>
+    <title>Ubah password - Rudi Bonsai</title>
 </head>
 
 <body class="bg-light">

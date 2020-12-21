@@ -49,7 +49,7 @@ $detailProduk = query("SELECT a.*, b.kategori FROM tb_produk a INNER JOIN tb_kat
     <!-- custom style -->
     <link rel="stylesheet" href="css/style.css">
 
-    <title>Halaman - Rudi Bonsai</title>
+    <title>Detail produk - Rudi Bonsai</title>
 </head>
 
 <body class="bg-light">

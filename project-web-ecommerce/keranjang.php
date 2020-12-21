@@ -34,7 +34,7 @@ AND c.kd_pembeli = $kdPembeli");
     <!-- custom style -->
     <link rel="stylesheet" href="css/style.css">
 
-    <title>Halaman - Rudi Bonsai</title>
+    <title>Keranjang - Rudi Bonsai</title>
 </head>
 
 <body class="bg-light">

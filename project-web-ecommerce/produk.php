@@ -48,7 +48,7 @@ if (isset($_GET['c'])) {
     <!-- custom style -->
     <link rel="stylesheet" href="css/style.css">
 
-    <title>Halaman - Rudi Bonsai</title>
+    <title>Produk - Rudi Bonsai</title>
 </head>
 
 <body class="bg-light">

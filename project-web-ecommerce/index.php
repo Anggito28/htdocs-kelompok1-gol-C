@@ -25,7 +25,7 @@ $products = query("SELECT a.*, b.kategori FROM tb_produk a INNER JOIN tb_kategor
     <!-- custom style -->
     <link rel="stylesheet" href="css/style.css">
 
-    <title>Produk - Rudi Bonsai</title>
+    <title>Home - Rudi Bonsai</title>
 </head>
 
 <body class="bg-light">

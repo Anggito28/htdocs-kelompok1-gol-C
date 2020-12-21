@@ -55,7 +55,7 @@ AND a.kd_transaksi = $idTrans");
     <!-- custom style -->
     <link rel="stylesheet" href="css/style.css">
 
-    <title>Halaman - Rudi Bonsai</title>
+    <title>Detail transaksi - Rudi Bonsai</title>
 </head>
 
 <body class="bg-light">

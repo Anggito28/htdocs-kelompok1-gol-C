@@ -64,7 +64,7 @@ AND tb_pembeli.kd_pembeli = $kdPembeli")[0];
     <!-- custom style -->
     <link rel="stylesheet" href="css/style.css">
 
-    <title>Halaman - Rudi Bonsai</title>
+    <title>Billing - Rudi Bonsai</title>
 </head>
 
 <body class="bg-light">

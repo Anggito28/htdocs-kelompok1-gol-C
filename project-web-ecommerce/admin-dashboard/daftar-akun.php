@@ -45,7 +45,7 @@ $data = query("SELECT email, kd_akun, jenis_akun FROM tb_akun WHERE NOT jenis_ak
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Blank</title>
+    <title>Admin - Daftar akun</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -108,13 +108,13 @@ $data = query("SELECT email, kd_akun, jenis_akun FROM tb_akun WHERE NOT jenis_ak
                                                         <th>
                                                             No.
                                                         </th>
-                                                        <th>Aksi</th>
                                                         <th>
                                                             Email
                                                         </th>
                                                         <th>
                                                             Jenis Akun
                                                         </th>
+                                                        <th>Aksi</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -125,18 +125,15 @@ $data = query("SELECT email, kd_akun, jenis_akun FROM tb_akun WHERE NOT jenis_ak
                                                                 <?= $i++; ?>
                                                             </td>
                                                             <td>
-                                                                <form action="" method="POST">
-                                                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                                                        <button <?= ($d['jenis_akun'] == "superuser" ? "disabled" : ""); ?> class="btn btn-warning">Edit</button>
-                                                                        <button <?= ($d['jenis_akun'] == "superuser" ? "disabled" : ""); ?> onclick="return confirm('Konfirmasi, apakah anda ingin menghapus akun ini?')" type="submit" name="hapus" value="<?= $d['kd_akun']; ?>" class="btn btn-danger">Hapus</button>
-                                                                    </div>
-                                                                </form>
-                                                            </td>
-                                                            <td>
                                                                 <?= $d['email']; ?>
                                                             </td>
                                                             <td>
                                                                 <?= $d['jenis_akun']; ?>
+                                                            </td>
+                                                            <td>
+                                                                <form action="" method="POST">
+                                                                    <button <?= ($d['jenis_akun'] == "superuser" ? "disabled" : ""); ?> onclick="return confirm('Konfirmasi, apakah anda ingin menghapus akun ini?')" type="submit" name="hapus" value="<?= $d['kd_akun']; ?>" class="btn btn-sm btn-danger">Hapus</button>
+                                                                </form>
                                                             </td>
                                                         </tr>
                                                     <?php endforeach; ?>
@@ -174,11 +171,11 @@ $data = query("SELECT email, kd_akun, jenis_akun FROM tb_akun WHERE NOT jenis_ak
     <?php include "includes/scripts.php" ?>
 
     <!-- Script tabel produk -->
-    < src="vendor/datatables/jquery.dataTables.min.js"></>
-    < src="vendor/datatables/dataTables.bootstrap4.min.js"></>
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    < src="js/demo/datatables-demo.js"></>
+    <script src="js/demo/datatables-demo.js"></script>
 
 </body>
 

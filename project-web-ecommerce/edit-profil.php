@@ -52,7 +52,7 @@ if (isset($_POST['submitEditProfil'])) {
     <!-- custom style -->
     <link rel="stylesheet" href="css/style.css">
 
-    <title>Profil - Rudi Bonsai</title>
+    <title>Edit Profil - Rudi Bonsai</title>
 </head>
 
 <body class="bg-light">

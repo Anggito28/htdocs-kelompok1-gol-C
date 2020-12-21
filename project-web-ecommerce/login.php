@@ -33,7 +33,7 @@ if (isset($_POST['login'])) {
     <!-- custom style -->
     <link rel="stylesheet" href="css/style.css">
 
-    <title>Halaman - Rudi Bonsai</title>
+    <title>Login - Rudi Bonsai</title>
 </head>
 
 <body class="bg-light">

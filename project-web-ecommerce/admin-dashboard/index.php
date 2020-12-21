@@ -10,6 +10,7 @@ $sidebarActive = "sidebarDashboard";
 
 require "config/connect.php";
 require "config/function.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -68,70 +69,85 @@ require "config/function.php";
                 <div class="card-body">
                   <div class="row">
 
+                    <?php $pesanan = '';
+                    $pesanan = count(query("SELECT kd_transaksi FROM tb_transaksi WHERE status_transaksi = 'tertunda'"));
+                    ?>
+
                     <!-- Pesanan Tertunda -->
                     <div class="col-xl-3 col-md-6 mb-4">
-                      <div class="card border-left-warning shadow-sm h-100 py-2">
+                      <div class="card border-left-danger shadow-sm h-100 py-2">
                         <div class="card-body">
-                          <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                              <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pesanan Tertunda</div>
-                              <div class="h5 mb-0 font-weight-bold text-gray-800">12</div>
+                          <a class="text-decoration-none" href="pesanan.php?status=tertunda">
+                            <div class="row no-gutters align-items-center">
+                              <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Pesanan Tertunda</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $pesanan; ?></div>
+                              </div>
+                              <div class="col-auto">
+                                <i class="fas fa-clock fa-4x text-gray-300"></i>
+                              </div>
                             </div>
-                            <div class="col-auto">
-                              <i class="fas fa-clock fa-4x text-gray-300"></i>
-                            </div>
-                          </div>
+                          </a>
                         </div>
                       </div>
                     </div>
 
+                    <?php $pesanan = count(query("SELECT kd_transaksi FROM tb_transaksi WHERE status_transaksi = 'menunggu'")); ?>
+                    <!-- Pesanan Menunggu -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                      <div class="card border-left-warning shadow-sm h-100 py-2">
+                        <div class="card-body">
+                          <a class="text-decoration-none" href="pesanan.php?status=menunggu">
+                            <div class="row no-gutters align-items-center">
+                              <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pesanan Menunggu</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $pesanan; ?></div>
+                              </div>
+                              <div class="col-auto">
+                                <i class="fas fa-clipboard fa-4x text-gray-300"></i>
+                              </div>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+
+                    <?php $pesanan = count(query("SELECT kd_transaksi FROM tb_transaksi WHERE status_transaksi = 'diproses'")); ?>
                     <!-- Pesanan Diproses -->
                     <div class="col-xl-3 col-md-6 mb-4">
                       <div class="card border-left-info shadow-sm h-100 py-2">
                         <div class="card-body">
-                          <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Pesanan Diproses</div>
-                              <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
+                          <a class="text-decoration-none" href="pesanan.php?status=diproses">
+                            <div class="row no-gutters align-items-center">
+                              <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Pesanan Diproses</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $pesanan; ?></div>
+                              </div>
+                              <div class="col-auto">
+                                <i class="fas fa-cogs fa-4x text-gray-300"></i>
+                              </div>
                             </div>
-                            <div class="col-auto">
-                              <i class="fas fa-cogs fa-4x text-gray-300"></i>
-                            </div>
-                          </div>
+                          </a>
                         </div>
                       </div>
                     </div>
 
+                    <?php $pesanan = count(query("SELECT kd_transaksi FROM tb_transaksi WHERE status_transaksi = 'dikirim'")); ?>
                     <!-- Pesanan Dikirim -->
                     <div class="col-xl-3 col-md-6 mb-4">
                       <div class="card border-left-primary shadow-sm h-100 py-2">
                         <div class="card-body">
-                          <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Pesanan Dikirim</div>
-                              <div class="h5 mb-0 font-weight-bold text-gray-800">3</div>
+                          <a class="text-decoration-none" href="pesanan.php?status=dikirim">
+                            <div class="row no-gutters align-items-center">
+                              <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Pesanan Dikirim</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $pesanan; ?></div>
+                              </div>
+                              <div class="col-auto">
+                                <i class="fas fa-truck fa-4x text-gray-300"></i>
+                              </div>
                             </div>
-                            <div class="col-auto">
-                              <i class="fas fa-truck fa-4x text-gray-300"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- Pesanan Selesai -->
-                    <div class="col-xl-3 col-md-6 mb-4">
-                      <div class="card border-left-success shadow-sm h-100 py-2">
-                        <div class="card-body">
-                          <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Pesanan Selesai</div>
-                              <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
-                            </div>
-                            <div class="col-auto">
-                              <i class="fas fa-clipboard-check fa-4x text-gray-300"></i>
-                            </div>
-                          </div>
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -173,6 +189,13 @@ require "config/function.php";
 
           </div>
 
+          <?php
+          $monthlyTrans = query("SELECT total_bayar FROM tb_transaksi WHERE MONTH(tgl_transaksi) = MONTH(CURRENT_TIMESTAMP) AND status_transaksi = 'selesai'");
+          $monthlySum = 0;
+          for ($i = 0; $i < count($monthlyTrans); $i++) {
+            $monthlySum = $monthlySum + $monthlyTrans[$i]['total_bayar'];
+          }
+          ?>
           <div class="row justify-content-center">
             <!-- Total Pendapatan Bulan ini -->
             <div class="col-xl-4 mb-4">
@@ -181,7 +204,7 @@ require "config/function.php";
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Toal Pendapatan (Bulan ini)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Rp 100,000</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">Rp <?= number_format($monthlySum, 0, "", ","); ?></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-calendar fa-4x text-gray-300"></i>
@@ -191,6 +214,7 @@ require "config/function.php";
               </div>
             </div>
 
+            <?php $pesanan = count(query("SELECT kd_transaksi FROM tb_transaksi WHERE MONTH(tgl_transaksi) = MONTH(CURRENT_TIMESTAMP) AND status_transaksi = 'selesai'")); ?>
             <!-- Total Transaksi Bulan ini -->
             <div class="col-xl-4 mb-4">
               <div class="card border-left-success shadow h-100 py-2">
@@ -198,7 +222,7 @@ require "config/function.php";
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Transaksi (Bulan ini)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">45</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $pesanan; ?></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-handshake fa-4x text-gray-300"></i>
@@ -259,7 +283,15 @@ require "config/function.php";
           pointHoverBorderColor: "rgba(40,167,69, 1)",
           pointHitRadius: 10,
           pointBorderWidth: 2,
-          data: [99, 10, 50, 15, 100, 20, 15, 25, 20, 30, 25, 90000],
+          data: [
+            <?php
+            for ($j = 1; $j <= 12; $j++) {
+              $trans = query("SELECT kd_transaksi FROM tb_transaksi WHERE MONTH(tgl_transaksi) = $j AND status_transaksi = 'selesai'");
+
+              echo ($j == 12 ? count($trans) :  count($trans) . ",");
+            }
+            ?>
+          ],
         }],
       },
       options: {
@@ -341,7 +373,18 @@ require "config/function.php";
           backgroundColor: "#4e73df",
           hoverBackgroundColor: "#2e59d9",
           borderColor: "#4e73df",
-          data: [9999, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 90000],
+          data: [
+            <?php
+            for ($j = 1; $j <= 12; $j++) {
+              $trans = query("SELECT total_bayar FROM tb_transaksi WHERE MONTH(tgl_transaksi) = $j AND status_transaksi = 'selesai'");
+              $sum = 0;
+              for ($i = 0; $i < count($trans); $i++) {
+                $sum = $sum + $trans[$i]['total_bayar'];
+              }
+              echo ($j == 12 ? $sum :  $sum . ",");
+            }
+            ?>
+          ],
         }],
       },
       options: {

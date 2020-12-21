@@ -56,7 +56,7 @@ if (isset($_POST['simpan-kategori'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin - Tambah produk</title>
+    <title>Admin - Edit produk</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
