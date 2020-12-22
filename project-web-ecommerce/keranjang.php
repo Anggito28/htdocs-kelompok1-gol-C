@@ -50,7 +50,7 @@ AND c.kd_pembeli = $kdPembeli");
                 <div class="col">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb bg-white shadow">
-                            <li class="breadcrumb-item"><a href="produk.php">Home</a></li>
+                            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                             <li class="breadcrumb-item active">Keranjang</li>
                         </ol>
                     </nav>
@@ -77,11 +77,12 @@ AND c.kd_pembeli = $kdPembeli");
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-7">
-                                                            <h5 class="card-title"><?= $p['nama_produk']; ?></h5>
-                                                            <p class="card-text">Rp <?= number_format($p['harga'], 0, '', "."); ?></p>
+                                                            <h5 class="card-title mb-1"><?= $p['nama_produk']; ?></h5>
+                                                            <h6 class="card-text mb-1">Rp <?= number_format($p['harga'], 0, '', "."); ?></h6>
+                                                            <span class="text-muted small">(Stok : <?= $p['stok']; ?>)</span>
                                                             <div class="form-inline">
                                                                 <label class="my-1 mr-2">Jumlah</label>
-                                                                <input value="1" min="1" max="<?= $p['stok']; ?>" class="form-control" style="width: 60px;" type="number" name="produk-<?= $i++; ?>[]">
+                                                                <input oninvalid="this.setCustomValidity('Jumlah minimal 1 dan tidak boleh melebihi stok')" oninput="setCustomValidity('')" value="1" min="1" max="<?= $p['stok']; ?>" class="form-control" style="width: 80px;" type="number" name="produk-<?= $i++; ?>[]">
                                                             </div>
                                                             <div class="mt-2">
                                                                 <button type="button" value="<?= $p['idKeranjang']; ?>" class="hapusItem btn btn-danger btn-sm">Hapus</button>

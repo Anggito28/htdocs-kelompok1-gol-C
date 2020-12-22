@@ -6,28 +6,48 @@ $topbarActive = "topbarProduk";
 require "config/connect.php";
 require "config/function.php";
 
+$idProduk = $_GET['id'];
+
 if (isset($_POST['tambahKeranjang'])) {
-    if (tambahKeranjang($_POST) > 0) {
-        echo "
+    $isExist = query("SELECT id_produk FROM tb_keranjang WHERE id_produk = $idProduk");
+
+    if (empty($isExist)) {
+        if (tambahKeranjang($_POST) > 0) {
+            echo "
             <script>
                 alert('Produk berhasil ditambahkan!');
             </script>
                 ";
-    } else {
-        echo "
+        } else {
+            echo "
             <script>
                 alert('Produk gagal ditambahkan!');
             </script>
                 ";
+        }
+    } else {
+        echo "
+        <script>
+            alert('Produk sudah tersedia di keranjang!');
+        </script>
+            ";
     }
 }
 
 if (isset($_POST['beli'])) {
-    tambahKeranjang($_POST);
-    header("Location:keranjang.php");
-}
+    $isExist = query("SELECT id_produk FROM tb_keranjang WHERE id_produk = $idProduk");
 
-$idProduk = $_GET['id'];
+    if (empty($isExist)) {
+        tambahKeranjang($_POST);
+        header("Location:keranjang.php");
+    } else {
+        echo "
+    <script>
+        alert('Produk sudah tersedia di keranjang!');
+    </script>
+        ";
+    }
+}
 
 $detailProduk = query("SELECT a.*, b.kategori FROM tb_produk a INNER JOIN tb_kategori b ON a.kd_kategori=b.kd_kategori AND a.id_produk = $idProduk")[0];
 

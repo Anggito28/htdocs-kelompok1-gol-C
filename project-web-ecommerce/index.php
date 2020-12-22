@@ -38,7 +38,7 @@ $products = query("SELECT a.*, b.kategori FROM tb_produk a INNER JOIN tb_kategor
             <div class="row mb-4">
                 <div class="col-lg-12">
                     <!--carousel item  -->
-                    <div class="p-2 shadow">
+                    <div class="p-1 shadow">
                         <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
                                 <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
@@ -142,19 +142,27 @@ $products = query("SELECT a.*, b.kategori FROM tb_produk a INNER JOIN tb_kategor
                 <div class="col-12">
                     <div class="card shadow">
                         <div class="card-body">
-                            <h5 class="card-title">
-                                Lorem ipsum dolor sit amet consectetur
-                            </h5>
-                            <div class="row text-justify">
-                                <div class="col-6">
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis nihil laudantium doloremque minima minus modi quae, rerum fugiat consectetur eveniet nemo? Temporibus, doloremque! Quo autem labore natus fugiat laudantium ipsum.
-                                    </p>
-                                </div>
-                                <div class="col-6">
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit dolor corporis inventore facilis, eius eveniet, aut, placeat amet quibusdam
-                                    </p>
+                            <div class="row d-flex justify-content-center mb-4 pt-4">
+                                <div class="col-10">
+                                    <div class="row">
+                                        <div class="col-lg-6 px-0">
+                                            <h4 class="mb-3">
+                                                Lorem ipsum dolor sit amet consectetur
+                                            </h4>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6 mb-2">
+                                                <p class="text-justify">
+                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga doloremque natus similique rem recusandae, possimus, corporis exercitationem architecto nemo itaque alias quo sed soluta tenetur debitis velit ullam molestiae laboriosam, accusamus aperiam quia unde! Necessitatibus aliquam architecto sed reprehenderit expedita molestias aperiam consectetur dolore magni! Molestias in suscipit tenetur repellendus!
+                                                </p>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="embed-responsive embed-responsive-21by9">
+                                                    <img src="img/carousel/bonsai1.jpg" class="embed-responsive-item d-block w-100" alt="...">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

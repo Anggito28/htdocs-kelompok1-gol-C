@@ -138,7 +138,7 @@ AND tb_pembeli.kd_pembeli = $kdPembeli")[0];
                                                         Subtotal (<?= $item[0]; ?>)
                                                     </div>
                                                     <div>
-                                                        <strong>Rp <?= $sub[] = $item[0] * $produk['harga']; ?></strong>
+                                                        <strong>Rp <?= number_format($sub[] = $item[0] * $produk['harga'], 0, "", "."); ?></strong>
                                                         <input type="hidden" name="produk[subTotal][]" value="<?= $item[0] * $produk['harga']; ?>">
                                                         <input type="hidden" name="produk[jumlah][]" value="<?= $item[0]; ?>">
                                                         <input type="hidden" name="produk[id][]" value="<?= $item[1]; ?>">

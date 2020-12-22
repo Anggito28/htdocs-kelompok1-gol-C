@@ -262,6 +262,12 @@ function prosesPesanan($data)
         $sub = (int) $produk['subTotal'][$i];
         $jumlah = (int) $produk['jumlah'][$i];
 
+        $stok = (int) query("SELECT stok FROM tb_produk WHERE id_produk = $idProduk")[0]['stok'];
+        $stok = $stok - $jumlah;
+
+        mysqli_query($conn, "UPDATE tb_produk SET stok = $stok WHERE id_produk = $idProduk");
+        $response = $response + mysqli_affected_rows($conn);
+
         $detailTrans = "INSERT INTO tb_detail_transaksi VALUES (0, $kdTransaksi, $idProduk, $sub, $jumlah);";
 
         mysqli_query($conn, $detailTrans);

@@ -32,16 +32,26 @@
                 </ul>
 
                 <div id="topbarCTA">
-                    <?php if (isset($_SESSION['login'])) : ?>
-                        <a class="mr-4 my-auto" href="keranjang.php">
-                            <i class="fa fa-shopping-cart fa-2x text-secondary"></i>
-                        </a>
-                    <?php else : ?>
-                        <a class="mr-4 my-auto" onclick="alert('Harap Login dahulu untuk dapat melakukan transaksi');location.replace('login.php')">
-                            <i class="fa fa-shopping-cart fa-2x text-secondary"></i>
-                        </a>
-                    <?php endif; ?>
+                    <div class="d-flex justify-content-between">
+                        <?php if (isset($_SESSION['login'])) : ?>
+                            <?php
+                            require_once "config/connect.php";
+                            require_once "config/function.php";
 
+                            $kdAkun = $_SESSION['id'];
+                            $kdPembeli = query("SELECT kd_pembeli FROM tb_pembeli WHERE kd_akun = $kdAkun")[0]["kd_pembeli"];
+                            ?>
+
+                            <h5 class="my-auto mr-2">(<?= count(query("SELECT id FROM tb_keranjang WHERE kd_pembeli = $kdPembeli")); ?>)</h5>
+                            <a class="mr-4 my-auto" href="keranjang.php">
+                                <i class="fa fa-shopping-cart fa-2x text-secondary"></i>
+                            </a>
+                        <?php else : ?>
+                            <a class="mr-4 my-auto" onclick="alert('Harap Login dahulu untuk dapat melakukan transaksi');location.replace('login.php')">
+                                <i class="fa fa-shopping-cart fa-2x text-secondary"></i>
+                            </a>
+                        <?php endif; ?>
+                    </div>
                     <?php if (isset($_SESSION["login"])) : ?>
                         <!-- user loggged in -->
                         <div class="dropdown">
