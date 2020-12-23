@@ -6,7 +6,7 @@ $topbarActive = "topbarHome";
 require "config/connect.php";
 require "config/function.php";
 
-$products = query("SELECT a.*, b.kategori FROM tb_produk a INNER JOIN tb_kategori b ON a.kd_kategori=b.kd_kategori ORDER BY a.id_produk DESC LIMIT 1,6");
+$products = query("SELECT a.*, b.kategori FROM tb_produk a INNER JOIN tb_kategori b ON a.kd_kategori=b.kd_kategori ORDER BY a.id_produk DESC LIMIT 6");
 
 ?>
 

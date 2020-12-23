@@ -42,7 +42,7 @@
                             $kdPembeli = query("SELECT kd_pembeli FROM tb_pembeli WHERE kd_akun = $kdAkun")[0]["kd_pembeli"];
                             ?>
 
-                            <h5 class="my-auto mr-2">(<?= count(query("SELECT id FROM tb_keranjang WHERE kd_pembeli = $kdPembeli")); ?>)</h5>
+                            <h5 class="my-auto mr-2">(<?= count(query("SELECT id FROM tb_keranjang WHERE kd_pembeli = $kdPembeli AND id_produk IS NOT NULL")); ?>)</h5>
                             <a class="mr-4 my-auto" href="keranjang.php">
                                 <i class="fa fa-shopping-cart fa-2x text-secondary"></i>
                             </a>

@@ -149,7 +149,7 @@ function login($data)
 
             // cek password
             if (password_verify($password, $row['password'])) {
-                $_SESSION['login'] = true;
+                $_SESSION['admin'] = true;
                 $_SESSION['email'] = $email;
                 $_SESSION['id'] = $row['kd_akun'];
                 $_SESSION['profil-pic'] = $row['foto_profil'];

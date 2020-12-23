@@ -94,7 +94,7 @@ section.content {
 
 /* produk.php */
 img.product-image {
-    object-fit: fill;
+    object-fit: cover;
 }
 
 div.dropdown-search {

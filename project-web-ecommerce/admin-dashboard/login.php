@@ -3,7 +3,7 @@ session_start();
 require "config/connect.php";
 require "config/function.php";
 
-if (isset($_SESSION["login"])) {
+if (isset($_SESSION["admin"])) {
     header("Location: index.php");
     exit;
 }
