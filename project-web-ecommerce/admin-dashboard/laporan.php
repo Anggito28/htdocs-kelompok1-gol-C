@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
 
     if (!empty($bulan)) {
         // perintah tampil data berdasarkan periode bulan
-        $query = mysqli_query($conn, "SELECT * FROM tb_transaksi WHERE MONTH(tgl_transaksi) = '$bulan'");
+        $query = mysqli_query($conn, "SELECT * FROM tb_transaksi WHERE MONTH(tgl_transaksi) = '$bulan' AND status_transaksi='selesai'");
     } else {
         // perintah tampil semua data
         $query = mysqli_query($conn, "SELECT * FROM tb_transaksi p");
@@ -128,7 +128,6 @@ $baris = $query->num_rows;
                                 <th>Kode Transaksi</th>
                                 <th>Status Transaksi</th>
                                 <th>Total Bayar</th>
-                                <th>Bukti Transfer</th>
                                 <th>Tgl. Transaksi</th>
                             </tr>
                         </thead>
@@ -143,7 +142,6 @@ $baris = $query->num_rows;
                                 <td><?= ucwords($data['kd_transaksi']) ?></td>
                                 <td><?= $data['status_transaksi'] ?></td>
                                 <td><?= $data['total_bayar'] ?></td>
-                                <td><?= $data['bukti_transfer'] ?></td>
                                 <td><?= date('d-M-Y', strtotime($data['tgl_transaksi'])) ?></td>
                             </tr>
 
