@@ -25,8 +25,8 @@
                             <a class="dropdown-item" href="tentang-kami.php">Tentang Kami</a>
                             <a class="dropdown-item" href="#">Kontak</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Pengiriman</a>
-                            <a class="dropdown-item" href="#">Pembayaran</a>
+                            <a class="dropdown-item" href="pengiriman.php">Pengiriman</a>
+                            <a class="dropdown-item" href="pembayaran.php">Pembayaran</a>
                         </div>
                     </li>
                 </ul>
