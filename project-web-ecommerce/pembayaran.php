@@ -45,7 +45,9 @@
                         <div class="card-body shadow">
                             <!-- Isi card konten -->
                             <p class="text-justify">Situs rudi bonsai menggunakan sistem keranjang belanja (e-commerce . Di dalam system informasi rudi bonsai ini pembayaran transaksi dibagi menjadi dua yaitu area kabupaten Blitar sendiri dan area luar kabupaten blitar . untuk area blitar sendiri costumer bisa melakukan pembayaran dengan cara langsung atau COD sementara untuk yang diluar area tersebut harus menggunakan pembayaran lewat ATM dan sejenisnya transfer dan mengupload bukti pembayaran ke system yang sudah disedaiakan.</p>
+                            <hr>
                             <p class="text-justify">Tata cara memesan di website Rudi Bonsai:</p>
+                            <hr>
                             <p class="text-justify">1. Klik tombol Beli Sekarang untuk semua produk yang diinginkan</p>
                             <p class="text-justify">2. Klik icon keranjang / cart, atau tombol Lihat Keranjang untuk meninjau isi keranjang</p>
                             <p class="text-justify">3. Klik tombol Bayar Sekarang atau Pembayaran untuk menuju halaman pembayaran</p>
