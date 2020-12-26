@@ -199,7 +199,7 @@ function login($data)
     $email = $data['email'];
     $password = $data['password'];
 
-    $result = mysqli_query($conn, "SELECT * FROM tb_akun WHERE email = '$email'");
+    $result = mysqli_query($conn, "SELECT * FROM tb_akun WHERE email = '$email' AND jenis_akun = 'pembeli'");
     $row = mysqli_fetch_assoc($result);
 
     // cek email
