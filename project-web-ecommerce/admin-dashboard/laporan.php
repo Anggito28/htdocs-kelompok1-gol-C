@@ -19,14 +19,17 @@ if (isset($_POST['submit'])) {
 
     if (!empty($bulan)) {
         // perintah tampil data berdasarkan periode bulan
-        $query = mysqli_query($conn, "SELECT * FROM tb_transaksi WHERE MONTH(tgl_transaksi) = '$bulan' AND status_transaksi='selesai'");
+        $query = mysqli_query($conn, "SELECT tb_transaksi.*, tb_pembeli.* FROM tb_transaksi
+        INNER JOIN tb_pembeli ON tb_transaksi.kd_pembeli = tb_pembeli.kd_pembeli AND MONTH(tb_transaksi.tgl_transaksi) = '$bulan' AND tb_transaksi.status_transaksi = 'selesai' ");
     } else {
         // perintah tampil semua data
-        $query = mysqli_query($conn, "SELECT * FROM tb_transaksi p");
+        $query = mysqli_query($conn, "SELECT tb_transaksi.*, tb_pembeli.* FROM tb_transaksi
+        INNER JOIN tb_pembeli ON tb_transaksi.kd_pembeli = tb_pembeli.kd_pembeli");
     }
 } else {
     // perintah tampil semua data
-    $query = mysqli_query($conn, "SELECT * FROM tb_transaksi");
+    $query = mysqli_query($conn, "SELECT tb_transaksi.*, tb_pembeli.* FROM tb_transaksi
+    INNER JOIN tb_pembeli ON tb_transaksi.kd_pembeli = tb_pembeli.kd_pembeli ");
 }
 
 // hitung jumlah baris data
@@ -129,7 +132,8 @@ $baris = $query->num_rows;
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Kode Transaksi</th>
+                                            <th>Nama</th>
+                                            <th>No Telepon</th>
                                             <th>Status Transaksi</th>
                                             <th>Total Bayar</th>
                                             <th>Tgl. Transaksi</th>
@@ -143,7 +147,8 @@ $baris = $query->num_rows;
 
                                         <tr>
                                             <td><?= $no++ ?></td>
-                                            <td><?= ucwords($data['kd_transaksi']) ?></td>
+                                            <td><?= ucwords($data['nama']) ?></td>
+                                            <td><?= $data['no_telepon'] ?></td>
                                             <td><?= $data['status_transaksi'] ?></td>
                                             <td><?= $data['total_bayar'] ?></td>
                                             <td><?= date('d-M-Y', strtotime($data['tgl_transaksi'])) ?></td>
