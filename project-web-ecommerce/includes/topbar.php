@@ -23,7 +23,7 @@
                         </a>
                         <div class="dropdown-menu mb-4" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="tentang-kami.php">Tentang Kami</a>
-                            <a class="dropdown-item" href="#">Kontak</a>
+                            <a class="dropdown-item" href="kontak.php">Kontak</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="pengiriman.php">Pengiriman</a>
                             <a class="dropdown-item" href="pembayaran.php">Pembayaran</a>
