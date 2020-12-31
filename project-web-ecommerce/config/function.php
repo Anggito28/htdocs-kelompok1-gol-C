@@ -249,7 +249,7 @@ function prosesPesanan($data)
     $status = $data['status'];
     $totalBayar = $data['totalBayar'];
 
-    $transaksi = "INSERT INTO tb_transaksi VALUES (0, $kdPembeli, '$tanggal', '$pembayaran', '$pengiriman', '$keterangan', '$status', $totalBayar, 'empty');";
+    $transaksi = "INSERT INTO tb_transaksi VALUES (0, $kdPembeli, '$tanggal', '$pembayaran', '$pengiriman', '$keterangan', '$status', $totalBayar, 0, 'empty');";
 
     mysqli_query($conn, $transaksi);
     $response = mysqli_affected_rows($conn);

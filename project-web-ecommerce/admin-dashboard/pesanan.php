@@ -127,6 +127,9 @@ if (isset($_GET['status'])) {
                                                     case 'tertunda':
                                                         $alert = "danger";
                                                         break;
+                                                    case 'dikonfirmasi':
+                                                        $alert = "warning";
+                                                        break;
                                                     case 'menunggu':
                                                         $alert = "warning";
                                                         break;

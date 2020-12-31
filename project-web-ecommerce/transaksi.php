@@ -59,7 +59,7 @@ $transaksi = query("SELECT * FROM tb_transaksi WHERE kd_pembeli = $kdPembeli ORD
 
             <div class="row mb-5">
                 <div class="col-lg-12">
-                    <div class="card">
+                    <div class="card min-vh-100">
                         <div class="card-header bg-light">
                             <h6>
                                 Daftar Transaksi

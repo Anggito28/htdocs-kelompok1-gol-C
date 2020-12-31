@@ -30,6 +30,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">status pesanan</h6>
                 <a id="dropdownSemuaPesanan" class="collapse-item" href="pesanan.php">Semua</a>
+                <a id="tertunda" class="collapse-item" href="pesanan.php?status=dikonfirmasi">Dikonfirmasi</a>
                 <a id="tertunda" class="collapse-item" href="pesanan.php?status=tertunda">Tertunda</a>
                 <a id="menunggu" class="collapse-item" href="pesanan.php?status=menunggu">Menunggu</a>
                 <a id="diproses" class="collapse-item" href="pesanan.php?status=diproses">Diproses</a>

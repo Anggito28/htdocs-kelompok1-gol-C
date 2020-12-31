@@ -40,6 +40,15 @@ if (isset($_POST['batal'])) {
     echo "</script>";
 }
 
+if (isset($_POST['submitOngkir'])) {
+    $ongkir = $_POST['ongkir'];
+
+    mysqli_query($conn, "UPDATE tb_transaksi SET ongkir = $ongkir, status_transaksi = 'tertunda' WHERE kd_transaksi = $idTrans;");
+    echo "<script>";
+    echo "alert('Ongkir telah dikonfirmasi!')";
+    echo "</script>";
+}
+
 $trans = query("SELECT a.*, b.*, c.* FROM tb_transaksi a 
 INNER JOIN tb_detail_transaksi b ON a.kd_transaksi = b.kd_transaksi
 INNER JOIN tb_produk c On c.id_produk = b.id_produk
@@ -180,11 +189,36 @@ AND tb_pembeli.kd_pembeli = $kdPembeli")[0];
                                                                                 <div class="font-weight-bold"> Rp <?= number_format($trans[0]['total_bayar'], 0, "", "."); ?></div>
                                                                             </div>
                                                                         </div>
+
+                                                                        <?php if ($trans[0]['ongkir'] != 0) : ?>
+                                                                            <div class="row">
+                                                                                <div class="col">
+                                                                                    <h6>Ongkir :</h6>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col text-right">
+                                                                                    <div class="font-weight-bold"> Rp <?= number_format($trans[0]['ongkir'], 0, "", "."); ?></div>
+                                                                                    <hr>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row">
+                                                                                <div class="col">
+                                                                                    <h6>Total :</h6>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col text-right">
+                                                                                    <div class="font-weight-bold"> Rp <?= number_format($trans[0]['ongkir'] + $trans[0]['total_bayar'], 0, "", "."); ?></div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        <?php endif; ?>
+
                                                                     </div>
                                                                 </div>
                                                             </div>
-
-
                                                         </div>
                                                     </div>
                                                 </div>
@@ -213,6 +247,10 @@ AND tb_pembeli.kd_pembeli = $kdPembeli")[0];
                                                                 $alert = "danger";
                                                                 $msg = "Pembeli belum meng-upload bukti transfer.";
                                                                 break;
+                                                            case 'dikonfirmasi':
+                                                                $alert = "warning";
+                                                                $msg = "Menunggu ongkos kirim dikonfirmasi.";
+                                                                break;
                                                             case 'menunggu':
                                                                 $alert = "warning";
                                                                 $msg = "Menunggu bukti transfer dikonfirmasi.";
@@ -238,6 +276,25 @@ AND tb_pembeli.kd_pembeli = $kdPembeli")[0];
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <?php if ($trans[0]['status_transaksi'] == "dikonfirmasi") : ?>
+                                                    <div class="col-12 mb-4">
+                                                        <div>
+                                                            <form action="" method="POST">
+                                                                <div class="form-group">
+                                                                    <label for="ubah">
+                                                                        <h6>Masukkan ongkos kirim</h6>
+                                                                    </label>
+                                                                    <input type="number" required name="ongkir" class="form-control">
+                                                                </div>
+                                                                <div class="form-group d-flex justify-content-between">
+                                                                    <button onclick="return confirm('Konfirmasi, konfirmasi ongkos kirim?')" class="btn btn-success" type="submit" name="submitOngkir">Konfirmasi</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                <?php endif; ?>
+
                                                 <?php if ($trans[0]['status_transaksi'] == "diproses" || $trans[0]['status_transaksi'] == "dikirim") : ?>
                                                     <div class="col-12 mb-4">
                                                         <div>

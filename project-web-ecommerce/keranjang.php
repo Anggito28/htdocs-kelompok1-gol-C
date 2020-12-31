@@ -101,7 +101,7 @@ AND c.kd_pembeli = $kdPembeli");
                                         <?php endforeach; ?>
 
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 min-vh-100">
                                         <div class="card">
                                             <div class="card-body">
                                                 <div class="form-check mb-2">

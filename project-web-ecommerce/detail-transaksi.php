@@ -134,6 +134,33 @@ AND a.kd_transaksi = $idTrans");
                                                                         <div class="font-weight-bold"> Rp <?= number_format($trans[0]['total_bayar'], 0, "", "."); ?></div>
                                                                     </div>
                                                                 </div>
+                                                                <?php if ($trans[0]['ongkir'] != 0) : ?>
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <h6>Ongkir :</h6>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col text-right">
+                                                                            <div class="font-weight-bold"> Rp <?= number_format($trans[0]['ongkir'], 0, "", "."); ?></div>
+                                                                            <hr>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="alert alert-primary">
+                                                                        <div class="row">
+                                                                            <div class="col">
+                                                                                <h6>Total :</h6>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col text-right">
+                                                                                <h5 class="font-weight-bold"> Rp <?= number_format($trans[0]['ongkir'] + $trans[0]['total_bayar'], 0, "", "."); ?></h5>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                <?php endif; ?>
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -168,6 +195,10 @@ AND a.kd_transaksi = $idTrans");
                                                     case 'batal':
                                                         $alert = "danger";
                                                         $msg = "Pesanan dibatalkan.";
+                                                        break;
+                                                    case 'dikonfirmasi':
+                                                        $alert = "warning";
+                                                        $msg = "Menunggu penjual mengkonfirmasi ongkos kirim.";
                                                         break;
                                                     case 'tertunda':
                                                         $alert = "danger";

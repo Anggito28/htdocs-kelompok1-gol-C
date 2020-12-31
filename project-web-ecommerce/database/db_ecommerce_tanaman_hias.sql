@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 20, 2020 at 09:34 AM
+-- Generation Time: Dec 31, 2020 at 08:52 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -117,10 +117,11 @@ CREATE TABLE `tb_transaksi` (
   `kd_pembeli` int(11) NOT NULL,
   `tgl_transaksi` date NOT NULL,
   `opsi_pembayaran` varchar(10) NOT NULL,
-  `opsi_pengiriman` varchar(10) NOT NULL,
+  `opsi_pengiriman` varchar(20) NOT NULL,
   `keterangan` text DEFAULT NULL,
-  `status_transaksi` enum('tertunda','menunggu','diproses','dikirim','selesai','batal') NOT NULL,
+  `status_transaksi` enum('tertunda','menunggu','diproses','dikirim','selesai','batal','dikonfirmasi') NOT NULL,
   `total_bayar` int(11) NOT NULL,
+  `ongkir` int(11) NOT NULL DEFAULT 0,
   `bukti_transfer` varchar(20) DEFAULT 'empty'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -7607,8 +7608,8 @@ ALTER TABLE `tb_akun`
 --
 ALTER TABLE `tb_detail_transaksi`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `produk-detail_transaksi` (`id_produk`),
-  ADD KEY `transaksi-detail_transaksi` (`kd_transaksi`);
+  ADD KEY `transaksi-detail_transaksi` (`kd_transaksi`),
+  ADD KEY `produk-detail_transaksi` (`id_produk`);
 
 --
 -- Indexes for table `tb_kategori`
@@ -7621,18 +7622,18 @@ ALTER TABLE `tb_kategori`
 --
 ALTER TABLE `tb_keranjang`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `produk-keranjang` (`id_produk`),
-  ADD KEY `pembeli-keranjang` (`kd_pembeli`);
+  ADD KEY `pembeli-keranjang` (`kd_pembeli`),
+  ADD KEY `produk-keranjang` (`id_produk`);
 
 --
 -- Indexes for table `tb_pembeli`
 --
 ALTER TABLE `tb_pembeli`
   ADD PRIMARY KEY (`kd_pembeli`),
-  ADD KEY `akun-pembeli` (`kd_akun`),
   ADD KEY `kab` (`id_kabupaten`),
   ADD KEY `kec` (`id_kecamatan`),
-  ADD KEY `prov` (`id_provinsi`);
+  ADD KEY `prov` (`id_provinsi`),
+  ADD KEY `akun-pembeli` (`kd_akun`);
 
 --
 -- Indexes for table `tb_produk`
@@ -7722,21 +7723,21 @@ ALTER TABLE `tb_transaksi`
 -- Constraints for table `tb_detail_transaksi`
 --
 ALTER TABLE `tb_detail_transaksi`
-  ADD CONSTRAINT `produk-detail_transaksi` FOREIGN KEY (`id_produk`) REFERENCES `tb_produk` (`id_produk`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `transaksi-detail_transaksi` FOREIGN KEY (`kd_transaksi`) REFERENCES `tb_transaksi` (`kd_transaksi`);
+  ADD CONSTRAINT `produk-detail_transaksi` FOREIGN KEY (`id_produk`) REFERENCES `tb_produk` (`id_produk`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `transaksi-detail_transaksi` FOREIGN KEY (`kd_transaksi`) REFERENCES `tb_transaksi` (`kd_transaksi`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tb_keranjang`
 --
 ALTER TABLE `tb_keranjang`
-  ADD CONSTRAINT `pembeli-keranjang` FOREIGN KEY (`kd_pembeli`) REFERENCES `tb_pembeli` (`kd_pembeli`) ON DELETE SET NULL ON UPDATE SET NULL,
-  ADD CONSTRAINT `produk-keranjang` FOREIGN KEY (`id_produk`) REFERENCES `tb_produk` (`id_produk`) ON DELETE SET NULL ON UPDATE SET NULL;
+  ADD CONSTRAINT `pembeli-keranjang` FOREIGN KEY (`kd_pembeli`) REFERENCES `tb_pembeli` (`kd_pembeli`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `produk-keranjang` FOREIGN KEY (`id_produk`) REFERENCES `tb_produk` (`id_produk`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tb_pembeli`
 --
 ALTER TABLE `tb_pembeli`
-  ADD CONSTRAINT `akun-pembeli` FOREIGN KEY (`kd_akun`) REFERENCES `tb_akun` (`kd_akun`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `akun-pembeli` FOREIGN KEY (`kd_akun`) REFERENCES `tb_akun` (`kd_akun`) ON UPDATE CASCADE,
   ADD CONSTRAINT `kab` FOREIGN KEY (`id_kabupaten`) REFERENCES `wilayah_kabupaten` (`id`),
   ADD CONSTRAINT `kec` FOREIGN KEY (`id_kecamatan`) REFERENCES `wilayah_kecamatan` (`id`),
   ADD CONSTRAINT `prov` FOREIGN KEY (`id_provinsi`) REFERENCES `wilayah_provinsi` (`id`);
@@ -7745,7 +7746,7 @@ ALTER TABLE `tb_pembeli`
 -- Constraints for table `tb_produk`
 --
 ALTER TABLE `tb_produk`
-  ADD CONSTRAINT `kategori-barang` FOREIGN KEY (`kd_kategori`) REFERENCES `tb_kategori` (`kd_kategori`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `kategori-barang` FOREIGN KEY (`kd_kategori`) REFERENCES `tb_kategori` (`kd_kategori`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tb_transaksi`
