@@ -29,8 +29,11 @@ function register($data)
     // enkripsi password
     $pass = password_hash($pass, PASSWORD_DEFAULT);
 
+    // generate otp
+    $otp = uniqid();
+
     // tambah akun ke database
-    $akun = "INSERT INTO tb_akun VALUES (0, '$email', '$pass', 'pembeli', 'empty')";
+    $akun = "INSERT INTO tb_akun VALUES (0, '$email', '$pass', 'pembeli', 'empty', 0)";
     mysqli_query($conn, $akun);
     $response = mysqli_affected_rows($conn);
 
@@ -39,12 +42,48 @@ function register($data)
     $row = mysqli_fetch_assoc($result);
     $kdAkun = $row['kd_akun'];
 
+    // tambah data pelanggan ke database
     $dataDiri = "INSERT INTO tb_pembeli VALUES (0, '$nama', '$jenkel', '$prov', '$kab', '$kec', '$detail', '$telp', $kdAkun)";
     mysqli_query($conn, $dataDiri);
+    $response = mysqli_affected_rows($conn);
 
+    // kirim email
+    kirimEmail($data['email'], $otp, $kdAkun);
+
+    // hash otp
+    $otp = password_hash($otp, PASSWORD_DEFAULT);
+
+    // simpan otp ke database
+    mysqli_query($conn, "INSERT INTO auth VALUES (0, $kdAkun, '$otp', NOW())");
     $response = $response + mysqli_affected_rows($conn);
 
     return $response;
+}
+
+function kirimEmail($toMail, $otp, $kdAkun)
+{
+    require_once 'vendor/autoload.php';
+    require "testing/auth-url.php";
+    require "mailer-account.php";
+
+    // Create the Transport
+    $transport = (new Swift_SmtpTransport('smtp.gmail.com', 465, 'ssl'))
+        ->setUsername($email)
+        ->setPassword($pass);
+
+    // Create the Mailer using your created Transport
+    $mailer = new Swift_Mailer($transport);
+
+    // Create a message
+    $message = (new Swift_Message('Email aktivasi - Rudi bonsai'))
+        ->setFrom(['mail@rudibonsai.com' => 'rudibonsai.com'])
+        ->setTo([$toMail])
+        ->setBody('Klik link berikut untuk aktivasi, ' . "$url" . "auth.php?otp=" . "$otp" . "&kdAkun=$kdAkun");
+
+    // Send the message
+    if (!($mailer->send($message))) {
+        return false;
+    }
 }
 
 function editProfil($data)
@@ -204,13 +243,23 @@ function login($data)
 
     // cek email
     if (isset($row['email'])) {
-        if ($email === $row['email']) {
+        if ($row['is_active'] == 0) {
+            echo "<script>";
+            echo "alert('akun belum diaktivasi!');";
+            echo "location = 'login.php';";
+            echo "</script>";
+            return;
+        }
 
+        if ($email === $row['email']) {
             // cek password
             if (password_verify($password, $row['password'])) {
+                $idAkun = $row['kd_akun'];
+                $nama = query("SELECT nama FROM tb_pembeli WHERE kd_akun = $idAkun;")[0]['nama'];
+
                 $_SESSION['login'] = true;
-                $_SESSION['email'] = $email;
-                $_SESSION['id'] = $row['kd_akun'];
+                $_SESSION['nama'] = $nama;
+                $_SESSION['id'] = $idAkun;
                 $_SESSION['profil-pic'] = $row['foto_profil'];
 
                 header("Location:index.php");
