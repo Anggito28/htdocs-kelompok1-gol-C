@@ -29,9 +29,6 @@ function register($data)
     // enkripsi password
     $pass = password_hash($pass, PASSWORD_DEFAULT);
 
-    // generate otp
-    $otp = uniqid();
-
     // tambah akun ke database
     $akun = "INSERT INTO tb_akun VALUES (0, '$email', '$pass', 'pembeli', 'empty', 0)";
     mysqli_query($conn, $akun);
@@ -47,24 +44,29 @@ function register($data)
     mysqli_query($conn, $dataDiri);
     $response = mysqli_affected_rows($conn);
 
+    // generate auth code
+    $authCode = hash('md5', uniqid());
+
+    require "config/auth-url.php";
+    $mailBody = 'Klik link berikut untuk aktivasi, ' . "$url" . "aktivasi-email.php?code=" . "$authCode" . "&kdAkun=$kdAkun";
+
     // kirim email
-    kirimEmail($data['email'], $otp, $kdAkun);
+    kirimEmail($data['email'], 'Email aktivasi - Rudi bonsai', $mailBody);
 
-    // hash otp
-    $otp = password_hash($otp, PASSWORD_DEFAULT);
+    // hash auth code
+    $authCode = password_hash($authCode, PASSWORD_DEFAULT);
 
-    // simpan otp ke database
-    mysqli_query($conn, "INSERT INTO auth VALUES (0, $kdAkun, '$otp', NOW())");
+    // simpan auth ke database
+    mysqli_query($conn, "INSERT INTO auth VALUES (0, $kdAkun, '$authCode')");
     $response = $response + mysqli_affected_rows($conn);
 
     return $response;
 }
 
-function kirimEmail($toMail, $otp, $kdAkun)
+function kirimEmail($toMail, $mailHeader, $mailBody)
 {
     require_once 'vendor/autoload.php';
-    require "testing/auth-url.php";
-    require "mailer-account.php";
+    require "config/mailer-account.php";
 
     // Create the Transport
     $transport = (new Swift_SmtpTransport('smtp.gmail.com', 465, 'ssl'))
@@ -75,10 +77,10 @@ function kirimEmail($toMail, $otp, $kdAkun)
     $mailer = new Swift_Mailer($transport);
 
     // Create a message
-    $message = (new Swift_Message('Email aktivasi - Rudi bonsai'))
+    $message = (new Swift_Message($mailHeader))
         ->setFrom(['mail@rudibonsai.com' => 'rudibonsai.com'])
         ->setTo([$toMail])
-        ->setBody('Klik link berikut untuk aktivasi, ' . "$url" . "auth.php?otp=" . "$otp" . "&kdAkun=$kdAkun");
+        ->setBody($mailBody);
 
     // Send the message
     if (!($mailer->send($message))) {

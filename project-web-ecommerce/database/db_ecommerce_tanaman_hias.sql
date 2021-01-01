@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 31, 2020 at 08:52 AM
+-- Generation Time: Jan 01, 2021 at 10:17 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -24,6 +24,18 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `auth`
+--
+
+CREATE TABLE `auth` (
+  `id` int(11) NOT NULL,
+  `kd_akun` int(11) NOT NULL,
+  `auth_code` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_akun`
 --
 
@@ -32,7 +44,8 @@ CREATE TABLE `tb_akun` (
   `email` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `jenis_akun` enum('superuser','admin','pembeli') NOT NULL,
-  `foto_profil` varchar(20) DEFAULT 'empty'
+  `foto_profil` varchar(20) DEFAULT 'empty',
+  `is_active` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -7598,6 +7611,12 @@ INSERT INTO `wilayah_provinsi` (`id`, `nama`) VALUES
 --
 
 --
+-- Indexes for table `auth`
+--
+ALTER TABLE `auth`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tb_akun`
 --
 ALTER TABLE `tb_akun`
@@ -7672,6 +7691,12 @@ ALTER TABLE `wilayah_provinsi`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `auth`
+--
+ALTER TABLE `auth`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tb_akun`
