@@ -44,10 +44,13 @@
                     <div class="card">
                         <div class="card-body shadow">
                             <!-- Isi card konten -->
-                            <h4>Lokasi Rudi Bonsai</h4>
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26573.511456292945!2d112.18422854656951!3d-8.083514804349056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78ed0f79cf8e4b%3A0xaad62cf0e08b2b71!2sBLITAR%20PARK!5e0!3m2!1sid!2sid!4v1609155403767!5m2!1sid!2sid" width="100%" height="480" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-                            <br>
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-md-10">
+                                    <h4>Lokasi Rudi Bonsai</h4>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1975.0046339371477!2d112.290506!3d-8.100536!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x922690c6a3f1ca0b!2sBelanja%20keperluan%20bonsai!5e0!3m2!1sid!2sid!4v1609388429121!5m2!1sid!2sid" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

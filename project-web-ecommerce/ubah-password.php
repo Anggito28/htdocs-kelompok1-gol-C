@@ -22,7 +22,7 @@ if (isset($_POST['submitUbahPassword'])) {
                 if (ubahPassword($_POST) > 0) {
                     echo "
                     <script>
-                    alert('password berhasil ubah!');
+                    alert('password berhasil diubah!');
                     location = 'profil.php?tab=2';
                     </script>";
                 } else {

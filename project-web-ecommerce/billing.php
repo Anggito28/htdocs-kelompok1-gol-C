@@ -15,7 +15,7 @@ if (isset($_POST['proses'])) {
     if (prosesPesanan($_POST) > 0) {
         $kdTransaksi = query("SELECT MAX(kd_transaksi) AS kdTrans FROM tb_transaksi")[0]['kdTrans'];
         echo "<script>
-                alert('Berhasil diproses! Menunggu pembayaran...');
+                alert('Berhasil diproses! Menunggu konfirmasi...');
                 location = 'detail-transaksi.php?id=" . $kdTransaksi . "';
             </script>
                 ";
@@ -180,6 +180,17 @@ AND tb_pembeli.kd_pembeli = $kdPembeli")[0];
                                                     <?php endif; ?>
                                                 </div>
                                             </div>
+                                            <div class="col-12 mb-4">
+                                                <h6>
+                                                    Ongkos Kirim
+                                                </h6>
+                                                <div class="alert alert-info mt-2">
+                                                    Nominal ongkos kirim akan muncul setelah pesanan dikonfirmasi penjual
+                                                </div>
+                                                <div class="alert alert-success">
+                                                    Klik tombol "Proses" untuk melanjutkan transaksi
+                                                </div>
+                                            </div>
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label for="keterangan">
@@ -243,7 +254,7 @@ AND tb_pembeli.kd_pembeli = $kdPembeli")[0];
                                 <?php if ($data['id_kabupaten'] == "3505" || $data['id_kabupaten'] == "3572") : ?>
                                     <input type="hidden" name="status" value="diproses">
                                 <?php else : ?>
-                                    <input type="hidden" name="status" value="tertunda">
+                                    <input type="hidden" name="status" value="dikonfirmasi">
                                 <?php endif; ?>
 
                                 <div class="row">

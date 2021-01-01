@@ -86,7 +86,7 @@ if (isset($_POST['login'])) {
 
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small text-success" href="#">Lupa Password?</a>
+                                        <a class="small text-success" href="lupa-password.php">Lupa Password?</a>
                                     </div>
                                     <div class="text-center">
                                         <span class="small">Belum punya akun? <a href="register.php" class="text-success">Daftar sekarang</a></span>

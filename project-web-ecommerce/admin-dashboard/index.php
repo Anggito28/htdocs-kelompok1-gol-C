@@ -67,17 +67,36 @@ require "config/function.php";
                   <h6 class="m-0 font-weight-bold text-dark">Status Pesanan</h6>
                 </div>
                 <div class="card-body">
-                  <div class="row">
+                  <div class="row justify-content-center">
 
-                    <?php $pesanan = '';
-                    $pesanan = count(query("SELECT kd_transaksi FROM tb_transaksi WHERE status_transaksi = 'tertunda'"));
-                    ?>
+                    <?php $pesanan = ''; ?>
 
+                    <?php $pesanan = count(query("SELECT kd_transaksi FROM tb_transaksi WHERE status_transaksi = 'dikonfirmasi'")); ?>
+                    <!-- Pesanan Tertunda -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                      <div class="card border-left-warning shadow-sm h-100 py-2">
+                        <a class="text-decoration-none" href="pesanan.php?status=dikonfirmasi">
+                          <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                              <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pesanan Dikonfirmasi</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $pesanan; ?></div>
+                              </div>
+                              <div class="col-auto">
+                                <i class="fas fa-bell fa-4x text-gray-300"></i>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+
+                    <?php $pesanan = count(query("SELECT kd_transaksi FROM tb_transaksi WHERE status_transaksi = 'tertunda'")); ?>
                     <!-- Pesanan Tertunda -->
                     <div class="col-xl-3 col-md-6 mb-4">
                       <div class="card border-left-danger shadow-sm h-100 py-2">
-                        <div class="card-body">
-                          <a class="text-decoration-none" href="pesanan.php?status=tertunda">
+                        <a class="text-decoration-none" href="pesanan.php?status=tertunda">
+                          <div class="card-body">
                             <div class="row no-gutters align-items-center">
                               <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Pesanan Tertunda</div>
@@ -87,8 +106,8 @@ require "config/function.php";
                                 <i class="fas fa-clock fa-4x text-gray-300"></i>
                               </div>
                             </div>
-                          </a>
-                        </div>
+                          </div>
+                        </a>
                       </div>
                     </div>
 
@@ -96,8 +115,8 @@ require "config/function.php";
                     <!-- Pesanan Menunggu -->
                     <div class="col-xl-3 col-md-6 mb-4">
                       <div class="card border-left-warning shadow-sm h-100 py-2">
-                        <div class="card-body">
-                          <a class="text-decoration-none" href="pesanan.php?status=menunggu">
+                        <a class="text-decoration-none" href="pesanan.php?status=menunggu">
+                          <div class="card-body">
                             <div class="row no-gutters align-items-center">
                               <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pesanan Menunggu</div>
@@ -107,8 +126,8 @@ require "config/function.php";
                                 <i class="fas fa-clipboard fa-4x text-gray-300"></i>
                               </div>
                             </div>
-                          </a>
-                        </div>
+                          </div>
+                        </a>
                       </div>
                     </div>
 
@@ -116,8 +135,8 @@ require "config/function.php";
                     <!-- Pesanan Diproses -->
                     <div class="col-xl-3 col-md-6 mb-4">
                       <div class="card border-left-info shadow-sm h-100 py-2">
-                        <div class="card-body">
-                          <a class="text-decoration-none" href="pesanan.php?status=diproses">
+                        <a class="text-decoration-none" href="pesanan.php?status=diproses">
+                          <div class="card-body">
                             <div class="row no-gutters align-items-center">
                               <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Pesanan Diproses</div>
@@ -127,8 +146,8 @@ require "config/function.php";
                                 <i class="fas fa-cogs fa-4x text-gray-300"></i>
                               </div>
                             </div>
-                          </a>
-                        </div>
+                          </div>
+                        </a>
                       </div>
                     </div>
 
@@ -136,8 +155,8 @@ require "config/function.php";
                     <!-- Pesanan Dikirim -->
                     <div class="col-xl-3 col-md-6 mb-4">
                       <div class="card border-left-primary shadow-sm h-100 py-2">
-                        <div class="card-body">
-                          <a class="text-decoration-none" href="pesanan.php?status=dikirim">
+                        <a class="text-decoration-none" href="pesanan.php?status=dikirim">
+                          <div class="card-body">
                             <div class="row no-gutters align-items-center">
                               <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Pesanan Dikirim</div>
@@ -147,8 +166,28 @@ require "config/function.php";
                                 <i class="fas fa-truck fa-4x text-gray-300"></i>
                               </div>
                             </div>
-                          </a>
-                        </div>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+
+                    <?php $pesanan = count(query("SELECT kd_transaksi FROM tb_transaksi WHERE status_transaksi = 'selesai'")); ?>
+                    <!-- Pesanan Dikirim -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                      <div class="card border-left-success shadow-sm h-100 py-2">
+                        <a class="text-decoration-none" href="pesanan.php?status=selesai">
+                          <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                              <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Selesai</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $pesanan; ?></div>
+                              </div>
+                              <div class="col-auto">
+                                <i class="fas fa-clipboard-check fa-4x text-gray-300"></i>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
                       </div>
                     </div>
 

@@ -22,7 +22,8 @@ if (isset($_POST['submit'])) {
     if (register($_POST) > 0) {
         echo "
             <script>
-                alert('Success to register!');
+                alert('Berhasil registrasi! email aktivasi telah dikirim.');
+                alert('Klik link aktivasi yang telah dikirim di email anda, periksa bagian SPAM jika email tidak muncul.');
                 location = 'login.php';
             </script>
                 ";

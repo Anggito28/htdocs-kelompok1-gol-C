@@ -7,9 +7,12 @@ require "config/connect.php";
 require "config/function.php";
 
 $idProduk = $_GET['id'];
+$idAkun = $_SESSION['id'];
+
+$kdPembeli = query("SELECT kd_pembeli FROM tb_pembeli WHERE kd_akun = $idAkun;")[0]['kd_pembeli'];
 
 if (isset($_POST['tambahKeranjang'])) {
-    $isExist = query("SELECT id_produk FROM tb_keranjang WHERE id_produk = $idProduk");
+    $isExist = query("SELECT id_produk FROM tb_keranjang WHERE id_produk = $idProduk AND kd_pembeli = $kdPembeli");
 
     if (empty($isExist)) {
         if (tambahKeranjang($_POST) > 0) {
@@ -35,7 +38,7 @@ if (isset($_POST['tambahKeranjang'])) {
 }
 
 if (isset($_POST['beli'])) {
-    $isExist = query("SELECT id_produk FROM tb_keranjang WHERE id_produk = $idProduk");
+    $isExist = query("SELECT id_produk FROM tb_keranjang WHERE id_produk = $idProduk AND kd_pembeli = $kdPembeli");
 
     if (empty($isExist)) {
         tambahKeranjang($_POST);
