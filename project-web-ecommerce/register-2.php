@@ -7,13 +7,18 @@ if (isset($_POST['register'])) {
     $password = $_POST['password1'];
 
     // cek email
-    $result = mysqli_query($conn, "SELECT email FROM tb_akun WHERE email = '$email'");
+    $result = mysqli_query($conn, "SELECT email, is_active, kd_akun FROM tb_akun WHERE email = '$email'");
     $row = mysqli_fetch_assoc($result);
 
     if (isset($row['email'])) {
         if ($row['email'] === $email) {
-            header("Location: register.php?email=exist");
-            return false;
+            if ($row['is_active'] == 1) {
+                header("Location: register.php?email=exist");
+            } else {
+                $kdAkun = $row['kd_akun'];
+                mysqli_query($conn, "DELETE FROM tb_pembeli WHERE kd_akun = $kdAkun");
+                mysqli_query($conn, "DELETE FROM tb_akun WHERE kd_akun = $kdAkun");
+            }
         }
     }
 }
