@@ -48,29 +48,29 @@ $products = query("SELECT a.*, b.kategori FROM tb_produk a INNER JOIN tb_kategor
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
                                     <div class="embed-responsive embed-responsive-21by9">
-                                        <img src="img/carousel/bonsai1.jpg" class="embed-responsive-item d-block w-100" alt="...">
+                                        <img src="img/carousel/bonsai.jpg" class="embed-responsive-item d-block w-100" alt="...">
                                     </div>
                                     <div class="carousel-caption d-none d-md-block">
-                                        <h5>First slide label</h5>
-                                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                                        <h5>Bonsai Hutan</h5>
+                                        <p>Bonsai menyerupai hutan eropa yang paling diminati saat ini</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item">
                                     <div class="embed-responsive embed-responsive-21by9">
-                                        <img src="img/carousel/bonsai2.png" class="embed-responsive-item d-block w-100" alt="...">
+                                        <img src="img/carousel/bonsai6.jpg" class="embed-responsive-item d-block w-100" alt="...">
                                     </div>
                                     <div class="carousel-caption d-none d-md-block">
-                                        <h5>Second slide label</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                        <h5>Contoh Penampilan Bonsai dirumah</h5>
+                                        <p>Bonsai Kecil cocok menghiasi taman anda</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item">
                                     <div class="embed-responsive embed-responsive-21by9">
-                                        <img src="img/carousel/bonsai3.webp" class="embed-responsive-item d-block w-100" alt="...">
+                                        <img src="img/carousel/bonsai5.jpg" class="embed-responsive-item d-block w-100" alt="...">
                                     </div>
                                     <div class="carousel-caption d-none d-md-block">
-                                        <h5>Third slide label</h5>
-                                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                                        <h5>Bonsai Rumah Kelinci</h5>
+                                        <p>Bonsai yang dihiasi sedemikian rupa untuk menghiasi taman anda</p>
                                     </div>
                                 </div>
                             </div>
@@ -147,18 +147,18 @@ $products = query("SELECT a.*, b.kategori FROM tb_produk a INNER JOIN tb_kategor
                                     <div class="row">
                                         <div class="col-lg-6 px-0">
                                             <h4 class="mb-3">
-                                                Lorem ipsum dolor sit amet consectetur
+                                                Tanaman Hias
                                             </h4>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-6 mb-2">
                                                 <p class="text-justify">
-                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga doloremque natus similique rem recusandae, possimus, corporis exercitationem architecto nemo itaque alias quo sed soluta tenetur debitis velit ullam molestiae laboriosam, accusamus aperiam quia unde! Necessitatibus aliquam architecto sed reprehenderit expedita molestias aperiam consectetur dolore magni! Molestias in suscipit tenetur repellendus!
+                                                    Tanaman hias mencakup semua tumbuhan, baik berbentuk terna, merambat, semak, perdu, ataupun pohon, yang sengaja ditanam orang sebagai komponen taman, kebun rumah, penghias ruangan, upacara, komponen riasan/busana, atau sebagai komponen karangan bunga. Bunga potong pun dapat dimasukkan sebagai tanaman hias.
                                                 </p>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="embed-responsive embed-responsive-21by9">
-                                                    <img src="img/carousel/bonsai1.jpg" class="embed-responsive-item d-block w-100" alt="...">
+                                                    <img src="img/carousel/bonsai5.jpg" class="embed-responsive-item d-block w-100" alt="...">
                                                 </div>
                                             </div>
                                         </div>
