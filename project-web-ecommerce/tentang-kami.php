@@ -44,7 +44,7 @@
                     <div class="card">
                         <div class="card-body shadow">
                             <!-- Isi card konten -->
-                            <iframe width="100%" height="480px" src="https://www.youtube.com/embed/BTSWOu4vR2o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe width="100%" height="480px" src="https://www.youtube.com/embed/eeG-qibFw3I" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             <br>
                             <hr>
                             <h4>
