@@ -150,9 +150,8 @@ function login($data)
             // cek password
             if (password_verify($password, $row['password'])) {
                 $_SESSION['admin'] = true;
-                $_SESSION['email'] = $email;
-                $_SESSION['id'] = $row['kd_akun'];
-                $_SESSION['profil-pic'] = $row['foto_profil'];
+                $_SESSION['email-admin'] = $email;
+                $_SESSION['id-admin'] = $row['kd_akun'];
                 $_SESSION['jenis-akun'] = $row['jenis_akun'];
 
                 header("Location:index.php");
@@ -176,7 +175,7 @@ function ubahEmail($data)
     $akunUpdate = "UPDATE tb_akun SET email = '$emailBaru' WHERE kd_akun = $kdAkun";
     mysqli_query($conn, $akunUpdate);
 
-    $_SESSION['email'] = $emailBaru;
+    $_SESSION['email-admin'] = $emailBaru;
 
     return mysqli_affected_rows($conn);
 }
