@@ -4,10 +4,7 @@
             <div class="col-lg-6 mb-5">
                 <h6>Tentang Kami</h6>
                 <small class="pr-5">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita ullam optio quidem
-                    architecto esse ipsum odit hic voluptas consequuntur, voluptatum aut reiciendis atque quas
-                    illum, veniam dignissimos magnam sint, sapiente quis culpa nemo labore. Sunt nulla quo ea
-                    qui quibusdam.
+                    Web Penjualan Rudibonsai.com merupakan web yang berjalan pada bidang bisnis perdagangan tanaman bonsai dan perlengkapaan pemeliharaan bonsai. Untuk Toko Penjualan Offline sendiri tepatnya berada di Kabupaten Blitar, Jawa Timur
                 </small>
             </div>
 
@@ -37,6 +34,7 @@
                     <ul>
                         <li>Pengiriman</li>
                         <li>Pembayaran</li>
+                        <li>Kontak</li>
                     </ul>
                 </div>
             </div>

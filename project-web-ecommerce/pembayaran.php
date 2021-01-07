@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+$topbarActive = "topbarHome";
+
+require "config/connect.php";
+require "config/function.php";
+
+
+?>
 <!doctype html>
 <html lang="en">
 
