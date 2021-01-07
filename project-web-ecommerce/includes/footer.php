@@ -14,15 +14,19 @@
                     <ul>
                         <li>
                             <i class="fab fa-facebook-square"></i>
-                            <span>Facebook</span>
+                            <span>Rudi Bonsai</span>
                         </li>
                         <li>
                             <i class="fab fa-whatsapp"></i>
-                            <span>Whatsapp</span>
+                            <span>0812-1234-1234</span>
                         </li>
                         <li>
                             <i class="fa fa-phone"></i>
                             <span>0812-1234-1234</span>
+                        </li>
+                        <li>
+                            <i class="fa fa-headset"></i>
+                            <span>CS : 0852-3303-9160</span>
                         </li>
                     </ul>
                 </div>
