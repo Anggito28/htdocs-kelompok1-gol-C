@@ -14,7 +14,7 @@ if (!isset($_SESSION["admin"])) {
 require "config/connect.php";
 require "config/function.php";
 
-$idAkun = $_SESSION['id'];
+$idAkun = $_SESSION['id-admin'];
 
 if (isset($_POST['submitUbahPassword'])) {
     // cek password

@@ -97,7 +97,7 @@ require "config/function.php";
                                                                     <label for="name">Email</label>
                                                                     <a href="ubah-email.php" class="text-success small font-weight-bold">Ubah Email</a>
                                                                 </div>
-                                                                <p class="form-control bg-light"><?= $_SESSION['email']; ?></p>
+                                                                <p class="form-control bg-light"><?= $_SESSION['email-admin']; ?></p>
                                                             </div>
                                                             <div class="form-group">
                                                                 <div class="d-flex justify-content-between">

@@ -11,6 +11,11 @@ if (!isset($_SESSION["login"])) {
 
 $idTrans = $_GET['id'];
 
+$trans = query("SELECT a.*, b.*, c.* FROM tb_transaksi a 
+INNER JOIN tb_detail_transaksi b ON a.kd_transaksi = b.kd_transaksi
+INNER JOIN tb_produk c On c.id_produk = b.id_produk
+AND a.kd_transaksi = $idTrans");
+
 if (isset($_POST['simpan'])) {
     if (uploadBuktiTransfer($_POST) > 0) {
         echo "
@@ -28,15 +33,18 @@ if (isset($_POST['simpan'])) {
 
 if (isset($_POST['batal'])) {
     mysqli_query($conn, "UPDATE tb_transaksi SET status_transaksi ='batal' WHERE kd_transaksi = $idTrans;");
+
+    foreach ($trans as $t) {
+        $stokBaru = $t['stok'] + $t['jumlah_barang'];
+        $idProduk = $t['id_produk'];
+        mysqli_query($conn, "UPDATE tb_produk SET stok = $stokBaru WHERE id_produk = $idProduk;");
+    }
+
     echo "<script>";
-    echo "alert('Pesanan telah dibatalkan!')";
+    echo "alert('Pesanan telah dibatalkan!');";
+    echo "location = 'transaksi.php';";
     echo "</script>";
 }
-
-$trans = query("SELECT a.*, b.*, c.* FROM tb_transaksi a 
-INNER JOIN tb_detail_transaksi b ON a.kd_transaksi = b.kd_transaksi
-INNER JOIN tb_produk c On c.id_produk = b.id_produk
-AND a.kd_transaksi = $idTrans");
 
 ?>
 
