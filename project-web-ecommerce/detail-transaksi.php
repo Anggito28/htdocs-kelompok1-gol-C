@@ -193,7 +193,7 @@ AND a.kd_transaksi = $idTrans");
                                                 $msg = '';
                                                 switch ($trans[0]['status_transaksi']) {
                                                     case 'batal':
-                                                        $alert = "danger";
+                                                        $alert = "secondary";
                                                         $msg = "Pesanan dibatalkan.";
                                                         break;
                                                     case 'dikonfirmasi':

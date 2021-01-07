@@ -261,6 +261,7 @@ function login($data)
 
                 $_SESSION['login'] = true;
                 $_SESSION['nama'] = $nama;
+                $_SESSION['email'] = $email;
                 $_SESSION['id'] = $idAkun;
                 $_SESSION['profil-pic'] = $row['foto_profil'];
 

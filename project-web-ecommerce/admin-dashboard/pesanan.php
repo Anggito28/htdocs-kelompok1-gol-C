@@ -92,7 +92,7 @@ if (isset($_GET['status'])) {
                     <!-- Tabel produk -->
                     <div class="custom-table card shadow mb-4">
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-dark">Semua</h6>
+                            <h6 class="m-0 font-weight-bold text-dark"><?= (isset($status) ? ucfirst($status) : "Semua"); ?></h6>
                         </div>
 
                         <div class="card-body">
@@ -122,7 +122,7 @@ if (isset($_GET['status'])) {
                                                 $alert = '';
                                                 switch ($d['status_transaksi']) {
                                                     case 'batal':
-                                                        $alert = "danger";
+                                                        $alert = "secondary";
                                                         break;
                                                     case 'tertunda':
                                                         $alert = "danger";

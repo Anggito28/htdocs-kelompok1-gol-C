@@ -17,10 +17,15 @@ require "config/function.php";
 
 $idTrans = $_GET['id'];
 
+$trans = query("SELECT a.*, b.*, c.* FROM tb_transaksi a 
+INNER JOIN tb_detail_transaksi b ON a.kd_transaksi = b.kd_transaksi
+INNER JOIN tb_produk c On c.id_produk = b.id_produk
+AND a.kd_transaksi = $idTrans");
+
 if (isset($_POST['konfirmasi'])) {
     mysqli_query($conn, "UPDATE tb_transaksi SET status_transaksi ='diproses' WHERE kd_transaksi = $idTrans;");
     echo "<script>";
-    echo "alert('Pesanan telah dikonfirmasi!')";
+    echo "alert('Pesanan telah dikonfirmasi!');";
     echo "</script>";
 }
 
@@ -29,14 +34,22 @@ if (isset($_POST['ubah'])) {
 
     mysqli_query($conn, "UPDATE tb_transaksi SET status_transaksi ='$ubah' WHERE kd_transaksi = $idTrans;");
     echo "<script>";
-    echo "alert('Status pesanan telah diubah!')";
+    echo "alert('Status pesanan telah diubah!');";
     echo "</script>";
 }
 
 if (isset($_POST['batal'])) {
     mysqli_query($conn, "UPDATE tb_transaksi SET status_transaksi ='batal' WHERE kd_transaksi = $idTrans;");
+
+    foreach ($trans as $t) {
+        $stokBaru = $t['stok'] + $t['jumlah_barang'];
+        $idProduk = $t['id_produk'];
+        mysqli_query($conn, "UPDATE tb_produk SET stok = $stokBaru WHERE id_produk = $idProduk;");
+    }
+
     echo "<script>";
-    echo "alert('Pesanan telah dibatalkan!')";
+    echo "alert('Pesanan telah dibatalkan!');";
+    echo "location = 'pesanan.php';";
     echo "</script>";
 }
 
@@ -45,14 +58,9 @@ if (isset($_POST['submitOngkir'])) {
 
     mysqli_query($conn, "UPDATE tb_transaksi SET ongkir = $ongkir, status_transaksi = 'tertunda' WHERE kd_transaksi = $idTrans;");
     echo "<script>";
-    echo "alert('Ongkir telah dikonfirmasi!')";
+    echo "alert('Ongkir telah dikonfirmasi!');";
     echo "</script>";
 }
-
-$trans = query("SELECT a.*, b.*, c.* FROM tb_transaksi a 
-INNER JOIN tb_detail_transaksi b ON a.kd_transaksi = b.kd_transaksi
-INNER JOIN tb_produk c On c.id_produk = b.id_produk
-AND a.kd_transaksi = $idTrans");
 
 $kdPembeli = $trans[0]['kd_pembeli'];
 
@@ -240,7 +248,7 @@ AND tb_pembeli.kd_pembeli = $kdPembeli")[0];
                                                         $next = '';
                                                         switch ($trans[0]['status_transaksi']) {
                                                             case 'batal':
-                                                                $alert = "danger";
+                                                                $alert = "secondary";
                                                                 $msg = "Pesanan dibatalkan.";
                                                                 break;
                                                             case 'tertunda':
@@ -389,7 +397,7 @@ AND tb_pembeli.kd_pembeli = $kdPembeli")[0];
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-7">
-                                                                <h4 class="card-title"><?= $t['nama_produk']; ?></h4>
+                                                                <h4 class="card-title"><?= ucwords($t['nama_produk']); ?></h4>
                                                                 <h5 class="card-text">Rp <?= number_format($t['harga'], 0, '', "."); ?></h5>
                                                                 <span>Jumlah : <?= $t['jumlah_barang']; ?></span>
                                                             </div>

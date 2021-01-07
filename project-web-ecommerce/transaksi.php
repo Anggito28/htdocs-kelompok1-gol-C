@@ -87,12 +87,15 @@ $transaksi = query("SELECT * FROM tb_transaksi WHERE kd_pembeli = $kdPembeli ORD
                                             $alert = '';
                                             switch ($trans['status_transaksi']) {
                                                 case 'batal':
-                                                    $alert = "danger";
+                                                    $alert = "secondary";
                                                     break;
                                                 case 'tertunda':
                                                     $alert = "danger";
                                                     break;
                                                 case 'menunggu':
+                                                    $alert = "warning";
+                                                    break;
+                                                case 'dikonfirmasi':
                                                     $alert = "warning";
                                                     break;
                                                 case 'diproses':

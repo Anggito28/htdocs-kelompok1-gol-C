@@ -66,7 +66,7 @@ require "config/function.php";
           <!-- Tabel produk -->
           <div class="custom-table card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-dark">Daftar Produk</h6>
+              <h6 class="m-0 font-weight-bold text-dark">Semua</h6>
               <div class="dropdown">
                 <button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Menu Lain
@@ -185,9 +185,7 @@ require "config/function.php";
                             <?php $desc = $data['deskripsi'] ?>
                           </p>
                           <small>
-                            <span class="font-weight-bold">Deskripsi : </span>
-                            <?= ucfirst(htmlspecialchars(substr("$desc", 0, 120)) . "..."); ?>
-                            <a href="#" data-toggle="popover" data-trigger="focus" data-placement="left" data-content="<?= ucfirst(htmlspecialchars($desc)); ?>">(Selengkapnya...)</a>
+                            <a href="#" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="<?= ucfirst(htmlspecialchars($desc)); ?>"> <span class="font-weight-bold">(Deskripsi)</span></a>
                           </small>
                         </td>
                         <td>
