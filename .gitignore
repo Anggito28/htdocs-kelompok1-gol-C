@@ -108,8 +108,6 @@ project-web-ecommerce/admin-dashboard/img/produk/*
 project-web-ecommerce/img/bukti-transfer/*
 project-web-ecommerce/img/profile-picture/*
 
-project-web-ecommerce/config/*
-
 # exception to the rule
 !project-web-ecommerce/admin-dashboard/img/produk/.gitkeep 
 !project-web-ecommerce/img/bukti-transfer/.gitkeep 
