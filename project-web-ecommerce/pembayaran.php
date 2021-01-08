@@ -58,8 +58,9 @@ require "config/function.php";
                                 <center>Tata Cara Pemesanan Barang Hingga Pembayaran</center>
                             </h5>
                             <hr>
-
-                            <img src="img/default/siklus.png" class="rounded" alt="..." style="width:100%;height:75%;">
+                            <div class="col">
+                                <img src="img/default/siklus1.png" class="rounded" alt="..." style="width:100%;height:75%;">
+                            </div>
                             <br>
                             <p><strong>#NB&nbsp;: Jika Kurang Jelas, Dapat dilihat di Manual Book E-Commerce Rudibonsai</strong></p>
                         </div>
