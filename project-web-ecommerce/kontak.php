@@ -34,39 +34,64 @@ require "config/function.php";
     <section class="content">
         <div class="container">
 
-            <!-- Header konten -->
             <div class="row mb-4">
+
                 <div class="col-lg-12">
                     <div class="card shadow">
-                        <div class="card-body d-flex justify-content-between">
-
-                            <h5 class="mb-0 my-auto">Kontak</h5>
-                            <div class="d-inline-flex">
-
-                            </div>
+                        <div class="card-header bg-success text-white">
+                            <h4>Kontak</h4>
                         </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="row mb-5">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-body shadow">
-                            <!-- Isi card konten -->
-                            <div class="row d-flex justify-content-center">
+                        <div class="embed-responsive embed-responsive-21by9 bg-dark">
+                            <iframe class=" embed-responsive-item d-block w-100 card-img-top" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1975.0046339371477!2d112.290506!3d-8.100536!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x922690c6a3f1ca0b!2sBelanja%20keperluan%20bonsai!5e0!3m2!1sid!2sid!4v1609388429121!5m2!1sid!2sid" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+
+                        </div>
+
+                        <div class="card-body custom-card-position">
+                            <div class="row justify-content-center">
+
                                 <div class="col-md-10">
-                                    <h4>Lokasi Rudi Bonsai</h4>
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1975.0046339371477!2d112.290506!3d-8.100536!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x922690c6a3f1ca0b!2sBelanja%20keperluan%20bonsai!5e0!3m2!1sid!2sid!4v1609388429121!5m2!1sid!2sid" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-                                    <hr>
-                                    <h6>Kontak</h6>
-                                    <p class="text-left">Nama Pemilik &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Rudi Setiawan </p>
-                                    <p class="text-left">Alamat Toko &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: desa Wonorejo, dusun kembangarum, rt 3/ rw 3, kecamatan talun, kabupaten Blitar, jatim </p>
-                                    <p class="text-left">No Telp/Whatsapp &nbsp;: 0812-1234-1234 </p>
+                                    <div class="card mb-5 shadow">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-center">
+                                                Rudi Bonsai
+                                            </h5>
+                                            <hr>
+
+                                            <div class="form-group">
+                                                <label>Nama Pemilik</label>
+                                                <p class="form-control bg-light">Rudi Setiawan</p>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label>No Telepon / Whatsapp</label>
+                                                <p class="form-control bg-light">0812-1234-1234</p>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Alamat Toko</label>
+                                                <textarea style="resize: none;" disabled class="form-control bg-light">Desa Wonorejo, Dusun kembangarum, RT 3/ RW 3, Kecamatan Talun, Kabupaten Blitar, Jatim </textarea>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-10">
+                                    <div class="card shadow">
+                                        <div class="card-body">
+                                            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScGFpRvlJwaaFG9ncOZeHJ36obBYyOqgKrQuGv-jGcAYw9Z_A/viewform?embedded=true" width="100%" height="900px" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+
+
                         </div>
+
                     </div>
+
                 </div>
             </div>
 

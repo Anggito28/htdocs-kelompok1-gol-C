@@ -34,37 +34,21 @@ require "config/function.php";
     <section class="content">
         <div class="container">
 
-            <!-- Header konten -->
             <div class="row mb-4">
                 <div class="col-lg-12">
                     <div class="card shadow">
-                        <div class="card-body d-flex justify-content-between">
+                        <div class="card-header bg-success text-white">
+                            <h4>Pembayaran</h4>
+                        </div>
 
-                            <h5 class="mb-0 my-auto">Pembayaran</h5>
-                            <div class="d-inline-flex">
+                        <div class="card-body">
+                            <img src="img/default/siklus1.png" width="100%">
 
-                            </div>
+                            <p><strong>#NB: Jika Kurang Jelas, Dapat menghubungi kami melalui halaman <a class="text-success" href="kontak.php">Kontak</a></strong></p>
+
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="row mb-5">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-body shadow">
-                            <!-- Isi card konten -->
-                            <h5>
-                                <center>Tata Cara Pemesanan Barang Hingga Pembayaran</center>
-                            </h5>
-                            <hr>
-                            <div class="col">
-                                <img src="img/default/siklus1.png" class="rounded" alt="..." style="width:100%;height:75%;">
-                            </div>
-                            <br>
-                            <p><strong>#NB&nbsp;: Jika Kurang Jelas, Dapat dilihat di Manual Book E-Commerce Rudibonsai</strong></p>
-                        </div>
-                    </div>
                 </div>
             </div>
 

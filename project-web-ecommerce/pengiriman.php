@@ -34,40 +34,46 @@ require "config/function.php";
     <section class="content">
         <div class="container">
 
-            <!-- Header konten -->
             <div class="row mb-4">
+
                 <div class="col-lg-12">
                     <div class="card shadow">
-                        <div class="card-body d-flex justify-content-between">
+                        <div class="card-header bg-success text-white">
+                            <h4>Pengiriman</h4>
+                        </div>
 
-                            <h5 class="mb-0 my-auto">Pengiriman </h5>
-                            <div class="d-inline-flex">
+                        <div class="card-body">
+                            <div class="row justify-content-center">
+
+                                <div class="col-md-10">
+                                    <div class="card mb-5 shadow">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-center">
+                                                Metode Pengiriman
+                                            </h5>
+                                            <hr>
+                                            <p>Terapat 2 Proses Pengiriman, yaitu :</p>
+                                            <ol>
+                                                <li>Pengiriman Barang dengan COD atau Langsung dalam wilayah Kabupaten Blitar, Jawa Timur</li>
+                                                <p class="mt-2">Pengiriman COD dilakukan secara langsung oleh petugas toko atau pemilik toko bonsai dengan bertemu langsung dengan pembeli.</p>
+                                                <li>Pengiriman Barang di luar Kabupaten Blitar, Jawa Timur</li>
+                                                <p class="mt-2">Pengiriman Barang diluar kota akan dilakukan apabila pembeli telah melakukan pembayaran terhadap barang pesanan, pengiriman barang akan dikirim melalui jasa pengiriman PT. Indah Logistik yang dapat mencangkup seluruh wilayah di Indonesia.</p>
+                                                <br>
+                                            </ol>
+                                            <p><strong>#Note: Pastikan Alamat Rumah dan Nomor Telepon Anda Sudah Tepat dan Benar!!</strong></p>
+
+                                        </div>
+                                    </div>
+                                </div>
+
 
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="row mb-5">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-body shadow">
-                            <!-- Isi card konten -->
-                            <h5>
-                                <center>METODE PENGIRIMAN BARANG E-COMMERCE TERHADAP PEMBELI</center>
-                            </h5>
-                            <hr>
-                            <hr>
-                            <p class="text-justify">Terapat 2 Proses Pengiriman, yaitu :</p>
-                            <p class="text-justify">1.&nbsp;Pengiriman Barang dengan COD atau Langsung dalam wilayah Kabupaten Blitar, Jawa Timur</p>
-                            <p class="text-justify">&nbsp;&nbsp;Pengiriman COD dilakukan secara langsung oleh petugas toko atau pemilik toko bonsai dengan bertemu langsung dengan &nbsp;&nbsp;&nbsp;pembeli.</p>
-                            <p class="text-justify">2.&nbsp;Pengiriman Barang di luar Kabupaten Blitar, Jawa Timur</p>
-                            <p class="text-justify">&nbsp;&nbsp;Pengiriman Barang diluar kota akan dilakukan apabila pembeli telah melakukan pembayaran terhadap barang pesanan, &nbsp;&nbsp;&nbsp;pengiriman barang akan dikirim melalui jasa pengiriman PT. Indah Logistik yang dapat mencangkup seluruh wilayah di Indonesia.</p>
-                            <br>
-                            <p><strong>&nbsp;&nbsp;&nbsp;#Note:&nbsp;Pastikan Alamat Rumah dan Nomor Telepon Anda Sudah Tepat dan Benar!!</strong></p>
+
                         </div>
+
                     </div>
+
                 </div>
             </div>
 

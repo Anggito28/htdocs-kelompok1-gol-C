@@ -12,7 +12,20 @@ div.footerList {
     float: right;
 }
 
+/* info */
+div.custom-card-position {
+    position: relative;
+    top: -16vh;
+}
+
 @media (max-width : 991px) {
+
+    /* info */
+    div.custom-card-position {
+        position: relative;
+        top: -6vh;
+    }
+
     div.footerList {
         float: left;
     }
@@ -62,6 +75,10 @@ section.header {
 div.footer {
     background-color: rgb(32, 32, 32);
     height: max-content;
+    color: rgb(212, 212, 212);
+}
+
+div.footer ul li a {
     color: rgb(212, 212, 212);
 }
 

@@ -90,6 +90,11 @@ $products = query("SELECT a.*, b.kategori FROM tb_produk a INNER JOIN tb_kategor
             <div class="row mb-4">
                 <div class="col-lg-12">
                     <div class="card">
+                        <div class="card-header bg-success text-white">
+                            <h5>
+                                Produk Terbaru
+                            </h5>
+                        </div>
                         <div class="card-body shadow">
                             <div class="row justify-content-center">
                                 <div class="col-lg-10">
@@ -158,7 +163,7 @@ $products = query("SELECT a.*, b.kategori FROM tb_produk a INNER JOIN tb_kategor
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="embed-responsive embed-responsive-21by9">
-                                                    <img src="img/carousel/bonsai5.jpg" class="embed-responsive-item d-block w-100" alt="...">
+                                                    <img src="img/carousel/bonsai5.jpg" class="product-image embed-responsive-item d-block w-100" alt="...">
                                                 </div>
                                             </div>
                                         </div>

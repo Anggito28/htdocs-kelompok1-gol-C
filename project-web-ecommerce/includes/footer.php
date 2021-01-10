@@ -4,7 +4,7 @@
             <div class="col-lg-6 mb-5">
                 <h6>Tentang Kami</h6>
                 <small class="pr-5">
-                    Web Penjualan Rudibonsai.com merupakan web yang berjalan pada bidang bisnis perdagangan tanaman bonsai dan perlengkapaan pemeliharaan bonsai. Untuk Toko Penjualan Offline sendiri tepatnya berada di Kabupaten Blitar, Jawa Timur
+                    Web Penjualan Rudibonsai merupakan web yang berjalan pada bidang bisnis perdagangan tanaman bonsai dan perlengkapaan pemeliharaan bonsai. Untuk Toko Penjualan Offline sendiri tepatnya berada di Kabupaten Blitar, Jawa Timur
                 </small>
             </div>
 
@@ -24,10 +24,6 @@
                             <i class="fa fa-phone"></i>
                             <span>0812-1234-1234</span>
                         </li>
-                        <li>
-                            <i class="fa fa-headset"></i>
-                            <span>CS : 0852-3303-9160</span>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -36,9 +32,9 @@
                 <div class="footerList">
                     <h6>Link</h6>
                     <ul>
-                        <li>Pengiriman</li>
-                        <li>Pembayaran</li>
-                        <li>Kontak</li>
+                        <li><a href="pengiriman.php">Pengiriman</a></li>
+                        <li><a href="pembayaran.php">Pembayaran</a></li>
+                        <li><a href="kontak.php">Kontak</a></li>
                     </ul>
                 </div>
             </div>
