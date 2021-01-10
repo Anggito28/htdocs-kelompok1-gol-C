@@ -208,7 +208,7 @@ function register($data)
     $pass = password_hash($pass, PASSWORD_DEFAULT);
 
     // tambah akun ke database
-    $akun = "INSERT INTO tb_akun VALUES (0, '$email', '$pass', 'admin', 'empty')";
+    $akun = "INSERT INTO tb_akun VALUES (0, '$email', '$pass', 'admin', 'empty', 1)";
     mysqli_query($conn, $akun);
 
     return mysqli_affected_rows($conn);
