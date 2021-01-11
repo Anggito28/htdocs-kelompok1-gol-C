@@ -26,6 +26,7 @@ if (isset($_POST['konfirmasi'])) {
     mysqli_query($conn, "UPDATE tb_transaksi SET status_transaksi ='diproses' WHERE kd_transaksi = $idTrans;");
     echo "<script>";
     echo "alert('Pesanan telah dikonfirmasi!');";
+    echo "location = 'pesanan.php';";
     echo "</script>";
 }
 
@@ -35,6 +36,7 @@ if (isset($_POST['ubah'])) {
     mysqli_query($conn, "UPDATE tb_transaksi SET status_transaksi ='$ubah' WHERE kd_transaksi = $idTrans;");
     echo "<script>";
     echo "alert('Status pesanan telah diubah!');";
+    echo "location = 'pesanan.php';";
     echo "</script>";
 }
 
@@ -59,6 +61,7 @@ if (isset($_POST['submitOngkir'])) {
     mysqli_query($conn, "UPDATE tb_transaksi SET ongkir = $ongkir, status_transaksi = 'tertunda' WHERE kd_transaksi = $idTrans;");
     echo "<script>";
     echo "alert('Ongkir telah dikonfirmasi!');";
+    echo "location = 'pesanan.php';";
     echo "</script>";
 }
 
@@ -393,7 +396,7 @@ AND tb_pembeli.kd_pembeli = $kdPembeli")[0];
                                                         <div class="row ">
                                                             <div class="col-lg-5">
                                                                 <div class="embed-responsive embed-responsive-16by9 shadow-sm mb-4">
-                                                                    <img src="img/produk/<?= $t['image']; ?>" class="border p-1 product-image embed-responsive-item" alt="...">
+                                                                    <img src="img/produk/<?= $t['image']; ?>" class="border p-1 image-fit embed-responsive-item" alt="...">
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-7">
