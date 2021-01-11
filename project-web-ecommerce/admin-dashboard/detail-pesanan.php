@@ -396,7 +396,7 @@ AND tb_pembeli.kd_pembeli = $kdPembeli")[0];
                                                         <div class="row ">
                                                             <div class="col-lg-5">
                                                                 <div class="embed-responsive embed-responsive-16by9 shadow-sm mb-4">
-                                                                    <img src="img/produk/<?= $t['image']; ?>" class="border p-1 image-fit embed-responsive-item" alt="...">
+                                                                    <img src="img/produk/<?= $t['image']; ?>" class="border p-1 img-fit embed-responsive-item" alt="...">
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-7">

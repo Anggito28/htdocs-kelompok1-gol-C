@@ -95,7 +95,7 @@ if ($tab == '1') {
                                                                 <label for="name">Email</label>
                                                                 <a href="ubah-email.php" class="text-success small font-weight-bold">Ubah Email</a>
                                                             </div>
-                                                            <p class="form-control bg-light"><?= $_SESSION['email']; ?></p>
+                                                            <textarea disabled style="resize: none; white-space: nowrap; overflow-y: hidden; height: 38px;" class="form-control bg-light"><?= $_SESSION['email']; ?></textarea>
                                                         </div>
                                                         <div class="form-group">
                                                             <div class="d-flex justify-content-between">
@@ -153,7 +153,7 @@ if ($tab == '1') {
                                                         <label>
                                                             Detail alamat :
                                                         </label>
-                                                        <p class="form-control bg-light"><?= $data['detail_alamat']; ?></p>
+                                                        <textarea disabled class="form-control bg-light"><?= $data['detail_alamat']; ?></textarea>
                                                     </div>
                                                 </div>
                                             </div>
