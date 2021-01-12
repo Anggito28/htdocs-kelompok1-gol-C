@@ -248,7 +248,7 @@ AND tb_pembeli.kd_pembeli = $kdPembeli")[0];
                                 </div>
 
                                 <!-- data form -->
-                                <input type="hidden" name="kdPembeli" value="<?= $_SESSION['id']; ?>">
+                                <input type="hidden" name="kdPembeli" value="<?= $kdPembeli; ?>">
                                 <input type="hidden" name="tanggal" value="<?= date("Y-m-d"); ?>">
                                 <input type="hidden" name="totalBayar" value="<?= $total; ?>">
                                 <?php if ($data['id_kabupaten'] == "3505" || $data['id_kabupaten'] == "3572") : ?>

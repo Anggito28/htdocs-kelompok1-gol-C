@@ -14,11 +14,12 @@ $sidebarActive = "sidebarPelanggan";
 require "config/connect.php";
 require "config/function.php";
 
-$data = query("SELECT tb_akun.email, tb_pembeli.*, wilayah_provinsi.nama AS prov, wilayah_kabupaten.nama AS kab, wilayah_kecamatan.nama AS kec FROM tb_pembeli 
+$data = query("SELECT tb_akun.email, tb_akun.is_active, tb_pembeli.*, wilayah_provinsi.nama AS prov, wilayah_kabupaten.nama AS kab, wilayah_kecamatan.nama AS kec FROM tb_pembeli 
 INNER JOIN wilayah_provinsi ON tb_pembeli.id_provinsi = wilayah_provinsi.id
 INNER JOIN wilayah_kabupaten ON tb_pembeli.id_kabupaten = wilayah_kabupaten.id
 INNER JOIN wilayah_kecamatan ON tb_pembeli.id_kecamatan = wilayah_kecamatan.id
 INNER JOIN tb_akun ON tb_akun.kd_akun = tb_pembeli.kd_akun
+AND tb_akun.is_active = 1
 ");
 
 ?>

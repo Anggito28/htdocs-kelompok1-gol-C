@@ -21,12 +21,14 @@ if (isset($_POST['simpan'])) {
         echo "
             <script>
                 alert('Bukti transfer berhasil diupload!');
+                location = 'transaksi.php';
             </script>";
     } else {
         echo mysqli_error($conn);
         echo "
             <script>
                 alert('Bukti transfer gagaldiupload!');
+                location = 'transaksi.php';
             </script>";
     }
 }
@@ -42,6 +44,16 @@ if (isset($_POST['batal'])) {
 
     echo "<script>";
     echo "alert('Pesanan telah dibatalkan!');";
+    echo "location = 'transaksi.php';";
+    echo "</script>";
+}
+
+if (isset($_POST['ubah'])) {
+    $ubah = $_POST['ubah'];
+
+    mysqli_query($conn, "UPDATE tb_transaksi SET status_transaksi ='$ubah' WHERE kd_transaksi = $idTrans;");
+    echo "<script>";
+    echo "alert('Status pesanan telah diubah!');";
     echo "location = 'transaksi.php';";
     echo "</script>";
 }
@@ -235,6 +247,28 @@ if (isset($_POST['batal'])) {
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <?php if ($trans[0]['status_transaksi'] == "dikirim") : ?>
+                                            <div class="col-12 mb-4">
+                                                <div>
+                                                    <form action="" method="POST">
+                                                        <div class="form-group">
+                                                            <label for="ubah">
+                                                                <h6>Ubah status transaksi?</h6>
+                                                            </label>
+                                                            <p class="form-control bg-light">
+                                                                Selesai
+                                                            </p>
+                                                            <small>Klik tombol "Proses" jika produk sudah diterima.</small>
+                                                        </div>
+                                                        <div class="form-group d-flex justify-content-between">
+                                                            <button onclick="return confirm('Konfirmasi, ubah status transaksi menjadi Selesai?')" value="selesai" class="btn btn-success" type="submit" name="ubah">Proses</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        <?php endif; ?>
+
                                         <div class="col-12 mb-4">
                                             <div>
                                                 <h6>Tanggal transaksi</h6>
