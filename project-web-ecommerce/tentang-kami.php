@@ -69,7 +69,7 @@ require "config/function.php";
                                                 Visi dan Misi
                                             </h5>
                                             <hr>
-                                            <ul>
+                                            <ul class="text-justify">
                                                 <li>Menciptakan kenyamanan dalam berbelanja melaui sistem web sehingga customer dapat menghemat waktu dan lebih praktis dalam berbelanja
                                                 </li>
                                                 <li>Menjadi pusat jual beli terlengkap produk berkebun dan pertanian melalui media internet
