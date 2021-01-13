@@ -152,13 +152,13 @@ $products = query("SELECT a.*, b.kategori FROM tb_produk a INNER JOIN tb_kategor
                                     <div class="row">
                                         <div class="col-lg-6 px-0">
                                             <h4 class="mb-3">
-                                                Tanaman Hias
+                                                Apa itu Bonsai?
                                             </h4>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-6 mb-2">
                                                 <p class="text-justify">
-                                                    Tanaman hias mencakup semua tumbuhan, baik berbentuk terna, merambat, semak, perdu, ataupun pohon, yang sengaja ditanam orang sebagai komponen taman, kebun rumah, penghias ruangan, upacara, komponen riasan/busana, atau sebagai komponen karangan bunga. Bunga potong pun dapat dimasukkan sebagai tanaman hias.
+                                                    Bonsai merupakan tanaman atau pohon yang dikerdilkan di dalam pot dangkal dengan tujuan membuat miniatur dari bentuk asli pohon besar yang sudah tua di alam bebas. Pohon dibentuk dengan bantuan kawat pada ranting dan tunasnya. Keindahan bonsai bisa dilihat dari dahan, ranting, daun dan akar pohonnya, dan juga pot yang digunakan berukuran sangat kecil.
                                                 </p>
                                             </div>
                                             <div class="col-lg-6">
