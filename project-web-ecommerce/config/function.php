@@ -124,6 +124,7 @@ function editProfil($data)
     $response = $response + mysqli_affected_rows($conn);
 
     $_SESSION['profil-pic'] = $img;
+    $_SESSION['nama'] = $nama;
 
     return $response;
 }

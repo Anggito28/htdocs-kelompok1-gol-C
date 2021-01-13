@@ -16,7 +16,7 @@ require "config/function.php";
 
 $query = query("SELECT tb_transaksi.*, tb_pembeli.* FROM tb_transaksi
 INNER JOIN tb_pembeli ON tb_transaksi.kd_pembeli = tb_pembeli.kd_pembeli 
--- AND tb_transaksi.status_transaksi = 'selesai'
+AND tb_transaksi.status_transaksi = 'selesai'
 ");
 
 if (isset($_POST['submit'])) {
@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
 
         $query = query("SELECT tb_transaksi.*, tb_pembeli.* FROM tb_transaksi
         INNER JOIN tb_pembeli ON tb_transaksi.kd_pembeli = tb_pembeli.kd_pembeli AND MONTH(tb_transaksi.tgl_transaksi) = '$bulan' 
-        -- AND tb_transaksi.status_transaksi = 'selesai'
+        AND tb_transaksi.status_transaksi = 'selesai'
         ");
     }
 }

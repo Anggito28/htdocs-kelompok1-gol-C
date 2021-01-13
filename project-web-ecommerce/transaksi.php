@@ -67,7 +67,7 @@ $transaksi = query("SELECT * FROM tb_transaksi WHERE kd_pembeli = $kdPembeli ORD
                         </div>
                         <div class="card-body shadow">
                             <!-- Isi card konten -->
-                            <table id="dataTable" class="table table-striped table-responsive-sm text-center">
+                            <table id="dataTable" class="table table-striped table-responsive-sm text-center" style="width: 100%;">
                                 <thead>
                                     <tr>
                                         <th>#</th>
