@@ -149,9 +149,9 @@ AND tb_pembeli.kd_pembeli = $kdPembeli")[0];
                                                                     <h6>Alamat</h6>
                                                                 </div>
                                                                 <div class="card-body">
-                                                                    <h6><?= $data['nama']; ?></h6>
+                                                                    <h6><?= htmlspecialchars($data['nama']); ?></h6>
                                                                     <p><?= $data['no_telepon']; ?></p>
-                                                                    <p> <?= $data['detail_alamat']; ?><br>
+                                                                    <p> <?= htmlspecialchars($data['detail_alamat']); ?><br>
                                                                         <?= $data['kec']; ?>, <?= $data['kab']; ?>, Provinsi <?= $data['prov']; ?>, Indonesia
                                                                     </p>
                                                                 </div>
@@ -367,7 +367,7 @@ AND tb_pembeli.kd_pembeli = $kdPembeli")[0];
                                                             </div>
                                                             <div>
                                                                 <h6>Catatan untuk penjual</h6>
-                                                                <textarea disabled class="form-control bg-light" rows="3"><?= $trans[0]['keterangan']; ?></textarea>
+                                                                <textarea disabled class="form-control bg-light" rows="3"><?= htmlspecialchars($trans[0]['keterangan']); ?></textarea>
                                                             </div>
                                                         </div>
                                                     </div>

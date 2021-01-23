@@ -95,16 +95,16 @@ AND tb_akun.is_active = 1
                                         <?php foreach ($data as $d) : ?>
                                             <tr>
                                                 <td>
-                                                    <?= $d['nama']; ?>
+                                                    <?= htmlspecialchars($d['nama']); ?>
                                                 </td>
                                                 <td>
-                                                    <?= $d['email']; ?>
+                                                    <?= htmlspecialchars($d['email']); ?>
                                                 </td>
                                                 <td>
                                                     <?= $d['no_telepon']; ?>
                                                 </td>
                                                 <td>
-                                                    <p> <?= $d['detail_alamat']; ?><br>
+                                                    <p> <?= htmlspecialchars($d['detail_alamat']); ?><br>
                                                         <?= $d['kec']; ?>, <?= $d['kab']; ?>, Provinsi <?= $d['prov']; ?>, Indonesia
                                                     </p>
                                                 </td>

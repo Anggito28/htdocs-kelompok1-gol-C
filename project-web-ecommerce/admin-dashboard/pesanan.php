@@ -153,7 +153,7 @@ if (isset($_GET['status'])) {
                                                     <?= $d['tgl_transaksi'] ?>
                                                 </td>
                                                 <td>
-                                                    <?= $d['nama'] ?>
+                                                    <?= htmlspecialchars($d['nama']) ?>
                                                 </td>
                                                 <td>
                                                     <?= $d['opsi_pembayaran'] ?>

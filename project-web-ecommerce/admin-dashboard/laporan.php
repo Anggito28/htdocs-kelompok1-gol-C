@@ -141,7 +141,7 @@ $baris = count($query);
 
                                                 <tr>
                                                     <td><?= $no++ ?></td>
-                                                    <td><?= ucwords($data['nama']) ?></td>
+                                                    <td><?= ucwords(htmlspecialchars($data['nama'])) ?></td>
                                                     <td><?= $data['no_telepon'] ?></td>
                                                     <td><?= $data['total_bayar'] ?></td>
                                                     <td><?= date('d-M-Y', strtotime($data['tgl_transaksi'])) ?></td>

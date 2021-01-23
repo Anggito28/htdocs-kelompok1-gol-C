@@ -68,7 +68,7 @@ if (isset($_GET['c'])) {
                             <h5 class="mb-0 my-auto">Produk</h5>
                             <div class="d-inline-flex">
                                 <?php if (isset($_GET['c']) || isset($_GET['s'])) : ?>
-                                    <a href="produk.php" class=" mr-3 btn btn-outline-secondary">Reset</a>
+                                    <a href="produk.php" class="btn my-auto mr-3 btn-sm btn-outline-secondary">Reset</a>
                                 <?php else : ?>
                                     <div class="dropdown my-auto mr-3 btn-group">
                                         <button class="btn btn-sm btn-secondary dropdown-toggle my-0" type="button" id="dropdownMenuButton" data-toggle="dropdown">

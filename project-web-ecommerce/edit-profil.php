@@ -110,7 +110,7 @@ if (isset($_POST['submitEditProfil'])) {
                                                         <h6 class="text-center mb-3">Identitas</h6>
                                                         <div class="form-group">
                                                             <label for="name">Nama</label>
-                                                            <input value="<?= $data['nama']; ?>" maxlength="50" required type="text" class="form-control" id="name" name="nama">
+                                                            <input value="<?= htmlspecialchars($data['nama']); ?>" maxlength="50" required type="text" class="form-control" id="name" name="nama">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="jenkel">Jenis Kelamin</label>
@@ -163,7 +163,7 @@ if (isset($_POST['submitEditProfil'])) {
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="detail">Detail alamat</label>
-                                                    <input value="<?= $data['detail_alamat']; ?>" required type="text" class="form-control " id="detail" name="detail" placeholder="RT, RW, Linkungan/Desa/Dusun/Gang">
+                                                    <input value="<?= htmlspecialchars($data['detail_alamat']); ?>" required type="text" class="form-control " id="detail" name="detail" placeholder="RT, RW, Linkungan/Desa/Dusun/Gang">
                                                 </div>
                                             </div>
                                         </div>

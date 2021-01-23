@@ -95,7 +95,7 @@ if ($tab == '1') {
                                                                 <label for="name">Email</label>
                                                                 <a href="ubah-email.php" class="text-success small font-weight-bold">Ubah Email</a>
                                                             </div>
-                                                            <textarea disabled style="resize: none; white-space: nowrap; overflow-y: hidden; height: 38px;" class="form-control bg-light"><?= $_SESSION['email']; ?></textarea>
+                                                            <textarea disabled style="resize: none; white-space: nowrap; overflow-y: hidden; height: 38px;" class="form-control bg-light"><?= htmlspecialchars($_SESSION['email']); ?></textarea>
                                                         </div>
                                                         <div class="form-group">
                                                             <div class="d-flex justify-content-between">
@@ -122,7 +122,7 @@ if ($tab == '1') {
                                                         <h6 class="text-center mb-3">Identitas</h6>
                                                         <div class="form-group">
                                                             <label for="name">Nama</label>
-                                                            <p class="form-control bg-light"><?= $data['nama']; ?></p>
+                                                            <p class="form-control bg-light"><?= htmlspecialchars($data['nama']); ?></p>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="jenkel">Jenis Kelamin</label>
@@ -153,7 +153,7 @@ if ($tab == '1') {
                                                         <label>
                                                             Detail alamat :
                                                         </label>
-                                                        <textarea disabled class="form-control bg-light"><?= $data['detail_alamat']; ?></textarea>
+                                                        <textarea disabled class="form-control bg-light"><?= htmlspecialchars($data['detail_alamat']); ?></textarea>
                                                     </div>
                                                 </div>
                                             </div>

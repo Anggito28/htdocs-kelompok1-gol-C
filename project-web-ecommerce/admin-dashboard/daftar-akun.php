@@ -125,7 +125,7 @@ $data = query("SELECT email, kd_akun, jenis_akun FROM tb_akun WHERE NOT jenis_ak
                                                                 <?= $i++; ?>
                                                             </td>
                                                             <td>
-                                                                <?= $d['email']; ?>
+                                                                <?= htmlspecialchars($d['email']); ?>
                                                             </td>
                                                             <td>
                                                                 <?= $d['jenis_akun']; ?>

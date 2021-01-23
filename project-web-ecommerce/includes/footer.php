@@ -4,7 +4,13 @@
             <div class="col-lg-6 mb-5">
                 <h6>Tentang Kami</h6>
                 <small class="pr-5">
-                    Web Penjualan Rudibonsai merupakan web yang berjalan pada bidang bisnis perdagangan tanaman bonsai dan perlengkapaan pemeliharaan bonsai. Untuk Toko Penjualan Offline sendiri tepatnya berada di Kabupaten Blitar, Jawa Timur
+                    <p>
+                        Rudi Bonsai melayani penjualan berbagai macam tanaman bonsai, tanaman hias, dan berbagai macam perlengkapan berkebun. Rudi Bonsai berdiri pada tahun 2018, berlokasi di kabupaten Blitar, Jawa Timur, Indonesia.
+                    </p>
+                    <p>
+                        <strong>Alamat Toko :</strong>
+                        Desa Wonorejo, Dusun kembangarum, RT 3/ RW 3, Kecamatan Talun, Kabupaten Blitar, Jawa Timur, Indonesia
+                    </p>
                 </small>
             </div>
 

@@ -315,7 +315,7 @@ if (isset($_POST['ubah'])) {
                                                     </div>
                                                     <div>
                                                         <h6>Catatan untuk penjual</h6>
-                                                        <textarea disabled class="form-control bg-light" rows="3"><?= $trans[0]['keterangan']; ?></textarea>
+                                                        <textarea disabled class="form-control bg-light" rows="3"><?= htmlspecialchars($trans[0]['keterangan']); ?></textarea>
                                                     </div>
                                                 </div>
                                             </div>

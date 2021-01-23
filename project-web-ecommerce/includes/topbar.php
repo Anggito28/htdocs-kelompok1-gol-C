@@ -66,7 +66,7 @@
                             </a>
                             <div style="width: 260px;" id="userMenu" class="shadow dropdown-menu dropdown-menu-right mt-2">
                                 <p class="d-block pl-4 pt-2 text-truncate" style="max-width: 200px;">
-                                    <?= $_SESSION['nama']; ?>
+                                    <?= htmlspecialchars($_SESSION['nama']); ?>
                                 </p>
                                 <hr class="dropdown-divider">
                                 <a class="dropdown-item" href="profil.php?tab=1">
